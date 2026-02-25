@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ana Kumanda 🎯 - 6 Month Master Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg-primary:#fff;--bg-secondary:#f7f6f3;--bg-tertiary:#f1f1ef;--bg-hover:#ebebea;--text-primary:#37352f;--text-secondary:#787774;--text-tertiary:#9b9a97;--border-color:#e9e9e7;--accent-blue:#2383e2;--accent-green:#0f7b6c;--accent-orange:#d9730d;--accent-red:#e03e3e;--accent-purple:#6940a5;--accent-pink:#ad1a72;--accent-yellow:#dfab01;--tag-blue-bg:#d3e5ef;--tag-blue-text:#1a6da1;--tag-green-bg:#dbeddb;--tag-green-text:#0c6e3d;--tag-orange-bg:#fadec9;--tag-orange-text:#c4700a;--tag-red-bg:#ffe2dd;--tag-red-text:#c4554d;--tag-purple-bg:#e8deee;--tag-purple-text:#6940a5;--tag-yellow-bg:#fdecc8;--tag-yellow-text:#9f6b00;--tag-gray-bg:#e3e2e0;--tag-gray-text:#5a5a58;--shadow-sm:0 1px 2px rgba(0,0,0,.04);--shadow-md:0 2px 8px rgba(0,0,0,.08);--shadow-lg:0 4px 16px rgba(0,0,0,.12);--radius-sm:4px;--radius-md:6px;--radius-lg:8px}
+html.dark{--bg-primary:#191919;--bg-secondary:#121212;--bg-tertiary:#1e1e1e;--bg-hover:#2c2c2c;--text-primary:#e0e0e0;--text-secondary:#9b9b9b;--text-tertiary:#6b6b6b;--border-color:#2e2e2e;--tag-blue-bg:#1c3a52;--tag-blue-text:#6db3f2;--tag-green-bg:#1a3a2a;--tag-green-text:#5ec49e;--tag-orange-bg:#3d2a14;--tag-orange-text:#f0a05a;--tag-red-bg:#3a1c1c;--tag-red-text:#f07070;--tag-purple-bg:#2a1f3d;--tag-purple-text:#b08cda;--tag-yellow-bg:#3a3014;--tag-yellow-text:#e8c44a;--tag-gray-bg:#2c2c2c;--tag-gray-text:#a0a0a0;--shadow-sm:0 1px 2px rgba(0,0,0,.2);--shadow-md:0 2px 8px rgba(0,0,0,.3);--shadow-lg:0 4px 16px rgba(0,0,0,.4)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-secondary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+.page-wrapper{max-width:1100px;margin:0 auto;padding:24px 60px 80px}
+@media(max-width:768px){.page-wrapper{padding:16px 16px 60px}}
+.toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding:8px 0;flex-wrap:wrap;gap:8px}
+.toolbar-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.toolbar-right{display:flex;align-items:center;gap:8px}
+.date-display{font-size:13px;color:var(--text-secondary);font-weight:500}
+.streak-badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;background:var(--tag-orange-bg);color:var(--tag-orange-text)}
+.toolbar-btn{font-family:inherit;font-size:12px;font-weight:500;padding:5px 10px;border-radius:var(--radius-md);border:1px solid var(--border-color);background:var(--bg-primary);color:var(--text-primary);cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:4px}
+.toolbar-btn:hover{background:var(--bg-hover);box-shadow:var(--shadow-sm)}
+.cover-bar{height:5px;background:linear-gradient(90deg,var(--accent-blue),var(--accent-purple),var(--accent-orange),var(--accent-green));border-radius:3px;margin-bottom:28px}
+.page-header{margin-bottom:28px}
+.page-header h1{font-size:38px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
+.page-header .subtitle{font-size:14px;color:var(--text-secondary)}
+.progress-overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:18px}
+.stat-card{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:12px 14px;text-align:center;transition:transform .15s}
+.stat-card:hover{transform:translateY(-1px)}
+.stat-card .stat-number{font-size:24px;font-weight:800;line-height:1.2}
+.stat-card .stat-label{font-size:10px;color:var(--text-secondary);margin-top:2px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+/* Pomodoro */
+.pomodoro-bar{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:14px 18px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.pomodoro-left{display:flex;align-items:center;gap:14px}
+.pomodoro-timer{font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--accent-red);min-width:110px;text-align:center;transition:color .3s}
+.pomo-modes{display:flex;gap:4px;align-items:center}
+.pomo-btn-mode{font-family:inherit;font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px;border:1px solid var(--border-color);background:transparent;color:var(--text-secondary);cursor:pointer;transition:all .15s}
+.pomo-btn-mode:hover{background:var(--bg-hover)}
+.pomo-btn-mode.active-mode{background:var(--tag-red-bg);color:var(--tag-red-text);border-color:transparent}
+.pomo-sessions{font-size:11px;color:var(--text-tertiary);margin-left:6px}
+.pomodoro-controls{display:flex;gap:6px}
+.pomo-btn{font-family:inherit;font-size:13px;font-weight:600;padding:7px 14px;border-radius:var(--radius-md);border:none;cursor:pointer;transition:all .15s}
+.pomo-btn-primary{background:var(--accent-red);color:#fff}
+.pomo-btn-primary:hover{opacity:.9}
+.pomo-btn-primary.running{background:var(--accent-orange)}
+.pomo-btn-secondary{background:var(--bg-tertiary);color:var(--text-primary);border:1px solid var(--border-color)}
+.pomo-btn-secondary:hover{background:var(--bg-hover)}
+/* Sections */
+.section{margin-bottom:44px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border-color);flex-wrap:wrap}
+.section-header .icon{font-size:20px;width:26px;text-align:center}
+.section-header h2{font-size:20px;font-weight:700;letter-spacing:-.02em}
+.section-header .badge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:10px;margin-left:auto}
+.section-header .q-count{font-size:11px;color:var(--text-tertiary);font-weight:500}
+/* Daily Routine */
+.routine-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.routine-card{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:12px 14px;transition:box-shadow .15s}
+.routine-card:hover{box-shadow:var(--shadow-sm)}
+.routine-card .card-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.label-morning{color:var(--accent-orange)}.label-afternoon{color:var(--accent-blue)}.label-evening{color:var(--accent-purple)}.label-night{color:var(--accent-green)}.label-constants{color:var(--text-secondary)}
+/* Checkboxes */
+.check-item{display:flex;align-items:flex-start;gap:8px;padding:3px 0;font-size:13.5px;cursor:pointer;user-select:none}
+.check-item input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:16px;height:16px;min-width:16px;border:1.5px solid #c3c2c0;border-radius:3px;cursor:pointer;position:relative;top:2px;transition:all .15s;background:var(--bg-primary)}
+.check-item input[type="checkbox"]:checked{background:var(--accent-blue);border-color:var(--accent-blue)}
+.check-item input[type="checkbox"]:checked::after{content:'✓';color:#fff;font-size:10px;font-weight:700;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.check-item.checked .check-label{text-decoration:line-through;color:var(--text-tertiary)}
+.check-label{line-height:1.5}
+/* Tags */
+.tag{display:inline-block;font-size:10px;font-weight:500;padding:1px 6px;border-radius:3px;margin-left:3px;vertical-align:middle}
+.tag-blue{background:var(--tag-blue-bg);color:var(--tag-blue-text)}.tag-green{background:var(--tag-green-bg);color:var(--tag-green-text)}.tag-orange{background:var(--tag-orange-bg);color:var(--tag-orange-text)}.tag-red{background:var(--tag-red-bg);color:var(--tag-red-text)}.tag-purple{background:var(--tag-purple-bg);color:var(--tag-purple-text)}.tag-yellow{background:var(--tag-yellow-bg);color:var(--tag-yellow-text)}.tag-gray{background:var(--tag-gray-bg);color:var(--tag-gray-text)}
+/* Grammar */
+.grammar-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+.grammar-search{font-family:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-primary);color:var(--text-primary);outline:none;width:220px;max-width:100%;transition:border-color .15s}
+.grammar-search:focus{border-color:var(--accent-blue)}
+.grammar-scroll{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);max-height:380px;overflow-y:auto;padding:6px 0}
+.grammar-scroll::-webkit-scrollbar{width:5px}
+.grammar-scroll::-webkit-scrollbar-thumb{background:#d4d4d2;border-radius:3px}
+html.dark .grammar-scroll::-webkit-scrollbar-thumb{background:#444}
+.grammar-group-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-secondary);padding:10px 16px 3px;position:sticky;top:0;background:var(--bg-primary);z-index:1}
+.grammar-item{display:flex;align-items:center;gap:8px;padding:4px 16px;font-size:13px;cursor:pointer;transition:background .1s}
+.grammar-item:hover{background:var(--bg-tertiary)}
+.grammar-item input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:15px;height:15px;min-width:15px;border:1.5px solid #c3c2c0;border-radius:3px;cursor:pointer;position:relative;transition:all .15s;background:var(--bg-primary)}
+.grammar-item input[type="checkbox"]:checked{background:var(--accent-green);border-color:var(--accent-green)}
+.grammar-item input[type="checkbox"]:checked::after{content:'✓';color:#fff;font-size:9px;font-weight:700;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.grammar-item.checked span{text-decoration:line-through;color:var(--text-tertiary)}
+.english-sub-sections{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-top:14px}
+.english-sub-card{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:12px 14px}
+.english-sub-card h4{font-size:12px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+/* Vocab Log */
+.vocab-log{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);margin-top:14px;overflow:hidden}
+.vocab-log-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;user-select:none;transition:background .1s}
+.vocab-log-header:hover{background:var(--bg-tertiary)}
+.vocab-log-header h4{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.vocab-log-header .arrow{font-size:10px;color:var(--text-tertiary);transition:transform .2s}
+.vocab-log.open .arrow{transform:rotate(90deg)}
+.vocab-log-body{display:none;padding:0 16px 14px;border-top:1px solid var(--border-color)}
+.vocab-log.open .vocab-log-body{display:block}
+.vocab-date-picker{display:flex;align-items:center;gap:8px;padding:10px 0 8px}
+.vocab-date-picker input[type="date"]{font-family:inherit;font-size:12px;padding:4px 8px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-primary);color:var(--text-primary);outline:none}
+.vocab-input-row{display:flex;gap:6px;margin-bottom:8px}
+.vocab-input-row input{flex:1;font-family:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-primary);color:var(--text-primary);outline:none}
+.vocab-input-row input:focus{border-color:var(--accent-blue)}
+.vocab-input-row button{font-family:inherit;font-size:12px;font-weight:600;padding:6px 12px;border:none;border-radius:var(--radius-md);background:var(--accent-green);color:#fff;cursor:pointer;white-space:nowrap}
+.vocab-input-row button:hover{opacity:.9}
+.vocab-words{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.vocab-word{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:3px 8px;background:var(--tag-green-bg);color:var(--tag-green-text);border-radius:4px;font-weight:500}
+.vocab-word .remove-word{cursor:pointer;opacity:.6;font-size:10px}
+.vocab-word .remove-word:hover{opacity:1}
+.vocab-history{margin-top:10px;max-height:200px;overflow-y:auto}
+.vocab-day-entry{padding:6px 0;border-bottom:1px solid var(--border-color)}
+.vocab-day-entry:last-child{border-bottom:none}
+.vocab-day-entry .day-label{font-size:11px;font-weight:600;color:var(--text-secondary);margin-bottom:3px}
+/* Kanban */
+.kanban-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;overflow-x:auto}
+@media(max-width:900px){.kanban-board{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.kanban-board{grid-template-columns:1fr}}
+.kanban-column{background:var(--bg-tertiary);border-radius:var(--radius-lg);padding:8px;min-height:160px;transition:background .15s}
+.kanban-column-header{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:5px 6px 6px;display:flex;align-items:center;gap:5px}
+.kanban-column-header .count{font-size:10px;font-weight:500;color:var(--text-tertiary);background:var(--bg-hover);padding:0 5px;border-radius:10px}
+.kanban-card{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:8px 10px;margin-bottom:5px;font-size:13px;cursor:grab;transition:box-shadow .15s,transform .1s;user-select:none}
+.kanban-card:hover{box-shadow:var(--shadow-md)}
+.kanban-card:active{cursor:grabbing;box-shadow:var(--shadow-lg);transform:rotate(1.5deg) scale(1.02);opacity:.92}
+.kanban-card .card-tag{display:inline-block;font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;margin-bottom:3px}
+.kanban-card .card-title{font-size:13px;font-weight:500;line-height:1.3}
+.kanban-card .q-info{font-size:10px;color:var(--text-tertiary);margin-top:2px}
+.dragging{opacity:.4}
+.drag-over{background:var(--bg-hover)}
+/* KPSS Tabs */
+.kpss-tabs{display:flex;gap:3px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px}
+.kpss-tab{font-size:12px;font-weight:500;padding:5px 12px;border-radius:6px;border:none;background:transparent;color:var(--text-secondary);cursor:pointer;white-space:nowrap;transition:all .15s;font-family:inherit}
+.kpss-tab:hover{background:var(--bg-hover);color:var(--text-primary)}
+.kpss-tab.active{background:var(--text-primary);color:var(--bg-secondary)}
+/* Accordion */
+.accordion-section{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);margin-bottom:6px;overflow:hidden}
+.accordion-section summary{padding:12px 16px;font-size:14px;font-weight:600;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;transition:background .1s;user-select:none}
+.accordion-section summary::-webkit-details-marker{display:none}
+.accordion-section summary::before{content:'▶';font-size:9px;color:var(--text-tertiary);transition:transform .2s;display:inline-block}
+.accordion-section[open] summary::before{transform:rotate(90deg)}
+.accordion-section summary:hover{background:var(--bg-tertiary)}
+.accordion-section .accordion-body{padding:4px 16px 14px 40px}
+.accordion-section .ka-number{font-size:10px;font-weight:600;background:var(--tag-purple-bg);color:var(--tag-purple-text);padding:1px 6px;border-radius:3px}
+.technique-list{margin-top:6px}
+.technique-list .check-item{font-size:13px;padding:2px 0}
+/* Progress */
+.progress-bar-container{margin-top:10px}
+.progress-bar-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text-secondary);margin-bottom:3px}
+.progress-bar{height:5px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden}
+.progress-bar-fill{height:100%;border-radius:3px;transition:width .4s ease}
+.fill-blue{background:var(--accent-blue)}.fill-green{background:var(--accent-green)}.fill-orange{background:var(--accent-orange)}.fill-purple{background:var(--accent-purple)}.fill-red{background:var(--accent-red)}
+/* Notes */
+.notes-area{width:100%;min-height:80px;font-family:inherit;font-size:13px;line-height:1.6;padding:12px 14px;border:1px solid var(--border-color);border-radius:var(--radius-lg);background:var(--bg-primary);color:var(--text-primary);resize:vertical;outline:none;transition:border-color .15s}
+.notes-area:focus{border-color:var(--accent-blue)}
+/* Callout */
+.callout{display:flex;align-items:flex-start;gap:8px;background:var(--bg-tertiary);border-radius:var(--radius-lg);padding:10px 14px;font-size:13px;margin-bottom:12px}
+.callout .callout-icon{font-size:16px}
+/* KPSS Soru Dağılımı Mini Table */
+.soru-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);overflow:hidden}
+.soru-table th{text-align:left;padding:8px 12px;background:var(--bg-tertiary);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-secondary)}
+.soru-table td{padding:6px 12px;border-top:1px solid var(--border-color)}
+.soru-table .num{text-align:center;font-weight:600;color:var(--accent-blue);min-width:40px}
+/* Footer */
+.page-footer{text-align:center;padding:20px 0;font-size:11px;color:var(--text-tertiary);border-top:1px solid var(--border-color);margin-top:36px}
+/* Nav */
+.nav-float{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-primary);border:1px solid var(--border-color);border-radius:40px;padding:5px 6px;display:flex;gap:2px;box-shadow:var(--shadow-lg);z-index:100}
+.nav-float a{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;text-decoration:none;font-size:16px;transition:background .15s;position:relative}
+.nav-float a:hover{background:var(--bg-hover)}
+.nav-float a .nav-tooltip{display:none;position:absolute;bottom:42px;background:var(--text-primary);color:var(--bg-primary);font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.nav-float a:hover .nav-tooltip{display:block}
+/* Utility */
+.mt-6{margin-top:6px}.mt-8{margin-top:8px}.mt-10{margin-top:10px}.mt-12{margin-top:12px}.mt-14{margin-top:14px}.mt-16{margin-top:16px}
+.text-sm{font-size:13px}.text-xs{font-size:12px}.text-muted{color:var(--text-secondary)}
+html{scroll-behavior:smooth}
+@keyframes celebrate{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+.celebrate{animation:celebrate .5s ease}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+<div class="cover-bar"></div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="toolbar-left">
+    <span class="date-display" id="date-display"></span>
+    <span class="streak-badge" id="streak-badge">🔥 0 gün seri</span>
+  </div>
+  <div class="toolbar-right">
+    <button class="toolbar-btn" onclick="resetDaily()">↻ Reset</button>
+    <button class="toolbar-btn" id="dark-toggle" onclick="toggleDark()">🌙</button>
+    <button class="toolbar-btn" onclick="exportData()">💾</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="page-header">
+  <h1>Ana Kumanda 🎯</h1>
+  <div class="subtitle">6 Month Master Plan — English · KPSS · ECBA · GitHub</div>
+  <div class="progress-overview">
+    <div class="stat-card"><div class="stat-number" style="color:var(--accent-blue)" id="stat-daily">0%</div><div class="stat-label">Daily</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:var(--accent-green)" id="stat-grammar">0/145</div><div class="stat-label">Grammar</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:var(--accent-orange)" id="stat-kpss">0%</div><div class="stat-label">KPSS</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:var(--accent-purple)" id="stat-ecba">0/18</div><div class="stat-label">ECBA</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:var(--accent-red)" id="stat-pomodoro">0</div><div class="stat-label">Pomodoro</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:var(--accent-yellow)" id="stat-words">0</div><div class="stat-label">Words</div></div>
+  </div>
+</div>
+
+<!-- POMODORO -->
+<div class="pomodoro-bar" id="section-pomodoro">
+  <div class="pomodoro-left">
+    <div>
+      <div class="pomodoro-timer" id="pomo-display">25:00</div>
+      <div class="pomo-modes">
+        <button class="pomo-btn-mode active-mode" onclick="setPomoMode('work',this)">Focus</button>
+        <button class="pomo-btn-mode" onclick="setPomoMode('short',this)">Short</button>
+        <button class="pomo-btn-mode" onclick="setPomoMode('long',this)">Long</button>
+        <span class="pomo-sessions" id="pomo-sessions">#1</span>
+      </div>
+    </div>
+  </div>
+  <div class="pomodoro-controls">
+    <button class="pomo-btn pomo-btn-primary" id="pomo-start" onclick="togglePomodoro()">▶ Start</button>
+    <button class="pomo-btn pomo-btn-secondary" onclick="resetPomodoro()">⟲</button>
+  </div>
+</div>
+
+<!-- DAILY ROUTINE -->
+<div class="section" id="section-daily">
+  <div class="section-header"><span class="icon">📋</span><h2>Daily Vitrin</h2><span class="badge tag tag-blue">Interactive</span></div>
+  <div class="routine-grid">
+    <div class="routine-card"><div class="card-label label-morning">☀️ Morning</div>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d1" onchange="onCheck(this)"><span class="check-label">10 Paragraf Reading</span></label>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d2" onchange="onCheck(this)"><span class="check-label">Murphy Gramer — 1 Unit</span></label>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d3" onchange="onCheck(this)"><span class="check-label">10 Oxford Words <span class="tag tag-green">Anki</span></span></label>
+    </div>
+    <div class="routine-card"><div class="card-label label-afternoon">🌤️ Afternoon</div>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d4" onchange="onCheck(this)"><span class="check-label">KPSS Subject Study</span></label>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d5" onchange="onCheck(this)"><span class="check-label">ECBA (BABOK) Reading</span></label>
+    </div>
+    <div class="routine-card"><div class="card-label label-evening">🌆 Evening</div>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d6" onchange="onCheck(this)"><span class="check-label">GitHub Project Coding</span></label>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d7" onchange="onCheck(this)"><span class="check-label">5 Min BBC Listening</span></label>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d8" onchange="onCheck(this)"><span class="check-label">1 Page English Reading</span></label>
+    </div>
+    <div class="routine-card"><div class="card-label label-night">🌙 Night</div>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d9" onchange="onCheck(this)"><span class="check-label">Preply / Gemini Speaking</span></label>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d10" onchange="onCheck(this)"><span class="check-label">1 Silicon Valley Episode</span></label>
+    </div>
+    <div class="routine-card"><div class="card-label label-constants">🔁 Constants</div>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d11" onchange="onCheck(this)"><span class="check-label">10 Mins Ukulele</span></label>
+      <label class="check-item"><input type="checkbox" data-group="daily" data-id="d12" onchange="onCheck(this)"><span class="check-label">Book Reading (No Screens)</span></label>
+    </div>
+  </div>
+</div>
+
+<!-- ENGLISH MACHINE -->
+<div class="section" id="section-english">
+  <div class="section-header"><span class="icon">🇬🇧</span><h2>The English Machine</h2><span class="badge tag tag-green">145 Days Plan</span></div>
+  <div class="callout"><span class="callout-icon">💡</span><span>Track <strong>English Grammar in Use</strong> (Murphy). Search units, check progress. All saved automatically.</span></div>
+  <div class="grammar-toolbar">
+    <input type="text" class="grammar-search" id="grammar-search" placeholder="🔍 Search units…" oninput="filterGrammar()">
+    <span class="text-xs text-muted" id="grammar-filter-count"></span>
+  </div>
+  <div class="grammar-scroll" id="grammar-scroll">
+    <div class="grammar-group-title">Present & Past (1–20)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g1" onchange="onCheck(this)"><span>1 — Present continuous (I am doing)</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g2" onchange="onCheck(this)"><span>2 — Present simple (I do)</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g3" onchange="onCheck(this)"><span>3 — Present continuous and present simple 1</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g4" onchange="onCheck(this)"><span>4 — Present continuous and present simple 2</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g5" onchange="onCheck(this)"><span>5 — Past simple (I did)</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g6" onchange="onCheck(this)"><span>6 — Past continuous (I was doing)</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g7" onchange="onCheck(this)"><span>7 — Present perfect 1 (I have done)</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g8" onchange="onCheck(this)"><span>8 — Present perfect 2 (I have done)</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g9" onchange="onCheck(this)"><span>9 — Present perfect continuous</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g10" onchange="onCheck(this)"><span>10 — Present perfect continuous and simple</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g11" onchange="onCheck(this)"><span>11 — How long have you (been)…?</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g12" onchange="onCheck(this)"><span>12 — For and since / When…? How long…?</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g13" onchange="onCheck(this)"><span>13 — Present perfect and past 1</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g14" onchange="onCheck(this)"><span>14 — Present perfect and past 2</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g15" onchange="onCheck(this)"><span>15 — Past perfect (I had done)</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g16" onchange="onCheck(this)"><span>16 — Past perfect continuous</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g17" onchange="onCheck(this)"><span>17 — Have and have got</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g18" onchange="onCheck(this)"><span>18 — Used to (do)</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g19" onchange="onCheck(this)"><span>19 — Present tenses for the future</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g20" onchange="onCheck(this)"><span>20 — (I'm) going to (do)</span></label>
+    <div class="grammar-group-title">Future (21–25)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g21" onchange="onCheck(this)"><span>21 — Will/shall 1</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g22" onchange="onCheck(this)"><span>22 — Will/shall 2</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g23" onchange="onCheck(this)"><span>23 — I will and I'm going to</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g24" onchange="onCheck(this)"><span>24 — Will be doing / will have done</span></label>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g25" onchange="onCheck(this)"><span>25 — When I do / When I've done</span></label>
+    <div class="grammar-group-title">Modals (26–37)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g26" onchange="onCheck(this)"><span>26 — Can, could and (be) able to</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g27" onchange="onCheck(this)"><span>27 — Could (do) / could have (done)</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g28" onchange="onCheck(this)"><span>28 — Must and can't</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g29" onchange="onCheck(this)"><span>29 — May and might 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g30" onchange="onCheck(this)"><span>30 — May and might 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g31" onchange="onCheck(this)"><span>31 — Have to and must</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g32" onchange="onCheck(this)"><span>32 — Must/mustn't/needn't</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g33" onchange="onCheck(this)"><span>33 — Should 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g34" onchange="onCheck(this)"><span>34 — Should 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g35" onchange="onCheck(this)"><span>35 — Had better / It's time…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g36" onchange="onCheck(this)"><span>36 — Would</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g37" onchange="onCheck(this)"><span>37 — Requests, offers, permission</span></label>
+    <div class="grammar-group-title">Conditionals & Wish (38–41)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g38" onchange="onCheck(this)"><span>38 — If I do… and If I did…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g39" onchange="onCheck(this)"><span>39 — If I knew… I wish I knew…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g40" onchange="onCheck(this)"><span>40 — If I had known… I wish I had known…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g41" onchange="onCheck(this)"><span>41 — Wish</span></label>
+    <div class="grammar-group-title">Passive (42–46)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g42" onchange="onCheck(this)"><span>42 — Passive 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g43" onchange="onCheck(this)"><span>43 — Passive 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g44" onchange="onCheck(this)"><span>44 — Passive 3</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g45" onchange="onCheck(this)"><span>45 — It is said that…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g46" onchange="onCheck(this)"><span>46 — Have something done</span></label>
+    <div class="grammar-group-title">Reported Speech (47–48)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g47" onchange="onCheck(this)"><span>47 — Reported speech 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g48" onchange="onCheck(this)"><span>48 — Reported speech 2</span></label>
+    <div class="grammar-group-title">Questions & Auxiliaries (49–52)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g49" onchange="onCheck(this)"><span>49 — Questions 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g50" onchange="onCheck(this)"><span>50 — Questions 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g51" onchange="onCheck(this)"><span>51 — Auxiliary verbs</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g52" onchange="onCheck(this)"><span>52 — Question tags</span></label>
+    <div class="grammar-group-title">-ing and to… (53–68)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g53" onchange="onCheck(this)"><span>53 — Verb + -ing</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g54" onchange="onCheck(this)"><span>54 — Verb + to…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g55" onchange="onCheck(this)"><span>55 — Verb + object + to…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g56" onchange="onCheck(this)"><span>56 — -ing or to… 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g57" onchange="onCheck(this)"><span>57 — -ing or to… 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g58" onchange="onCheck(this)"><span>58 — -ing or to… 3</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g59" onchange="onCheck(this)"><span>59 — Prefer and would rather</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g60" onchange="onCheck(this)"><span>60 — Preposition + -ing</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g61" onchange="onCheck(this)"><span>61 — Be/get used to…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g62" onchange="onCheck(this)"><span>62 — Verb + preposition + -ing</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g63" onchange="onCheck(this)"><span>63 — Expressions + -ing</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g64" onchange="onCheck(this)"><span>64 — To…, for… and so that…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g65" onchange="onCheck(this)"><span>65 — Adjective + to…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g66" onchange="onCheck(this)"><span>66 — Afraid to do / preposition + -ing</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g67" onchange="onCheck(this)"><span>67 — See somebody do/doing</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g68" onchange="onCheck(this)"><span>68 — -ing clauses</span></label>
+    <div class="grammar-group-title">Articles & Nouns (69–81)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g69" onchange="onCheck(this)"><span>69 — Countable/uncountable 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g70" onchange="onCheck(this)"><span>70 — Countable/uncountable 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g71" onchange="onCheck(this)"><span>71 — a/an and some</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g72" onchange="onCheck(this)"><span>72 — A/an and the</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g73" onchange="onCheck(this)"><span>73 — The 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g74" onchange="onCheck(this)"><span>74 — The 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g75" onchange="onCheck(this)"><span>75 — The 3</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g76" onchange="onCheck(this)"><span>76 — The 4</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g77" onchange="onCheck(this)"><span>77 — Names with/without the 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g78" onchange="onCheck(this)"><span>78 — Names with/without the 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g79" onchange="onCheck(this)"><span>79 — Singular and plural</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g80" onchange="onCheck(this)"><span>80 — Noun + noun</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g81" onchange="onCheck(this)"><span>81 — 's and of…</span></label>
+    <div class="grammar-group-title">Pronouns & Determiners (82–93)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g82" onchange="onCheck(this)"><span>82 — Myself/yourself/themselves</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g83" onchange="onCheck(this)"><span>83 — A friend of mine / on my own</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g84" onchange="onCheck(this)"><span>84 — There… and it…</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g85" onchange="onCheck(this)"><span>85 — Some and any</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g86" onchange="onCheck(this)"><span>86 — No/none/any/nothing/nobody</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g87" onchange="onCheck(this)"><span>87 — Much, many, little, few, a lot</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g88" onchange="onCheck(this)"><span>88 — All/most/no/none of</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g89" onchange="onCheck(this)"><span>89 — Both/neither/either</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g90" onchange="onCheck(this)"><span>90 — All, every and whole</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g91" onchange="onCheck(this)"><span>91 — Each and every</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g92" onchange="onCheck(this)"><span>92 — Relative clauses 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g93" onchange="onCheck(this)"><span>93 — Relative clauses 2</span></label>
+    <div class="grammar-group-title">Adjectives & Adverbs (94–113)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g94" onchange="onCheck(this)"><span>94 — Relative clauses 3</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g95" onchange="onCheck(this)"><span>95 — Relative clauses 4</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g96" onchange="onCheck(this)"><span>96 — -ing and -ed clauses</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g97" onchange="onCheck(this)"><span>97 — Adjectives -ing/-ed</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g98" onchange="onCheck(this)"><span>98 — Adjective order</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g99" onchange="onCheck(this)"><span>99 — Adjectives and adverbs 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g100" onchange="onCheck(this)"><span>100 — Adjectives and adverbs 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g101" onchange="onCheck(this)"><span>101 — So and such</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g102" onchange="onCheck(this)"><span>102 — Enough and too</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g103" onchange="onCheck(this)"><span>103 — Quite, pretty, rather, fairly</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g104" onchange="onCheck(this)"><span>104 — Comparison 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g105" onchange="onCheck(this)"><span>105 — Comparison 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g106" onchange="onCheck(this)"><span>106 — Comparison 3</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g107" onchange="onCheck(this)"><span>107 — Superlatives</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g108" onchange="onCheck(this)"><span>108 — Word order 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g109" onchange="onCheck(this)"><span>109 — Word order 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g110" onchange="onCheck(this)"><span>110 — Still, yet, already</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g111" onchange="onCheck(this)"><span>111 — Even</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g112" onchange="onCheck(this)"><span>112 — Although/despite</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g113" onchange="onCheck(this)"><span>113 — In case</span></label>
+    <div class="grammar-group-title">Conjunctions & Prepositions (114–136)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g114" onchange="onCheck(this)"><span>114 — Unless/As long as/Provided</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g115" onchange="onCheck(this)"><span>115 — As</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g116" onchange="onCheck(this)"><span>116 — Like and as</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g117" onchange="onCheck(this)"><span>117 — Like/as if/as though</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g118" onchange="onCheck(this)"><span>118 — For, during, while</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g119" onchange="onCheck(this)"><span>119 — By and until</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g120" onchange="onCheck(this)"><span>120 — At/on/in (time)</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g121" onchange="onCheck(this)"><span>121 — On time / in time</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g122" onchange="onCheck(this)"><span>122 — In/at/on (position) 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g123" onchange="onCheck(this)"><span>123 — In/at/on (position) 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g124" onchange="onCheck(this)"><span>124 — In/at/on (position) 3</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g125" onchange="onCheck(this)"><span>125 — To, at, in, into</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g126" onchange="onCheck(this)"><span>126 — In/at/on other uses</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g127" onchange="onCheck(this)"><span>127 — By</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g128" onchange="onCheck(this)"><span>128 — Noun + preposition</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g129" onchange="onCheck(this)"><span>129 — Adjective + preposition 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g130" onchange="onCheck(this)"><span>130 — Adjective + preposition 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g131" onchange="onCheck(this)"><span>131 — Verb + preposition 1</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g132" onchange="onCheck(this)"><span>132 — Verb + preposition 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g133" onchange="onCheck(this)"><span>133 — Verb + preposition 3</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g134" onchange="onCheck(this)"><span>134 — Verb + preposition 4</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g135" onchange="onCheck(this)"><span>135 — Verb + preposition 5</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g136" onchange="onCheck(this)"><span>136 — Phrasal verbs 1</span></label>
+    <div class="grammar-group-title">Phrasal Verbs (137–145)</div>
+    <label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g137" onchange="onCheck(this)"><span>137 — Phrasal verbs 2</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g138" onchange="onCheck(this)"><span>138 — Phrasal verbs 3</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g139" onchange="onCheck(this)"><span>139 — Phrasal verbs 4</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g140" onchange="onCheck(this)"><span>140 — Phrasal verbs 5</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g141" onchange="onCheck(this)"><span>141 — Phrasal verbs 6</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g142" onchange="onCheck(this)"><span>142 — Phrasal verbs 7</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g143" onchange="onCheck(this)"><span>143 — Phrasal verbs 8</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g144" onchange="onCheck(this)"><span>144 — Phrasal verbs 9</span></label><label class="grammar-item"><input type="checkbox" data-group="grammar" data-id="g145" onchange="onCheck(this)"><span>145 — Phrasal verbs 10</span></label>
+  </div>
+  <div class="progress-bar-container mt-10"><div class="progress-bar-label"><span>Grammar Progress</span><span id="grammar-progress-text">0/145</span></div><div class="progress-bar"><div class="progress-bar-fill fill-green" id="grammar-bar" style="width:0%"></div></div></div>
+
+  <!-- English Sub-sections: 4 columns now -->
+  <div class="english-sub-sections mt-14" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+    <div class="english-sub-card">
+      <h4>📖 Oxford 3000</h4>
+      <label class="check-item"><input type="checkbox" data-id="ox1" onchange="onCheck(this)"><span class="check-label">Anki batch reviewed</span></label>
+      <label class="check-item"><input type="checkbox" data-id="ox2" onchange="onCheck(this)"><span class="check-label">Example sentences</span></label>
+      <label class="check-item"><input type="checkbox" data-id="ox3" onchange="onCheck(this)"><span class="check-label">Yesterday's review</span></label>
+    </div>
+    <div class="english-sub-card">
+      <h4>🎧 Listening</h4>
+      <label class="check-item"><input type="checkbox" data-id="al1" onchange="onCheck(this)"><span class="check-label">BBC 6 Minute English</span></label>
+      <label class="check-item"><input type="checkbox" data-id="al2" onchange="onCheck(this)"><span class="check-label">Silicon Valley (subs off)</span></label>
+      <label class="check-item"><input type="checkbox" data-id="al3" onchange="onCheck(this)"><span class="check-label">Shadowing (1 clip)</span></label>
+    </div>
+    <div class="english-sub-card">
+      <h4>🗣️ Speaking</h4>
+      <label class="check-item"><input type="checkbox" data-id="sp1" onchange="onCheck(this)"><span class="check-label">Preply/Gemini session</span></label>
+      <label class="check-item"><input type="checkbox" data-id="sp2" onchange="onCheck(this)"><span class="check-label">2 min monologue</span></label>
+      <label class="check-item"><input type="checkbox" data-id="sp3" onchange="onCheck(this)"><span class="check-label">Pronunciation review</span></label>
+    </div>
+    <div class="english-sub-card">
+      <h4>📚 Reading</h4>
+      <label class="check-item"><input type="checkbox" data-id="rd1" onchange="onCheck(this)"><span class="check-label">1 page book/article</span></label>
+      <label class="check-item"><input type="checkbox" data-id="rd2" onchange="onCheck(this)"><span class="check-label">Highlight new words</span></label>
+      <label class="check-item"><input type="checkbox" data-id="rd3" onchange="onCheck(this)"><span class="check-label">Write 3-sentence summary</span></label>
+    </div>
+  </div>
+
+  <!-- VOCABULARY LOG -->
+  <div class="vocab-log" id="vocab-log">
+    <div class="vocab-log-header" onclick="document.getElementById('vocab-log').classList.toggle('open')">
+      <h4>📝 Daily Vocabulary Log <span class="tag tag-green">Oxford 3000</span></h4>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="vocab-log-body">
+      <div class="vocab-date-picker">
+        <label class="text-xs text-muted">Date:</label>
+        <input type="date" id="vocab-date">
+      </div>
+      <div class="vocab-input-row">
+        <input type="text" id="vocab-word-input" placeholder="Type a word and press Enter or Add…" onkeydown="if(event.key==='Enter')addVocabWord()">
+        <button onclick="addVocabWord()">+ Add</button>
+      </div>
+      <div class="vocab-words" id="vocab-today-words"></div>
+      <div style="margin-top:12px;font-size:12px;font-weight:600;color:var(--text-secondary)">Previous Days</div>
+      <div class="vocab-history" id="vocab-history"></div>
+    </div>
+  </div>
+</div>
+
+<!-- KPSS 2026 -->
+<div class="section" id="section-kpss">
+  <div class="section-header"><span class="icon">🎓</span><h2>KPSS 2026 Lisans</h2><span class="badge tag tag-orange">GY: 60 + GK: 60 = 120 Soru</span></div>
+  <div class="callout"><span class="callout-icon">📊</span><span>PDF'den alınan <strong>gerçek soru dağılımları</strong> ile kartlarda soru sayıları gösterilir. Kartları sürükleyerek ilerlemeni takip et.</span></div>
+
+  <!-- Soru Dağılımı Summary -->
+  <table class="soru-table">
+    <tr><th>Ders</th><th class="num">Soru</th><th>En Çok Çıkan Konular</th></tr>
+    <tr><td>Türkçe</td><td class="num">30</td><td>Paragraf (14-15), Sözel Mantık (4), Cümlede Anlam (2-3)</td></tr>
+    <tr><td>Matematik</td><td class="num">27</td><td>Problemler (8), Sayısal Mantık (4-6), Temel Kavramlar (1-3)</td></tr>
+    <tr><td>Geometri</td><td class="num">3-4</td><td>Özel Üçgenler, Dörtgenler, Analitik Geometri</td></tr>
+    <tr><td>Tarih</td><td class="num">27</td><td>Osmanlı Siyasi (3-6), İnkılap Tarihi (5), Kültür-Uyg. (5)</td></tr>
+    <tr><td>Coğrafya</td><td class="num">18</td><td>Fiziki Özellikler (5-7), Nüfus-Yerleşme (2), Maden-Enerji (2-3)</td></tr>
+    <tr><td>Vatandaşlık</td><td class="num">9</td><td>İdare Hukuku (2), Temel Hukuk Kav. (2), Anayasal Kav. (1-4)</td></tr>
+    <tr><td>Güncel Bilgiler</td><td class="num">6</td><td>Güncel olaylar, Uluslararası kuruluşlar</td></tr>
+  </table>
+
+  <div class="kpss-tabs mt-14">
+    <button class="kpss-tab active" onclick="switchKPSS('all',this)">Tümü</button>
+    <button class="kpss-tab" onclick="switchKPSS('turkce',this)">Türkçe <span class="text-xs">(30)</span></button>
+    <button class="kpss-tab" onclick="switchKPSS('mat',this)">Matematik <span class="text-xs">(27)</span></button>
+    <button class="kpss-tab" onclick="switchKPSS('tarih',this)">Tarih <span class="text-xs">(27)</span></button>
+    <button class="kpss-tab" onclick="switchKPSS('cog',this)">Coğrafya <span class="text-xs">(18)</span></button>
+    <button class="kpss-tab" onclick="switchKPSS('vat',this)">Vatandaşlık <span class="text-xs">(9)</span></button>
+  </div>
+
+  <div class="kanban-board" id="kpss-kanban">
+    <div class="kanban-column" data-col="todo" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)">
+      <div class="kanban-column-header" style="color:var(--accent-red)">📕 Çalışılacak <span class="count" id="count-todo">0</span></div>
+      <div class="kanban-cards" id="cards-todo">
+        <!-- Türkçe - with question counts from PDF -->
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k1" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Sözcükte Anlam</div><div class="q-info">~1 soru · Mecaz, Deyim, Atasözü</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k2" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Cümlede Anlam</div><div class="q-info">~2-3 soru · Yorum, Çıkarım, Vurgu</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k3" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Paragrafta Anlam</div><div class="q-info">⭐ ~14-15 soru · En çok çıkan!</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k4" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Ses Bilgisi</div><div class="q-info">~1 soru · Ünlü/Ünsüz uyumu</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k5" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Yapı Bilgisi</div><div class="q-info">~1 soru · Kök, Ek, Yapım</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k6" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Sözcük Türleri</div><div class="q-info">~2 soru · İsim, Sıfat, Zarf, Fiil</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k7" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Cümle Ögeleri</div><div class="q-info">~1 soru · Yüklem, Özne, Nesne</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k8" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Yazım Kuralları</div><div class="q-info">~1 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k9" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Noktalama İşaretleri</div><div class="q-info">~1 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k10" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Anlatım Bozuklukları</div><div class="q-info">~1 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="turkce" data-card-id="k10b" ondragstart="onDragStart(event)"><div class="card-tag tag-red">Türkçe</div><div class="card-title">Sözel Mantık</div><div class="q-info">⭐ ~4 soru</div></div>
+        <!-- Matematik -->
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k11" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Temel Kavramlar</div><div class="q-info">~1-3 soru · Sayılar, Bölünebilme, EBOB-EKOK</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k12" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Rasyonel Sayılar</div><div class="q-info">~2-5 soru · Kesirler, Ondalık</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k13" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Üslü / Köklü Sayılar</div><div class="q-info">~2-3 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k14" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Çarpanlara Ayırma</div><div class="q-info">~1-2 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k15" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Denklem Çözme</div><div class="q-info">~1-2 soru · Eşitsizlik, Mutlak Değer</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k16" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Problemler</div><div class="q-info">⭐ ~8 soru · Yaş, İşçi, Hız, Kar-Zarar</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k17" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Kümeler</div><div class="q-info">~1-2 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k18" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Fonksiyonlar / İşlem</div><div class="q-info">~1-2 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k19" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Geometri</div><div class="q-info">~3-4 soru · Üçgen, Dörtgen, Analitik</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k20" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Sayısal Mantık</div><div class="q-info">⭐ ~4-6 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="mat" data-card-id="k20b" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">Matematik</div><div class="card-title">Olasılık / Permütasyon</div><div class="q-info">~1-2 soru</div></div>
+        <!-- Tarih -->
+        <div class="kanban-card" draggable="true" data-subject="tarih" data-card-id="k21" ondragstart="onDragStart(event)"><div class="card-tag tag-yellow">Tarih</div><div class="card-title">İslamiyet Öncesi Türk Tarihi</div><div class="q-info">~1-2 soru · Kültür, Uygarlık</div></div>
+        <div class="kanban-card" draggable="true" data-subject="tarih" data-card-id="k22" ondragstart="onDragStart(event)"><div class="card-tag tag-yellow">Tarih</div><div class="card-title">Türk-İslam Devletleri</div><div class="q-info">~1-2 soru · Karahanlı, Selçuklu</div></div>
+        <div class="kanban-card" draggable="true" data-subject="tarih" data-card-id="k23" ondragstart="onDragStart(event)"><div class="card-tag tag-yellow">Tarih</div><div class="card-title">Osmanlı Siyasi Tarihi</div><div class="q-info">⭐ ~3-6 soru · Kuruluş→Dağılma</div></div>
+        <div class="kanban-card" draggable="true" data-subject="tarih" data-card-id="k24" ondragstart="onDragStart(event)"><div class="card-tag tag-yellow">Tarih</div><div class="card-title">Osmanlı Kültür ve Uygarlık</div><div class="q-info">⭐ ~3-5 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="tarih" data-card-id="k25" ondragstart="onDragStart(event)"><div class="card-tag tag-yellow">Tarih</div><div class="card-title">20. YY Osmanlı / I. Dünya Savaşı</div><div class="q-info">~3-4 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="tarih" data-card-id="k26" ondragstart="onDragStart(event)"><div class="card-tag tag-yellow">Tarih</div><div class="card-title">Kurtuluş Savaşı</div><div class="q-info">~2-3 soru · Hazırlık + Cepheler</div></div>
+        <div class="kanban-card" draggable="true" data-subject="tarih" data-card-id="k27" ondragstart="onDragStart(event)"><div class="card-tag tag-yellow">Tarih</div><div class="card-title">İnkılap Tarihi / Atatürk İlkeleri</div><div class="q-info">⭐ ~5 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="tarih" data-card-id="k28" ondragstart="onDragStart(event)"><div class="card-tag tag-yellow">Tarih</div><div class="card-title">Atatürk Dönemi İç/Dış Politika</div><div class="q-info">~2 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="tarih" data-card-id="k29" ondragstart="onDragStart(event)"><div class="card-tag tag-yellow">Tarih</div><div class="card-title">Çağdaş Türk ve Dünya Tarihi</div><div class="q-info">~2-3 soru</div></div>
+        <!-- Coğrafya -->
+        <div class="kanban-card" draggable="true" data-subject="cog" data-card-id="k30" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Coğrafya</div><div class="card-title">Coğrafi Konum / Jeopolitik</div><div class="q-info">~1 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="cog" data-card-id="k31" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Coğrafya</div><div class="card-title">Yer Şekilleri / Fiziki Özellikler</div><div class="q-info">⭐ ~5-7 soru · En çok çıkan!</div></div>
+        <div class="kanban-card" draggable="true" data-subject="cog" data-card-id="k32" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Coğrafya</div><div class="card-title">İklim ve Bitki Örtüsü</div><div class="q-info">~1-2 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="cog" data-card-id="k33" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Coğrafya</div><div class="card-title">Nüfus ve Yerleşme</div><div class="q-info">~2 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="cog" data-card-id="k34" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Coğrafya</div><div class="card-title">Tarım / Hayvancılık</div><div class="q-info">~1-2 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="cog" data-card-id="k36" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Coğrafya</div><div class="card-title">Madenler / Enerji Kaynakları</div><div class="q-info">~2-3 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="cog" data-card-id="k37" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Coğrafya</div><div class="card-title">Sanayi</div><div class="q-info">~1 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="cog" data-card-id="k38" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Coğrafya</div><div class="card-title">Ulaşım</div><div class="q-info">~1 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="cog" data-card-id="k39" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Coğrafya</div><div class="card-title">Turizm</div><div class="q-info">~1 soru</div></div>
+        <!-- Vatandaşlık -->
+        <div class="kanban-card" draggable="true" data-subject="vat" data-card-id="k40" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">Vatandaşlık</div><div class="card-title">Hukukun Temel Kavramları</div><div class="q-info">~2 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="vat" data-card-id="k41" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">Vatandaşlık</div><div class="card-title">Anayasa Tarihi / Anayasal Kav.</div><div class="q-info">~1-4 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="vat" data-card-id="k42" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">Vatandaşlık</div><div class="card-title">Temel Hak ve Hürriyetler</div><div class="q-info">~0-1 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="vat" data-card-id="k43" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">Vatandaşlık</div><div class="card-title">Yasama</div><div class="q-info">~0-3 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="vat" data-card-id="k44" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">Vatandaşlık</div><div class="card-title">Yürütme</div><div class="q-info">~0-3 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="vat" data-card-id="k45" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">Vatandaşlık</div><div class="card-title">Yargı</div><div class="q-info">~0-2 soru</div></div>
+        <div class="kanban-card" draggable="true" data-subject="vat" data-card-id="k46" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">Vatandaşlık</div><div class="card-title">İdare Hukuku</div><div class="q-info">⭐ ~2 soru · Her yıl çıkıyor</div></div>
+      </div>
+    </div>
+    <div class="kanban-column" data-col="solving" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-orange)">📙 Soru Çözülüyor <span class="count" id="count-solving">0</span></div><div class="kanban-cards" id="cards-solving"></div></div>
+    <div class="kanban-column" data-col="review" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-blue)">📘 Tekrar Edilecek <span class="count" id="count-review">0</span></div><div class="kanban-cards" id="cards-review"></div></div>
+    <div class="kanban-column" data-col="done" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-green)">📗 Bitti <span class="count" id="count-done">0</span></div><div class="kanban-cards" id="cards-done"></div></div>
+  </div>
+  <div class="progress-bar-container mt-10"><div class="progress-bar-label"><span>KPSS Overall</span><span id="kpss-progress-text">0 topics</span></div><div class="progress-bar"><div class="progress-bar-fill fill-orange" id="kpss-bar" style="width:0%"></div></div></div>
+</div>
+
+<!-- ECBA -->
+<div class="section" id="section-ecba">
+  <div class="section-header"><span class="icon">📚</span><h2>ECBA — BABOK v3</h2><span class="badge tag tag-purple">6 KA</span></div>
+  <details class="accordion-section"><summary><span class="ka-number">KA 1</span> Business Analysis Planning and Monitoring</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e1" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e2" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e3" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Estimation, Decomposition, Reviews)</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 2</span> Elicitation and Collaboration</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e4" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e5" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e6" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Interviews, Workshops, Surveys)</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 3</span> Requirements Life Cycle Management</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e7" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e8" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e9" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Traceability, Impact, Prioritization)</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 4</span> Strategy Analysis</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e10" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e11" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e12" onchange="onCheck(this)"><span class="check-label">🔧 Practice (SWOT, Benchmarking, Root Cause)</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 5</span> Requirements Analysis and Design Definition</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e13" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e14" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e15" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Data Modelling, Use Cases, Prototyping)</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 6</span> Solution Evaluation</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e16" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e17" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e18" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Acceptance Criteria, Decision Analysis, KPIs)</span></label></div></div></details>
+  <div class="progress-bar-container mt-10"><div class="progress-bar-label"><span>ECBA Progress</span><span id="ecba-progress-text">0/18</span></div><div class="progress-bar"><div class="progress-bar-fill fill-purple" id="ecba-bar" style="width:0%"></div></div></div>
+</div>
+
+<!-- GITHUB -->
+<div class="section" id="section-github">
+  <div class="section-header"><span class="icon">💻</span><h2>GitHub & BA Projects</h2></div>
+  <div class="kanban-board" id="github-kanban">
+    <div class="kanban-column" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-purple)">💡 Fikir/Analiz</div><div class="kanban-cards"><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">BA</div><div class="card-title">Stakeholder Analysis Template</div></div><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">App</div><div class="card-title">KPSS Soru Bankası Tracker</div></div><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Script</div><div class="card-title">Anki Deck Generator</div></div></div></div>
+    <div class="kanban-column" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-orange)">⚡ Kodlama</div><div class="kanban-cards"><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-orange">Portfolio</div><div class="card-title">Personal Portfolio Site</div></div><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">App</div><div class="card-title">Daily Habit Dashboard</div></div></div></div>
+    <div class="kanban-column" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-blue)">📄 Docs</div><div class="kanban-cards"><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">BA</div><div class="card-title">BRD Template (BABOK)</div></div><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-green">OSS</div><div class="card-title">KPSS Study Roadmap</div></div></div></div>
+    <div class="kanban-column" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-green)">🚀 Yayında</div><div class="kanban-cards"><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-gray">Misc</div><div class="card-title">GitHub Profile README</div></div></div></div>
+  </div>
+</div>
+
+<!-- NOTES -->
+<div class="section" id="section-notes">
+  <div class="section-header"><span class="icon">📝</span><h2>Quick Notes</h2></div>
+  <textarea class="notes-area" id="quick-notes" placeholder="Study notes, reminders, links, ideas…" oninput="saveNotes()"></textarea>
+</div>
+
+<div class="page-footer">Ana Kumanda 🎯 — Built with discipline. 2025–2026</div>
+</div>
+
+<nav class="nav-float">
+  <a href="#section-pomodoro"><span class="nav-tooltip">Pomodoro</span>🍅</a>
+  <a href="#section-daily"><span class="nav-tooltip">Daily</span>📋</a>
+  <a href="#section-english"><span class="nav-tooltip">English</span>🇬🇧</a>
+  <a href="#section-kpss"><span class="nav-tooltip">KPSS</span>🎓</a>
+  <a href="#section-ecba"><span class="nav-tooltip">ECBA</span>📚</a>
+  <a href="#section-github"><span class="nav-tooltip">GitHub</span>💻</a>
+  <a href="#section-notes"><span class="nav-tooltip">Notes</span>📝</a>
+</nav>
+
+<script>
+const SK='ana-kumanda-v3';
+function ld(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch{return{}}}
+function sv(d){localStorage.setItem(SK,JSON.stringify(d))}
+function today(){return new Date().toISOString().split('T')[0]}
+
+// Date
+function updateDate(){const o={weekday:'long',year:'numeric',month:'long',day:'numeric'};document.getElementById('date-display').textContent=new Date().toLocaleDateString('tr-TR',o)}
+
+// Streak
+function updateStreak(){const d=ld();document.getElementById('streak-badge').textContent='🔥 '+(d.streak||0)+' gün seri'}
+
+// Checkbox
+function onCheck(cb){const item=cb.closest('.check-item')||cb.closest('.grammar-item');if(item)item.classList.toggle('checked',cb.checked);const id=cb.dataset.id;if(!id){updateStats();return}const d=ld(),g=cb.dataset.group;if(g==='daily'){if(!d.daily)d.daily={};if(!d.daily[today()])d.daily[today()]={};d.daily[today()][id]=cb.checked}else{if(!d.checks)d.checks={};d.checks[id]=cb.checked}sv(d);updateStats()}
+
+function restoreChecks(){const d=ld(),t=today();if(d.daily&&d.daily[t])Object.entries(d.daily[t]).forEach(([id,v])=>{const cb=document.querySelector(`[data-id="${id}"][data-group="daily"]`);if(cb){cb.checked=v;const i=cb.closest('.check-item');if(i)i.classList.toggle('checked',v)}});if(d.checks)Object.entries(d.checks).forEach(([id,v])=>{const cb=document.querySelector(`[data-id="${id}"]`);if(cb){cb.checked=v;const i=cb.closest('.check-item')||cb.closest('.grammar-item');if(i)i.classList.toggle('checked',v)}})}
+
+// Kanban
+function saveKanban(){const d=ld();d.kanban={};['todo','solving','review','done'].forEach(c=>{const el=document.getElementById('cards-'+c);if(el)d.kanban[c]=Array.from(el.querySelectorAll('[data-card-id]')).map(x=>x.dataset.cardId)});sv(d)}
+function restoreKanban(){const d=ld();if(!d.kanban)return;['todo','solving','review','done'].forEach(c=>{const ids=d.kanban[c];if(!ids)return;const el=document.getElementById('cards-'+c);if(!el)return;ids.forEach(id=>{const card=document.querySelector(`[data-card-id="${id}"]`);if(card)el.appendChild(card)})})}
+
+// Stats
+function updateStats(){
+  const da=document.querySelectorAll('[data-group="daily"]'),dd=document.querySelectorAll('[data-group="daily"]:checked');
+  const dp=da.length?Math.round(dd.length/da.length*100):0;
+  const sd=document.getElementById('stat-daily');sd.textContent=dp+'%';
+  if(dp===100){const d=ld();if(d.lastCompleteDay!==today()){d.streak=(d.streak||0)+1;d.lastCompleteDay=today();sv(d);updateStreak();sd.classList.add('celebrate');setTimeout(()=>sd.classList.remove('celebrate'),600)}}
+  const gd=document.querySelectorAll('[data-group="grammar"]:checked');
+  document.getElementById('stat-grammar').textContent=gd.length+'/145';
+  document.getElementById('grammar-progress-text').textContent=gd.length+'/145';
+  document.getElementById('grammar-bar').style.width=(gd.length/145*100)+'%';
+  updateKPSS();
+  const ed=document.querySelectorAll('[data-group="ecba"]:checked');
+  document.getElementById('stat-ecba').textContent=ed.length+'/18';
+  document.getElementById('ecba-progress-text').textContent=ed.length+'/18';
+  document.getElementById('ecba-bar').style.width=(ed.length/18*100)+'%';
+}
+function updateKPSS(){
+  const t=document.querySelectorAll('#kpss-kanban .kanban-card').length;
+  const done=document.getElementById('cards-done').querySelectorAll('.kanban-card').length;
+  const p=t?Math.round(done/t*100):0;
+  document.getElementById('stat-kpss').textContent=p+'%';
+  document.getElementById('kpss-progress-text').textContent=done+'/'+t;
+  document.getElementById('kpss-bar').style.width=p+'%';
+  ['todo','solving','review','done'].forEach(c=>{const el=document.getElementById('cards-'+c);if(el){const n=el.querySelectorAll('.kanban-card:not([style*="display: none"])').length;const ce=document.getElementById('count-'+c);if(ce)ce.textContent=n}})
+}
+
+// Drag
+let dc=null;
+function onDragStart(e){dc=e.target.closest('.kanban-card');dc.classList.add('dragging');e.dataTransfer.effectAllowed='move'}
+function onDragOver(e){e.preventDefault()}
+function onDragEnter(e){const c=e.target.closest('.kanban-column');if(c)c.classList.add('drag-over')}
+function onDragLeave(e){const c=e.target.closest('.kanban-column');if(c&&!c.contains(e.relatedTarget))c.classList.remove('drag-over')}
+function onDrop(e){e.preventDefault();const c=e.target.closest('.kanban-column');if(c&&dc){c.querySelector('.kanban-cards').appendChild(dc);dc.classList.remove('dragging');c.classList.remove('drag-over');dc=null;updateStats();saveKanban()}}
+document.addEventListener('dragend',()=>{if(dc)dc.classList.remove('dragging');document.querySelectorAll('.kanban-column').forEach(c=>c.classList.remove('drag-over'))});
+
+// KPSS Filter
+function switchKPSS(s,btn){document.querySelectorAll('.kpss-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('#kpss-kanban .kanban-card').forEach(c=>{c.style.display=(s==='all'||c.dataset.subject===s)?'':'none'});updateKPSS()}
+
+// Grammar Search
+function filterGrammar(){const q=document.getElementById('grammar-search').value.toLowerCase();let v=0;document.querySelectorAll('.grammar-item').forEach(i=>{const show=!q||i.textContent.toLowerCase().includes(q);i.style.display=show?'':'none';if(show)v++});document.querySelectorAll('.grammar-group-title').forEach(t=>{let n=t.nextElementSibling,h=false;while(n&&!n.classList.contains('grammar-group-title')){if(n.style.display!=='none')h=true;n=n.nextElementSibling}t.style.display=h?'':'none'});document.getElementById('grammar-filter-count').textContent=q?v+' results':''}
+
+// Pomodoro
+const PM={work:25*60,short:5*60,long:15*60};let pm='work',pt=PM.work,pr=false,pi=null,ps=0;
+function upd(){const m=Math.floor(pt/60).toString().padStart(2,'0'),s=(pt%60).toString().padStart(2,'0');document.getElementById('pomo-display').textContent=m+':'+s}
+function setPomoMode(mode,btn){pm=mode;pt=PM[mode];pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.querySelectorAll('.pomo-btn-mode').forEach(b=>b.classList.remove('active-mode'));if(btn)btn.classList.add('active-mode');document.getElementById('pomo-display').style.color=mode==='work'?'var(--accent-red)':mode==='short'?'var(--accent-green)':'var(--accent-blue)';upd()}
+function togglePomodoro(){if(pr){pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running')}else{pr=true;document.getElementById('pomo-start').textContent='⏸ Pause';document.getElementById('pomo-start').classList.add('running');pi=setInterval(()=>{if(pt<=0){clearInterval(pi);pr=false;document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');if(pm==='work'){ps++;document.getElementById('pomo-sessions').textContent='#'+(ps+1);document.getElementById('stat-pomodoro').textContent=ps;const d=ld();if(!d.pomodoros)d.pomodoros={};d.pomodoros[today()]=ps;sv(d);ps%4===0?setPomoMode('long',document.querySelectorAll('.pomo-btn-mode')[2]):setPomoMode('short',document.querySelectorAll('.pomo-btn-mode')[1])}else{setPomoMode('work',document.querySelectorAll('.pomo-btn-mode')[0])}if(Notification.permission==='granted')new Notification('🍅 Pomodoro!');return}pt--;upd()},1000)}}
+function resetPomodoro(){clearInterval(pi);pr=false;pt=PM[pm];document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');upd()}
+
+// Dark
+function toggleDark(){const isDark=document.documentElement.classList.toggle('dark');document.getElementById('dark-toggle').textContent=isDark?'☀️':'🌙';const d=ld();d.darkMode=isDark;sv(d)}
+
+// Reset Daily
+function resetDaily(){if(!confirm('Reset daily tasks?'))return;document.querySelectorAll('[data-group="daily"]').forEach(cb=>{cb.checked=false;const i=cb.closest('.check-item');if(i)i.classList.remove('checked')});const d=ld();if(d.daily)d.daily[today()]={};sv(d);updateStats()}
+
+// Notes
+function saveNotes(){const d=ld();d.notes=document.getElementById('quick-notes').value;sv(d)}
+
+// Vocab Log
+function initVocabDate(){document.getElementById('vocab-date').value=today()}
+function addVocabWord(){const input=document.getElementById('vocab-word-input');const word=input.value.trim();if(!word)return;input.value='';const date=document.getElementById('vocab-date').value||today();const d=ld();if(!d.vocab)d.vocab={};if(!d.vocab[date])d.vocab[date]=[];if(!d.vocab[date].includes(word)){d.vocab[date].push(word);sv(d);renderVocab()}}
+function removeVocabWord(date,word){const d=ld();if(d.vocab&&d.vocab[date]){d.vocab[date]=d.vocab[date].filter(w=>w!==word);if(d.vocab[date].length===0)delete d.vocab[date];sv(d);renderVocab()}}
+function renderVocab(){const d=ld();const sel=document.getElementById('vocab-date').value||today();const todayW=document.getElementById('vocab-today-words');todayW.innerHTML='';const words=(d.vocab&&d.vocab[sel])||[];words.forEach(w=>{todayW.innerHTML+=`<span class="vocab-word">${w}<span class="remove-word" onclick="removeVocabWord('${sel}','${w}')">✕</span></span>`});
+  // History
+  const hist=document.getElementById('vocab-history');hist.innerHTML='';if(!d.vocab)return;
+  let totalWords=0;
+  const dates=Object.keys(d.vocab).sort().reverse();
+  dates.forEach(dt=>{totalWords+=d.vocab[dt].length;if(dt===sel)return;hist.innerHTML+=`<div class="vocab-day-entry"><div class="day-label">${dt} (${d.vocab[dt].length} words)</div><div class="vocab-words">${d.vocab[dt].map(w=>`<span class="vocab-word" style="font-size:11px">${w}</span>`).join('')}</div></div>`});
+  document.getElementById('stat-words').textContent=totalWords}
+function onVocabDateChange(){renderVocab()}
+
+// Export
+function exportData(){const d=ld();const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='ana-kumanda-'+today()+'.json';a.click();URL.revokeObjectURL(url)}
+
+// Init
+(function(){
+  updateDate();
+  const d=ld();
+  if(d.darkMode){document.documentElement.classList.add('dark');document.getElementById('dark-toggle').textContent='☀️'}
+  restoreChecks();restoreKanban();
+  if(d.notes)document.getElementById('quick-notes').value=d.notes;
+  if(d.pomodoros&&d.pomodoros[today()]){ps=d.pomodoros[today()];document.getElementById('stat-pomodoro').textContent=ps;document.getElementById('pomo-sessions').textContent='#'+(ps+1)}
+  updateStats();updateStreak();upd();initVocabDate();
+  document.getElementById('vocab-date').addEventListener('change',onVocabDateChange);
+  renderVocab();
+  if('Notification' in window&&Notification.permission==='default')Notification.requestPermission();
+})();
+</script>
+</body>
+</html>
