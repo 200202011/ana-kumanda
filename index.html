@@ -168,9 +168,69 @@ html.dark .grammar-scroll::-webkit-scrollbar-thumb{background:#444}
 /* Utility */
 .mt-6{margin-top:6px}.mt-8{margin-top:8px}.mt-10{margin-top:10px}.mt-12{margin-top:12px}.mt-14{margin-top:14px}.mt-16{margin-top:16px}
 .text-sm{font-size:13px}.text-xs{font-size:12px}.text-muted{color:var(--text-secondary)}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
 @keyframes celebrate{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
 .celebrate{animation:celebrate .5s ease}
+/* ── Sunday Buffer ── */
+.sunday-card{background:var(--bg-primary);border:2px dashed var(--accent-yellow);border-radius:var(--radius-lg);padding:12px 14px;position:relative;overflow:hidden}
+.sunday-card::before{content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:var(--tag-yellow-bg);border-radius:0 0 0 60px;opacity:.5}
+.sunday-card .card-label{color:var(--accent-yellow)}
+.sunday-hidden{display:none}
+/* ── Phrases Log ── */
+.phrases-log{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);margin-top:10px;overflow:hidden}
+.phrases-log-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;user-select:none;transition:background .1s}
+.phrases-log-header:hover{background:var(--bg-tertiary)}
+.phrases-log-header h4{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.phrases-log-body{display:none;padding:0 16px 14px;border-top:1px solid var(--border-color)}
+.phrases-log.open .phrases-log-body{display:block}
+.phrases-log.open .arrow{transform:rotate(90deg)}
+.phrase-input-row{display:flex;gap:6px;margin-bottom:6px}
+.phrase-input-row input{flex:1;font-family:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-primary);color:var(--text-primary);outline:none}
+.phrase-input-row input:focus{border-color:var(--accent-purple)}
+.phrase-input-row button{font-family:inherit;font-size:12px;font-weight:600;padding:6px 12px;border:none;border-radius:var(--radius-md);background:var(--accent-purple);color:#fff;cursor:pointer;white-space:nowrap}
+.phrase-input-row button:hover{opacity:.9}
+.phrase-entry{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--border-color);font-size:13px}
+.phrase-entry:last-child{border-bottom:none}
+.phrase-entry .phrase-icon{font-size:14px;margin-top:1px}
+.phrase-entry .phrase-text{flex:1;line-height:1.4}
+.phrase-entry .phrase-date{font-size:10px;color:var(--text-tertiary);white-space:nowrap;margin-top:2px}
+.phrase-entry .phrase-remove{cursor:pointer;font-size:10px;color:var(--text-tertiary);opacity:.5;margin-top:2px}
+.phrase-entry .phrase-remove:hover{opacity:1;color:var(--accent-red)}
+/* ── Mock Exam Table ── */
+.mock-exam-section{margin-top:16px}
+.mock-exam-section h4{font-size:13px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.mock-table-wrap{overflow-x:auto;border:1px solid var(--border-color);border-radius:var(--radius-lg);background:var(--bg-primary)}
+.mock-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.mock-table th{text-align:left;padding:8px 12px;background:var(--bg-tertiary);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-secondary);white-space:nowrap}
+.mock-table td{padding:7px 12px;border-top:1px solid var(--border-color)}
+.mock-table td.num{text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.mock-table td.num.good{color:var(--accent-green)}
+.mock-table td.num.mid{color:var(--accent-orange)}
+.mock-table td.num.low{color:var(--accent-red)}
+.mock-table tr:hover td{background:var(--bg-tertiary)}
+.mock-add-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.mock-add-row input,.mock-add-row select{font-family:inherit;font-size:12px;padding:5px 8px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-primary);color:var(--text-primary);outline:none}
+.mock-add-row input:focus{border-color:var(--accent-orange)}
+.mock-add-row input[type="text"]{flex:1;min-width:120px}
+.mock-add-row input[type="number"]{width:65px}
+.mock-add-row input[type="date"]{width:130px}
+.mock-add-row button{font-family:inherit;font-size:12px;font-weight:600;padding:5px 12px;border:none;border-radius:var(--radius-md);background:var(--accent-orange);color:#fff;cursor:pointer}
+.mock-add-row button:hover{opacity:.9}
+/* ── Reflection Journal ── */
+.journal-area{width:100%;min-height:100px;font-family:inherit;font-size:13px;line-height:1.6;padding:12px 14px;border:1px solid var(--border-color);border-radius:var(--radius-lg);background:var(--bg-primary);color:var(--text-primary);resize:vertical;outline:none;transition:border-color .15s}
+.journal-area:focus{border-color:var(--accent-pink)}
+.journal-save-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.journal-save-btn{font-family:inherit;font-size:13px;font-weight:600;padding:8px 20px;border:none;border-radius:var(--radius-md);background:var(--accent-pink);color:#fff;cursor:pointer;transition:all .15s}
+.journal-save-btn:hover{opacity:.9;transform:translateY(-1px)}
+.journal-save-hint{font-size:11px;color:var(--text-tertiary)}
+.journal-timeline{margin-top:16px}
+.journal-entry{position:relative;padding:12px 16px 12px 28px;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);margin-bottom:8px;transition:box-shadow .15s}
+.journal-entry:hover{box-shadow:var(--shadow-sm)}
+.journal-entry::before{content:'';position:absolute;left:12px;top:18px;width:8px;height:8px;border-radius:50%;background:var(--accent-pink)}
+.journal-entry .je-date{font-size:11px;font-weight:600;color:var(--accent-pink);margin-bottom:3px}
+.journal-entry .je-text{font-size:13px;line-height:1.5;white-space:pre-wrap}
+.journal-entry .je-remove{position:absolute;top:10px;right:12px;font-size:10px;color:var(--text-tertiary);cursor:pointer;opacity:.4}
+.journal-entry .je-remove:hover{opacity:1;color:var(--accent-red)}
 </style>
 </head>
 <body>
@@ -198,9 +258,10 @@ html{scroll-behavior:smooth}
     <div class="stat-card"><div class="stat-number" style="color:var(--accent-blue)" id="stat-daily">0%</div><div class="stat-label">Daily</div></div>
     <div class="stat-card"><div class="stat-number" style="color:var(--accent-green)" id="stat-grammar">0/145</div><div class="stat-label">Grammar</div></div>
     <div class="stat-card"><div class="stat-number" style="color:var(--accent-orange)" id="stat-kpss">0%</div><div class="stat-label">KPSS</div></div>
-    <div class="stat-card"><div class="stat-number" style="color:var(--accent-purple)" id="stat-ecba">0/18</div><div class="stat-label">ECBA</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:var(--accent-purple)" id="stat-ecba">0/24</div><div class="stat-label">ECBA</div></div>
     <div class="stat-card"><div class="stat-number" style="color:var(--accent-red)" id="stat-pomodoro">0</div><div class="stat-label">Pomodoro</div></div>
     <div class="stat-card"><div class="stat-number" style="color:var(--accent-yellow)" id="stat-words">0</div><div class="stat-label">Words</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:var(--accent-pink)" id="stat-phrases">0</div><div class="stat-label">Phrases</div></div>
   </div>
 </div>
 
@@ -248,6 +309,13 @@ html{scroll-behavior:smooth}
     <div class="routine-card"><div class="card-label label-constants">🔁 Constants</div>
       <label class="check-item"><input type="checkbox" data-group="daily" data-id="d11" onchange="onCheck(this)"><span class="check-label">10 Mins Ukulele</span></label>
       <label class="check-item"><input type="checkbox" data-group="daily" data-id="d12" onchange="onCheck(this)"><span class="check-label">Book Reading (No Screens)</span></label>
+    </div>
+    <div class="routine-card sunday-card" id="sunday-card">
+      <div class="card-label" style="color:var(--accent-yellow)">🌤️ Pazar Tamponu (Sunday Buffer)</div>
+      <label class="check-item"><input type="checkbox" data-group="sunday" data-id="s1" onchange="onCheck(this)"><span class="check-label">Weekly Karma Quiz</span></label>
+      <label class="check-item"><input type="checkbox" data-group="sunday" data-id="s2" onchange="onCheck(this)"><span class="check-label">50 Words Review</span></label>
+      <label class="check-item"><input type="checkbox" data-group="sunday" data-id="s3" onchange="onCheck(this)"><span class="check-label">Catch-up on delayed topics</span></label>
+      <label class="check-item"><input type="checkbox" data-group="sunday" data-id="s4" onchange="onCheck(this)"><span class="check-label">Rest & Reset 🧘</span></label>
     </div>
   </div>
 </div>
@@ -361,9 +429,23 @@ html{scroll-behavior:smooth}
       <div class="vocab-history" id="vocab-history"></div>
     </div>
   </div>
-</div>
 
-<!-- KPSS 2026 -->
+  <!-- PHRASES LOG (Feature 5) -->
+  <div class="phrases-log" id="phrases-log">
+    <div class="phrases-log-header" onclick="document.getElementById('phrases-log').classList.toggle('open')">
+      <h4>🎬 İngilizce Kalıp Hasadı (Phrases from Series) <span class="tag tag-purple">Silicon Valley</span></h4>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="phrases-log-body">
+      <div style="font-size:12px;color:var(--text-secondary);margin:10px 0 8px">Save idioms & phrases you pick up from shows, podcasts, and reading.</div>
+      <div class="phrase-input-row">
+        <input type="text" id="phrase-input" placeholder="e.g. 'This guy fucks' — means someone is impressive" onkeydown="if(event.key==='Enter')addPhrase()">
+        <button onclick="addPhrase()">+ Add Phrase</button>
+      </div>
+      <div id="phrases-list" style="margin-top:8px;max-height:300px;overflow-y:auto"></div>
+    </div>
+  </div>
+</div>
 <div class="section" id="section-kpss">
   <div class="section-header"><span class="icon">🎓</span><h2>KPSS 2026 Lisans</h2><span class="badge tag tag-orange">GY: 60 + GK: 60 = 120 Soru</span></div>
   <div class="callout"><span class="callout-icon">📊</span><span>PDF'den alınan <strong>gerçek soru dağılımları</strong> ile kartlarda soru sayıları gösterilir. Kartları sürükleyerek ilerlemeni takip et.</span></div>
@@ -452,18 +534,36 @@ html{scroll-behavior:smooth}
     <div class="kanban-column" data-col="done" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-green)">📗 Bitti <span class="count" id="count-done">0</span></div><div class="kanban-cards" id="cards-done"></div></div>
   </div>
   <div class="progress-bar-container mt-10"><div class="progress-bar-label"><span>KPSS Overall</span><span id="kpss-progress-text">0 topics</span></div><div class="progress-bar"><div class="progress-bar-fill fill-orange" id="kpss-bar" style="width:0%"></div></div></div>
+
+  <!-- MOCK EXAM TRACKER (Feature 3) -->
+  <div class="mock-exam-section" id="mock-exam-section">
+    <h4>📝 Deneme Sınavı Takip (Mock Exam Tracker)</h4>
+    <div class="mock-table-wrap">
+      <table class="mock-table" id="mock-table">
+        <thead><tr><th>Tarih</th><th>Yayın / Deneme Adı</th><th style="text-align:center">GY Net</th><th style="text-align:center">GK Net</th><th style="text-align:center">Toplam</th><th style="width:30px"></th></tr></thead>
+        <tbody id="mock-tbody"></tbody>
+      </table>
+    </div>
+    <div class="mock-add-row">
+      <input type="date" id="mock-date">
+      <input type="text" id="mock-name" placeholder="Yayın / Deneme Adı">
+      <input type="number" id="mock-gy" placeholder="GY" min="0" max="60" step="0.25">
+      <input type="number" id="mock-gk" placeholder="GK" min="0" max="60" step="0.25">
+      <button onclick="addMockExam()">+ Ekle</button>
+    </div>
+  </div>
 </div>
 
 <!-- ECBA -->
 <div class="section" id="section-ecba">
   <div class="section-header"><span class="icon">📚</span><h2>ECBA — BABOK v3</h2><span class="badge tag tag-purple">6 KA</span></div>
-  <details class="accordion-section"><summary><span class="ka-number">KA 1</span> Business Analysis Planning and Monitoring</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e1" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e2" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e3" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Estimation, Decomposition, Reviews)</span></label></div></div></details>
-  <details class="accordion-section"><summary><span class="ka-number">KA 2</span> Elicitation and Collaboration</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e4" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e5" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e6" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Interviews, Workshops, Surveys)</span></label></div></div></details>
-  <details class="accordion-section"><summary><span class="ka-number">KA 3</span> Requirements Life Cycle Management</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e7" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e8" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e9" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Traceability, Impact, Prioritization)</span></label></div></div></details>
-  <details class="accordion-section"><summary><span class="ka-number">KA 4</span> Strategy Analysis</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e10" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e11" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e12" onchange="onCheck(this)"><span class="check-label">🔧 Practice (SWOT, Benchmarking, Root Cause)</span></label></div></div></details>
-  <details class="accordion-section"><summary><span class="ka-number">KA 5</span> Requirements Analysis and Design Definition</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e13" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e14" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e15" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Data Modelling, Use Cases, Prototyping)</span></label></div></div></details>
-  <details class="accordion-section"><summary><span class="ka-number">KA 6</span> Solution Evaluation</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e16" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e17" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e18" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Acceptance Criteria, Decision Analysis, KPIs)</span></label></div></div></details>
-  <div class="progress-bar-container mt-10"><div class="progress-bar-label"><span>ECBA Progress</span><span id="ecba-progress-text">0/18</span></div><div class="progress-bar"><div class="progress-bar-fill fill-purple" id="ecba-bar" style="width:0%"></div></div></div>
+  <details class="accordion-section"><summary><span class="ka-number">KA 1</span> Business Analysis Planning and Monitoring</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e1" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e2" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e3" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Estimation, Decomposition, Reviews)</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e3q" onchange="onCheck(this)"><span class="check-label">🧪 Mock Exam / Soru Bankası Çözüldü</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 2</span> Elicitation and Collaboration</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e4" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e5" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e6" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Interviews, Workshops, Surveys)</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e6q" onchange="onCheck(this)"><span class="check-label">🧪 Mock Exam / Soru Bankası Çözüldü</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 3</span> Requirements Life Cycle Management</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e7" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e8" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e9" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Traceability, Impact, Prioritization)</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e9q" onchange="onCheck(this)"><span class="check-label">🧪 Mock Exam / Soru Bankası Çözüldü</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 4</span> Strategy Analysis</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e10" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e11" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e12" onchange="onCheck(this)"><span class="check-label">🔧 Practice (SWOT, Benchmarking, Root Cause)</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e12q" onchange="onCheck(this)"><span class="check-label">🧪 Mock Exam / Soru Bankası Çözüldü</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 5</span> Requirements Analysis and Design Definition</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e13" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e14" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e15" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Data Modelling, Use Cases, Prototyping)</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e15q" onchange="onCheck(this)"><span class="check-label">🧪 Mock Exam / Soru Bankası Çözüldü</span></label></div></div></details>
+  <details class="accordion-section"><summary><span class="ka-number">KA 6</span> Solution Evaluation</summary><div class="accordion-body"><div class="technique-list"><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e16" onchange="onCheck(this)"><span class="check-label">📖 Read Chapter</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e17" onchange="onCheck(this)"><span class="check-label">✍️ Write Summary</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e18" onchange="onCheck(this)"><span class="check-label">🔧 Practice (Acceptance Criteria, Decision Analysis, KPIs)</span></label><label class="check-item"><input type="checkbox" data-group="ecba" data-id="e18q" onchange="onCheck(this)"><span class="check-label">🧪 Mock Exam / Soru Bankası Çözüldü</span></label></div></div></details>
+  <div class="progress-bar-container mt-10"><div class="progress-bar-label"><span>ECBA Progress</span><span id="ecba-progress-text">0/24</span></div><div class="progress-bar"><div class="progress-bar-fill fill-purple" id="ecba-bar" style="width:0%"></div></div></div>
 </div>
 
 <!-- GITHUB -->
@@ -483,6 +583,21 @@ html{scroll-behavior:smooth}
   <textarea class="notes-area" id="quick-notes" placeholder="Study notes, reminders, links, ideas…" oninput="saveNotes()"></textarea>
 </div>
 
+<!-- DAILY REFLECTION (Feature 1) -->
+<div class="section" id="section-journal">
+  <div class="section-header"><span class="icon">🪞</span><h2>Günün Değerlendirmesi</h2><span class="badge tag" style="background:var(--tag-purple-bg);color:var(--accent-pink)">Memory Log</span></div>
+  <div class="callout"><span class="callout-icon">💭</span><span>Every night, write what went well and what didn't. Build <strong>self-awareness</strong> over 6 months. All entries are saved permanently.</span></div>
+  <textarea class="journal-area" id="journal-input" placeholder="Bugün nasıldı? Neler iyi gitti, nerelerde tıkandın? (What went well, what failed?)"></textarea>
+  <div class="journal-save-row">
+    <button class="journal-save-btn" onclick="saveJournalEntry()">💾 Kaydet (Save Entry)</button>
+    <span class="journal-save-hint" id="journal-hint"></span>
+  </div>
+  <div class="journal-timeline" id="journal-timeline">
+    <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin:12px 0 8px">📅 Geçmiş Kayıtlar (History)</div>
+    <div id="journal-entries"></div>
+  </div>
+</div>
+
 <div class="page-footer">Ana Kumanda 🎯 — Built with discipline. 2025–2026</div>
 </div>
 
@@ -494,13 +609,15 @@ html{scroll-behavior:smooth}
   <a href="#section-ecba"><span class="nav-tooltip">ECBA</span>📚</a>
   <a href="#section-github"><span class="nav-tooltip">GitHub</span>💻</a>
   <a href="#section-notes"><span class="nav-tooltip">Notes</span>📝</a>
+  <a href="#section-journal"><span class="nav-tooltip">Journal</span>🪞</a>
 </nav>
 
 <script>
-const SK='ana-kumanda-v3';
+const SK='ana-kumanda-v4';
 function ld(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch{return{}}}
 function sv(d){localStorage.setItem(SK,JSON.stringify(d))}
 function today(){return new Date().toISOString().split('T')[0]}
+function weekKey(){const d=new Date();const day=d.getDay();const diff=d.getDate()-day;const sun=new Date(d.setDate(diff));return sun.toISOString().split('T')[0]}
 
 // Date
 function updateDate(){const o={weekday:'long',year:'numeric',month:'long',day:'numeric'};document.getElementById('date-display').textContent=new Date().toLocaleDateString('tr-TR',o)}
@@ -509,9 +626,9 @@ function updateDate(){const o={weekday:'long',year:'numeric',month:'long',day:'n
 function updateStreak(){const d=ld();document.getElementById('streak-badge').textContent='🔥 '+(d.streak||0)+' gün seri'}
 
 // Checkbox
-function onCheck(cb){const item=cb.closest('.check-item')||cb.closest('.grammar-item');if(item)item.classList.toggle('checked',cb.checked);const id=cb.dataset.id;if(!id){updateStats();return}const d=ld(),g=cb.dataset.group;if(g==='daily'){if(!d.daily)d.daily={};if(!d.daily[today()])d.daily[today()]={};d.daily[today()][id]=cb.checked}else{if(!d.checks)d.checks={};d.checks[id]=cb.checked}sv(d);updateStats()}
+function onCheck(cb){const item=cb.closest('.check-item')||cb.closest('.grammar-item');if(item)item.classList.toggle('checked',cb.checked);const id=cb.dataset.id;if(!id){updateStats();return}const d=ld(),g=cb.dataset.group;if(g==='daily'){if(!d.daily)d.daily={};if(!d.daily[today()])d.daily[today()]={};d.daily[today()][id]=cb.checked}else if(g==='sunday'){if(!d.sunday)d.sunday={};if(!d.sunday[weekKey()])d.sunday[weekKey()]={};d.sunday[weekKey()][id]=cb.checked}else{if(!d.checks)d.checks={};d.checks[id]=cb.checked}sv(d);updateStats()}
 
-function restoreChecks(){const d=ld(),t=today();if(d.daily&&d.daily[t])Object.entries(d.daily[t]).forEach(([id,v])=>{const cb=document.querySelector(`[data-id="${id}"][data-group="daily"]`);if(cb){cb.checked=v;const i=cb.closest('.check-item');if(i)i.classList.toggle('checked',v)}});if(d.checks)Object.entries(d.checks).forEach(([id,v])=>{const cb=document.querySelector(`[data-id="${id}"]`);if(cb){cb.checked=v;const i=cb.closest('.check-item')||cb.closest('.grammar-item');if(i)i.classList.toggle('checked',v)}})}
+function restoreChecks(){const d=ld(),t=today();if(d.daily&&d.daily[t])Object.entries(d.daily[t]).forEach(([id,v])=>{const cb=document.querySelector(`[data-id="${id}"][data-group="daily"]`);if(cb){cb.checked=v;const i=cb.closest('.check-item');if(i)i.classList.toggle('checked',v)}});if(d.sunday&&d.sunday[weekKey()])Object.entries(d.sunday[weekKey()]).forEach(([id,v])=>{const cb=document.querySelector(`[data-id="${id}"][data-group="sunday"]`);if(cb){cb.checked=v;const i=cb.closest('.check-item');if(i)i.classList.toggle('checked',v)}});if(d.checks)Object.entries(d.checks).forEach(([id,v])=>{const cb=document.querySelector(`[data-id="${id}"]`);if(cb){cb.checked=v;const i=cb.closest('.check-item')||cb.closest('.grammar-item');if(i)i.classList.toggle('checked',v)}})}
 
 // Kanban
 function saveKanban(){const d=ld();d.kanban={};['todo','solving','review','done'].forEach(c=>{const el=document.getElementById('cards-'+c);if(el)d.kanban[c]=Array.from(el.querySelectorAll('[data-card-id]')).map(x=>x.dataset.cardId)});sv(d)}
@@ -529,9 +646,9 @@ function updateStats(){
   document.getElementById('grammar-bar').style.width=(gd.length/145*100)+'%';
   updateKPSS();
   const ed=document.querySelectorAll('[data-group="ecba"]:checked');
-  document.getElementById('stat-ecba').textContent=ed.length+'/18';
-  document.getElementById('ecba-progress-text').textContent=ed.length+'/18';
-  document.getElementById('ecba-bar').style.width=(ed.length/18*100)+'%';
+  document.getElementById('stat-ecba').textContent=ed.length+'/24';
+  document.getElementById('ecba-progress-text').textContent=ed.length+'/24';
+  document.getElementById('ecba-bar').style.width=(ed.length/24*100)+'%';
 }
 function updateKPSS(){
   const t=document.querySelectorAll('#kpss-kanban .kanban-card').length;
@@ -590,6 +707,89 @@ function onVocabDateChange(){renderVocab()}
 // Export
 function exportData(){const d=ld();const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='ana-kumanda-'+today()+'.json';a.click();URL.revokeObjectURL(url)}
 
+// ═══ Feature 1: Journal / Reflection ═══
+function saveJournalEntry(){
+  const input=document.getElementById('journal-input');
+  const text=input.value.trim();
+  if(!text){document.getElementById('journal-hint').textContent='⚠️ Write something first!';return}
+  const d=ld();
+  if(!d.journal)d.journal=[];
+  const entry={text:text,date:new Date().toLocaleString('tr-TR',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}),id:Date.now()};
+  d.journal.unshift(entry);
+  sv(d);
+  input.value='';
+  document.getElementById('journal-hint').textContent='✅ Saved!';
+  setTimeout(()=>document.getElementById('journal-hint').textContent='',2000);
+  renderJournal()
+}
+function removeJournalEntry(id){
+  const d=ld();
+  d.journal=d.journal.filter(e=>e.id!==id);
+  sv(d);renderJournal()
+}
+function renderJournal(){
+  const d=ld();const el=document.getElementById('journal-entries');
+  if(!d.journal||d.journal.length===0){el.innerHTML='<div style="font-size:12px;color:var(--text-tertiary);padding:8px 0">No entries yet. Start writing! ✏️</div>';return}
+  el.innerHTML=d.journal.map(e=>`<div class="journal-entry"><span class="je-remove" onclick="removeJournalEntry(${e.id})">✕</span><div class="je-date">${e.date}</div><div class="je-text">${e.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`).join('')
+}
+
+// ═══ Feature 2: Sunday Buffer visibility ═══
+function checkSunday(){
+  const isSunday=new Date().getDay()===0;
+  const card=document.getElementById('sunday-card');
+  if(card){
+    if(!isSunday){card.style.opacity='0.5';card.title='Pazar günleri aktif olur'}
+    else{card.style.opacity='1';card.title=''}
+  }
+}
+
+// ═══ Feature 3: Mock Exam Tracker ═══
+function initMockDate(){const el=document.getElementById('mock-date');if(el)el.value=today()}
+function addMockExam(){
+  const date=document.getElementById('mock-date').value;
+  const name=document.getElementById('mock-name').value.trim();
+  const gy=parseFloat(document.getElementById('mock-gy').value);
+  const gk=parseFloat(document.getElementById('mock-gk').value);
+  if(!name||isNaN(gy)||isNaN(gk)){return}
+  const d=ld();
+  if(!d.mocks)d.mocks=[];
+  d.mocks.push({date,name,gy,gk,total:gy+gk,id:Date.now()});
+  sv(d);
+  document.getElementById('mock-name').value='';
+  document.getElementById('mock-gy').value='';
+  document.getElementById('mock-gk').value='';
+  renderMocks()
+}
+function removeMock(id){const d=ld();d.mocks=d.mocks.filter(m=>m.id!==id);sv(d);renderMocks()}
+function renderMocks(){
+  const d=ld();const tbody=document.getElementById('mock-tbody');
+  const mocks=d.mocks||[];
+  if(mocks.length===0){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--text-tertiary);padding:16px;font-size:12px">Henüz deneme eklenmedi. İlk denemenizi ekleyin! 📊</td></tr>';return}
+  tbody.innerHTML=mocks.map(m=>{
+    const gc=m.total>=80?'good':m.total>=60?'mid':'low';
+    return`<tr><td>${m.date}</td><td>${m.name}</td><td class="num">${m.gy}</td><td class="num">${m.gk}</td><td class="num ${gc}">${m.total}</td><td><span style="cursor:pointer;font-size:10px;color:var(--text-tertiary);opacity:.5" onclick="removeMock(${m.id})" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.5">✕</span></td></tr>`
+  }).join('')
+}
+
+// ═══ Feature 5: Phrases Log ═══
+function addPhrase(){
+  const input=document.getElementById('phrase-input');
+  const text=input.value.trim();
+  if(!text)return;
+  const d=ld();
+  if(!d.phrases)d.phrases=[];
+  d.phrases.unshift({text,date:today(),id:Date.now()});
+  sv(d);input.value='';renderPhrases()
+}
+function removePhrase(id){const d=ld();d.phrases=d.phrases.filter(p=>p.id!==id);sv(d);renderPhrases()}
+function renderPhrases(){
+  const d=ld();const el=document.getElementById('phrases-list');
+  const phrases=d.phrases||[];
+  document.getElementById('stat-phrases').textContent=phrases.length;
+  if(phrases.length===0){el.innerHTML='<div style="font-size:12px;color:var(--text-tertiary);padding:8px 0">No phrases yet. Watch a show and save idioms! 🎬</div>';return}
+  el.innerHTML=phrases.map(p=>`<div class="phrase-entry"><span class="phrase-icon">💬</span><span class="phrase-text">${p.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span><span class="phrase-date">${p.date}</span><span class="phrase-remove" onclick="removePhrase(${p.id})">✕</span></div>`).join('')
+}
+
 // Init
 (function(){
   updateDate();
@@ -601,6 +801,12 @@ function exportData(){const d=ld();const blob=new Blob([JSON.stringify(d,null,2)
   updateStats();updateStreak();upd();initVocabDate();
   document.getElementById('vocab-date').addEventListener('change',onVocabDateChange);
   renderVocab();
+  // New features
+  renderJournal();
+  checkSunday();
+  initMockDate();
+  renderMocks();
+  renderPhrases();
   if('Notification' in window&&Notification.permission==='default')Notification.requestPermission();
 })();
 </script>
