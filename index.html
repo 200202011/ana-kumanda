@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ana Kumanda 🎯 - 6 Month Master Plan</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 :root{--bg-primary:#fff;--bg-secondary:#f7f6f3;--bg-tertiary:#f1f1ef;--bg-hover:#ebebea;--text-primary:#37352f;--text-secondary:#787774;--text-tertiary:#9b9a97;--border-color:#e9e9e7;--accent-blue:#2383e2;--accent-green:#0f7b6c;--accent-orange:#d9730d;--accent-red:#e03e3e;--accent-purple:#6940a5;--accent-pink:#ad1a72;--accent-yellow:#dfab01;--tag-blue-bg:#d3e5ef;--tag-blue-text:#1a6da1;--tag-green-bg:#dbeddb;--tag-green-text:#0c6e3d;--tag-orange-bg:#fadec9;--tag-orange-text:#c4700a;--tag-red-bg:#ffe2dd;--tag-red-text:#c4554d;--tag-purple-bg:#e8deee;--tag-purple-text:#6940a5;--tag-yellow-bg:#fdecc8;--tag-yellow-text:#9f6b00;--tag-gray-bg:#e3e2e0;--tag-gray-text:#5a5a58;--shadow-sm:0 1px 2px rgba(0,0,0,.04);--shadow-md:0 2px 8px rgba(0,0,0,.08);--shadow-lg:0 4px 16px rgba(0,0,0,.12);--radius-sm:4px;--radius-md:6px;--radius-lg:8px}
 html.dark{--bg-primary:#191919;--bg-secondary:#121212;--bg-tertiary:#1e1e1e;--bg-hover:#2c2c2c;--text-primary:#e0e0e0;--text-secondary:#9b9b9b;--text-tertiary:#6b6b6b;--border-color:#2e2e2e;--tag-blue-bg:#1c3a52;--tag-blue-text:#6db3f2;--tag-green-bg:#1a3a2a;--tag-green-text:#5ec49e;--tag-orange-bg:#3d2a14;--tag-orange-text:#f0a05a;--tag-red-bg:#3a1c1c;--tag-red-text:#f07070;--tag-purple-bg:#2a1f3d;--tag-purple-text:#b08cda;--tag-yellow-bg:#3a3014;--tag-yellow-text:#e8c44a;--tag-gray-bg:#2c2c2c;--tag-gray-text:#a0a0a0;--shadow-sm:0 1px 2px rgba(0,0,0,.2);--shadow-md:0 2px 8px rgba(0,0,0,.3);--shadow-lg:0 4px 16px rgba(0,0,0,.4)}
@@ -231,6 +232,38 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
 .journal-entry .je-text{font-size:13px;line-height:1.5;white-space:pre-wrap}
 .journal-entry .je-remove{position:absolute;top:10px;right:12px;font-size:10px;color:var(--text-tertiary);cursor:pointer;opacity:.4}
 .journal-entry .je-remove:hover{opacity:1;color:var(--accent-red)}
+/* ── GitHub Interactive Kanban ── */
+.gh-add-btn{display:block;width:100%;padding:6px;margin-top:4px;font-family:inherit;font-size:12px;font-weight:500;color:var(--text-tertiary);background:transparent;border:1px dashed var(--border-color);border-radius:var(--radius-md);cursor:pointer;transition:all .15s}
+.gh-add-btn:hover{background:var(--bg-hover);color:var(--text-secondary);border-color:var(--text-tertiary)}
+.gh-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center}
+.gh-modal-overlay.open{display:flex}
+.gh-modal{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:12px;padding:24px;width:420px;max-width:92vw;box-shadow:var(--shadow-lg);animation:modalIn .2s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.gh-modal-title{font-size:16px;font-weight:700;margin-bottom:16px}
+.gh-field{margin-bottom:12px}
+.gh-field label{display:block;font-size:11px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.gh-field input{width:100%;font-family:inherit;font-size:13px;padding:8px 12px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-primary);color:var(--text-primary);outline:none;transition:border-color .15s}
+.gh-field input:focus{border-color:var(--accent-blue)}
+.gh-tag-picker{display:flex;flex-wrap:wrap;gap:4px}
+.gh-tag-opt{border:2px solid transparent;border-radius:var(--radius-md);padding:3px 4px;background:none;cursor:pointer;transition:all .15s}
+.gh-tag-opt:hover{border-color:var(--border-color)}
+.gh-tag-opt.active{border-color:var(--accent-blue);background:var(--bg-tertiary)}
+.gh-modal-actions{display:flex;gap:8px;margin-top:18px}
+.gh-modal-save{font-family:inherit;font-size:13px;font-weight:600;padding:8px 20px;border:none;border-radius:var(--radius-md);background:var(--accent-blue);color:#fff;cursor:pointer;transition:opacity .15s}
+.gh-modal-save:hover{opacity:.9}
+.gh-modal-delete{font-family:inherit;font-size:13px;font-weight:600;padding:8px 16px;border:none;border-radius:var(--radius-md);background:var(--tag-red-bg);color:var(--tag-red-text);cursor:pointer;transition:opacity .15s}
+.gh-modal-delete:hover{opacity:.85}
+.gh-modal-cancel{font-family:inherit;font-size:13px;font-weight:500;padding:8px 16px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:transparent;color:var(--text-secondary);cursor:pointer;margin-left:auto}
+.gh-modal-cancel:hover{background:var(--bg-hover)}
+.gh-card{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:8px 10px;margin-bottom:5px;cursor:grab;transition:box-shadow .15s,transform .1s;user-select:none}
+.gh-card:hover{box-shadow:var(--shadow-md)}
+.gh-card:active{cursor:grabbing;box-shadow:var(--shadow-lg);transform:rotate(1.5deg) scale(1.02);opacity:.92}
+.gh-card .card-tag{display:inline-block;font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;margin-bottom:3px}
+.gh-card .card-title{font-size:13px;font-weight:500;line-height:1.3}
+.gh-card .card-desc{font-size:11px;color:var(--text-tertiary);margin-top:2px;line-height:1.3}
+.gh-card .gh-edit-icon{float:right;font-size:10px;color:var(--text-tertiary);cursor:pointer;opacity:0;transition:opacity .15s;padding:2px}
+.gh-card:hover .gh-edit-icon{opacity:.7}
+.gh-card .gh-edit-icon:hover{opacity:1}
 </style>
 </head>
 <body>
@@ -246,7 +279,9 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
   <div class="toolbar-right">
     <button class="toolbar-btn" onclick="resetDaily()">↻ Reset</button>
     <button class="toolbar-btn" id="dark-toggle" onclick="toggleDark()">🌙</button>
-    <button class="toolbar-btn" onclick="exportData()">💾</button>
+    <button class="toolbar-btn" onclick="backupData()" title="Backup all data as JSON">📥 Backup</button>
+    <button class="toolbar-btn" onclick="document.getElementById('import-file').click()" title="Load data from JSON backup">📤 Load</button>
+    <input type="file" id="import-file" accept=".json" style="display:none" onchange="loadData(event)">
   </div>
 </div>
 
@@ -551,6 +586,11 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
       <input type="number" id="mock-gk" placeholder="GK" min="0" max="60" step="0.25">
       <button onclick="addMockExam()">+ Ekle</button>
     </div>
+    <!-- KPSS Chart -->
+    <div style="margin-top:16px;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px">
+      <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:8px;display:flex;align-items:center;gap:6px">📈 Deneme Net Grafiği</div>
+      <div style="position:relative;height:220px"><canvas id="mock-chart"></canvas></div>
+    </div>
   </div>
 </div>
 
@@ -566,14 +606,57 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
   <div class="progress-bar-container mt-10"><div class="progress-bar-label"><span>ECBA Progress</span><span id="ecba-progress-text">0/24</span></div><div class="progress-bar"><div class="progress-bar-fill fill-purple" id="ecba-bar" style="width:0%"></div></div></div>
 </div>
 
-<!-- GITHUB -->
+<!-- GITHUB (Interactive) -->
 <div class="section" id="section-github">
-  <div class="section-header"><span class="icon">💻</span><h2>GitHub & BA Projects</h2></div>
+  <div class="section-header"><span class="icon">💻</span><h2>GitHub & BA Projects</h2><span class="badge tag tag-gray">Interactive</span></div>
+  <div class="callout"><span class="callout-icon">⚡</span><span>Kartları sürükle, <strong>+ butonuyla</strong> yeni proje ekle, kartlara tıklayarak düzenle veya sil. Hepsi otomatik kaydedilir.</span></div>
   <div class="kanban-board" id="github-kanban">
-    <div class="kanban-column" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-purple)">💡 Fikir/Analiz</div><div class="kanban-cards"><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">BA</div><div class="card-title">Stakeholder Analysis Template</div></div><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">App</div><div class="card-title">KPSS Soru Bankası Tracker</div></div><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-green">Script</div><div class="card-title">Anki Deck Generator</div></div></div></div>
-    <div class="kanban-column" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-orange)">⚡ Kodlama</div><div class="kanban-cards"><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-orange">Portfolio</div><div class="card-title">Personal Portfolio Site</div></div><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-blue">App</div><div class="card-title">Daily Habit Dashboard</div></div></div></div>
-    <div class="kanban-column" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-blue)">📄 Docs</div><div class="kanban-cards"><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-purple">BA</div><div class="card-title">BRD Template (BABOK)</div></div><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-green">OSS</div><div class="card-title">KPSS Study Roadmap</div></div></div></div>
-    <div class="kanban-column" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)"><div class="kanban-column-header" style="color:var(--accent-green)">🚀 Yayında</div><div class="kanban-cards"><div class="kanban-card" draggable="true" ondragstart="onDragStart(event)"><div class="card-tag tag-gray">Misc</div><div class="card-title">GitHub Profile README</div></div></div></div>
+    <div class="kanban-column" data-gh-col="idea" ondragover="onDragOver(event)" ondrop="onGHDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)">
+      <div class="kanban-column-header" style="color:var(--accent-purple)">💡 Fikir/Analiz <span class="count gh-count" id="gh-count-idea">0</span></div>
+      <div class="kanban-cards" id="gh-cards-idea"></div>
+      <button class="gh-add-btn" onclick="openGHModal('idea')">+ Add Card</button>
+    </div>
+    <div class="kanban-column" data-gh-col="coding" ondragover="onDragOver(event)" ondrop="onGHDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)">
+      <div class="kanban-column-header" style="color:var(--accent-orange)">⚡ Kodlama <span class="count gh-count" id="gh-count-coding">0</span></div>
+      <div class="kanban-cards" id="gh-cards-coding"></div>
+      <button class="gh-add-btn" onclick="openGHModal('coding')">+ Add Card</button>
+    </div>
+    <div class="kanban-column" data-gh-col="docs" ondragover="onDragOver(event)" ondrop="onGHDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)">
+      <div class="kanban-column-header" style="color:var(--accent-blue)">📄 Docs <span class="count gh-count" id="gh-count-docs">0</span></div>
+      <div class="kanban-cards" id="gh-cards-docs"></div>
+      <button class="gh-add-btn" onclick="openGHModal('docs')">+ Add Card</button>
+    </div>
+    <div class="kanban-column" data-gh-col="live" ondragover="onDragOver(event)" ondrop="onGHDrop(event)" ondragenter="onDragEnter(event)" ondragleave="onDragLeave(event)">
+      <div class="kanban-column-header" style="color:var(--accent-green)">🚀 Yayında <span class="count gh-count" id="gh-count-live">0</span></div>
+      <div class="kanban-cards" id="gh-cards-live"></div>
+      <button class="gh-add-btn" onclick="openGHModal('live')">+ Add Card</button>
+    </div>
+  </div>
+</div>
+
+<!-- GH Card Modal -->
+<div class="gh-modal-overlay" id="gh-modal" onclick="if(event.target===this)closeGHModal()">
+  <div class="gh-modal">
+    <div class="gh-modal-title" id="gh-modal-title">New Project Card</div>
+    <input type="hidden" id="gh-edit-id">
+    <input type="hidden" id="gh-edit-col">
+    <div class="gh-field"><label>Project Name</label><input type="text" id="gh-input-title" placeholder="e.g. KPSS Soru Bankası Tracker"></div>
+    <div class="gh-field"><label>Description (optional)</label><input type="text" id="gh-input-desc" placeholder="e.g. React + LocalStorage — track solved questions"></div>
+    <div class="gh-field"><label>Tag</label>
+      <div class="gh-tag-picker" id="gh-tag-picker">
+        <button class="gh-tag-opt active" data-tag="blue" onclick="pickGHTag(this)"><span class="tag tag-blue">App</span></button>
+        <button class="gh-tag-opt" data-tag="purple" onclick="pickGHTag(this)"><span class="tag tag-purple">BA</span></button>
+        <button class="gh-tag-opt" data-tag="green" onclick="pickGHTag(this)"><span class="tag tag-green">Script</span></button>
+        <button class="gh-tag-opt" data-tag="orange" onclick="pickGHTag(this)"><span class="tag tag-orange">Portfolio</span></button>
+        <button class="gh-tag-opt" data-tag="red" onclick="pickGHTag(this)"><span class="tag tag-red">Urgent</span></button>
+        <button class="gh-tag-opt" data-tag="gray" onclick="pickGHTag(this)"><span class="tag tag-gray">Misc</span></button>
+      </div>
+    </div>
+    <div class="gh-modal-actions">
+      <button class="gh-modal-save" onclick="saveGHCard()">💾 Save</button>
+      <button class="gh-modal-delete" id="gh-delete-btn" onclick="deleteGHCard()" style="display:none">🗑️ Delete</button>
+      <button class="gh-modal-cancel" onclick="closeGHModal()">Cancel</button>
+    </div>
   </div>
 </div>
 
@@ -667,7 +750,7 @@ function onDragOver(e){e.preventDefault()}
 function onDragEnter(e){const c=e.target.closest('.kanban-column');if(c)c.classList.add('drag-over')}
 function onDragLeave(e){const c=e.target.closest('.kanban-column');if(c&&!c.contains(e.relatedTarget))c.classList.remove('drag-over')}
 function onDrop(e){e.preventDefault();const c=e.target.closest('.kanban-column');if(c&&dc){c.querySelector('.kanban-cards').appendChild(dc);dc.classList.remove('dragging');c.classList.remove('drag-over');dc=null;updateStats();saveKanban()}}
-document.addEventListener('dragend',()=>{if(dc)dc.classList.remove('dragging');document.querySelectorAll('.kanban-column').forEach(c=>c.classList.remove('drag-over'))});
+// dragend handled in GitHub section below
 
 // KPSS Filter
 function switchKPSS(s,btn){document.querySelectorAll('.kpss-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('#kpss-kanban .kanban-card').forEach(c=>{c.style.display=(s==='all'||c.dataset.subject===s)?'':'none'});updateKPSS()}
@@ -677,13 +760,32 @@ function filterGrammar(){const q=document.getElementById('grammar-search').value
 
 // Pomodoro
 const PM={work:25*60,short:5*60,long:15*60};let pm='work',pt=PM.work,pr=false,pi=null,ps=0;
-function upd(){const m=Math.floor(pt/60).toString().padStart(2,'0'),s=(pt%60).toString().padStart(2,'0');document.getElementById('pomo-display').textContent=m+':'+s}
-function setPomoMode(mode,btn){pm=mode;pt=PM[mode];pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.querySelectorAll('.pomo-btn-mode').forEach(b=>b.classList.remove('active-mode'));if(btn)btn.classList.add('active-mode');document.getElementById('pomo-display').style.color=mode==='work'?'var(--accent-red)':mode==='short'?'var(--accent-green)':'var(--accent-blue)';upd()}
-function togglePomodoro(){if(pr){pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running')}else{pr=true;document.getElementById('pomo-start').textContent='⏸ Pause';document.getElementById('pomo-start').classList.add('running');pi=setInterval(()=>{if(pt<=0){clearInterval(pi);pr=false;document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');if(pm==='work'){ps++;document.getElementById('pomo-sessions').textContent='#'+(ps+1);document.getElementById('stat-pomodoro').textContent=ps;const d=ld();if(!d.pomodoros)d.pomodoros={};d.pomodoros[today()]=ps;sv(d);ps%4===0?setPomoMode('long',document.querySelectorAll('.pomo-btn-mode')[2]):setPomoMode('short',document.querySelectorAll('.pomo-btn-mode')[1])}else{setPomoMode('work',document.querySelectorAll('.pomo-btn-mode')[0])}if(Notification.permission==='granted')new Notification('🍅 Pomodoro!');return}pt--;upd()},1000)}}
-function resetPomodoro(){clearInterval(pi);pr=false;pt=PM[pm];document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');upd()}
+// Pomodoro Ding Sound (base64 encoded short chime)
+const DING_B64='data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjQ1LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADhAC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4Ljkx//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+let dingAudio;try{dingAudio=new Audio(DING_B64)}catch(e){}
+function playDing(){
+  try{
+    // Web Audio API fallback for reliable playback
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.type='sine';osc.frequency.setValueAtTime(830,ctx.currentTime);
+    osc.frequency.setValueAtTime(1050,ctx.currentTime+0.08);
+    osc.frequency.setValueAtTime(1200,ctx.currentTime+0.15);
+    gain.gain.setValueAtTime(0.3,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.6);
+    osc.start(ctx.currentTime);osc.stop(ctx.currentTime+0.6);
+  }catch(e){if(dingAudio){dingAudio.currentTime=0;dingAudio.play().catch(()=>{})}}
+}
+const POMO_LABELS={work:'Focus',short:'Break',long:'Long Break'};
+function upd(){const m=Math.floor(pt/60).toString().padStart(2,'0'),s=(pt%60).toString().padStart(2,'0');const ts=m+':'+s;document.getElementById('pomo-display').textContent=ts;if(pr){document.title='('+ts+') '+POMO_LABELS[pm]+' — Ana Kumanda'}else{document.title='Ana Kumanda 🎯'}}
+function setPomoMode(mode,btn){pm=mode;pt=PM[mode];pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.querySelectorAll('.pomo-btn-mode').forEach(b=>b.classList.remove('active-mode'));if(btn)btn.classList.add('active-mode');document.getElementById('pomo-display').style.color=mode==='work'?'var(--accent-red)':mode==='short'?'var(--accent-green)':'var(--accent-blue)';document.title='Ana Kumanda 🎯';upd()}
+function togglePomodoro(){if(pr){pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.title='Ana Kumanda 🎯'}else{pr=true;document.getElementById('pomo-start').textContent='⏸ Pause';document.getElementById('pomo-start').classList.add('running');pi=setInterval(()=>{if(pt<=0){clearInterval(pi);pr=false;document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');playDing();if(pm==='work'){ps++;document.getElementById('pomo-sessions').textContent='#'+(ps+1);document.getElementById('stat-pomodoro').textContent=ps;const d=ld();if(!d.pomodoros)d.pomodoros={};d.pomodoros[today()]=ps;sv(d);ps%4===0?setPomoMode('long',document.querySelectorAll('.pomo-btn-mode')[2]):setPomoMode('short',document.querySelectorAll('.pomo-btn-mode')[1])}else{setPomoMode('work',document.querySelectorAll('.pomo-btn-mode')[0])}if(Notification.permission==='granted')new Notification('🍅 Pomodoro!');return}pt--;upd()},1000)}}
+function resetPomodoro(){clearInterval(pi);pr=false;pt=PM[pm];document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.title='Ana Kumanda 🎯';upd()}
 
 // Dark
-function toggleDark(){const isDark=document.documentElement.classList.toggle('dark');document.getElementById('dark-toggle').textContent=isDark?'☀️':'🌙';const d=ld();d.darkMode=isDark;sv(d)}
+function toggleDark(){const isDark=document.documentElement.classList.toggle('dark');document.getElementById('dark-toggle').textContent=isDark?'☀️':'🌙';const d=ld();d.darkMode=isDark;sv(d);setTimeout(renderMockChart,50)}
 
 // Reset Daily
 function resetDaily(){if(!confirm('Reset daily tasks?'))return;document.querySelectorAll('[data-group="daily"]').forEach(cb=>{cb.checked=false;const i=cb.closest('.check-item');if(i)i.classList.remove('checked')});const d=ld();if(d.daily)d.daily[today()]={};sv(d);updateStats()}
@@ -704,8 +806,87 @@ function renderVocab(){const d=ld();const sel=document.getElementById('vocab-dat
   document.getElementById('stat-words').textContent=totalWords}
 function onVocabDateChange(){renderVocab()}
 
-// Export
-function exportData(){const d=ld();const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='ana-kumanda-'+today()+'.json';a.click();URL.revokeObjectURL(url)}
+// ═══ Feature: Ultimate Data Safety (Backup / Load) ═══
+function backupData(){
+  const d=ld();
+  const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  const dateStr=today().replace(/-/g,'');
+  a.download='AnaKumanda_Backup_'+dateStr+'.json';
+  a.click();URL.revokeObjectURL(url);
+}
+function loadData(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  if(!file.name.endsWith('.json')){alert('Please select a .json file');return}
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(typeof data!=='object'||data===null){throw new Error('Invalid format')}
+      localStorage.setItem(SK,JSON.stringify(data));
+      alert('✅ Data loaded successfully! Page will reload.');
+      location.reload();
+    }catch(err){alert('❌ Invalid file: '+err.message)}
+  };
+  reader.readAsText(file);
+  e.target.value='';
+}
+// Keep legacy export for compatibility
+function exportData(){backupData()}
+
+// ═══ Feature: Chart.js KPSS Mock Exam Visualization ═══
+let mockChart=null;
+function renderMockChart(){
+  const canvas=document.getElementById('mock-chart');
+  if(!canvas||typeof Chart==='undefined')return;
+  const d=ld();
+  const mocks=(d.mocks||[]).slice().sort((a,b)=>a.date>b.date?1:-1);
+  const labels=mocks.map(m=>m.date?m.date.slice(5):'');
+  const gyData=mocks.map(m=>m.gy);
+  const gkData=mocks.map(m=>m.gk);
+  const totalData=mocks.map(m=>m.total);
+  // Resolve CSS variables for chart colors
+  const cs=getComputedStyle(document.documentElement);
+  const colBlue=cs.getPropertyValue('--accent-blue').trim()||'#2383e2';
+  const colGreen=cs.getPropertyValue('--accent-green').trim()||'#0f7b6c';
+  const colOrange=cs.getPropertyValue('--accent-orange').trim()||'#d9730d';
+  const txtColor=cs.getPropertyValue('--text-secondary').trim()||'#787774';
+  const gridColor=cs.getPropertyValue('--border-color').trim()||'#e9e9e7';
+  if(mockChart){mockChart.destroy()}
+  if(mocks.length===0){
+    const ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle=txtColor;ctx.font='13px Inter,sans-serif';ctx.textAlign='center';
+    ctx.fillText('Deneme ekledikçe grafik burada görünecek 📊',canvas.width/2,canvas.height/2);
+    return;
+  }
+  mockChart=new Chart(canvas,{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'Toplam Net',data:totalData,borderColor:colOrange,backgroundColor:colOrange+'18',borderWidth:2.5,pointRadius:4,pointHoverRadius:6,fill:true,tension:0.3},
+        {label:'GY Net',data:gyData,borderColor:colBlue,backgroundColor:'transparent',borderWidth:2,pointRadius:3,pointHoverRadius:5,borderDash:[],tension:0.3},
+        {label:'GK Net',data:gkData,borderColor:colGreen,backgroundColor:'transparent',borderWidth:2,pointRadius:3,pointHoverRadius:5,borderDash:[4,4],tension:0.3}
+      ]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{position:'top',labels:{font:{family:'Inter',size:11,weight:'500'},usePointStyle:true,pointStyle:'circle',padding:12,color:txtColor}},
+        tooltip:{backgroundColor:'rgba(0,0,0,.8)',titleFont:{family:'Inter',size:12},bodyFont:{family:'Inter',size:11},padding:10,cornerRadius:6,displayColors:true}
+      },
+      scales:{
+        x:{grid:{color:gridColor,drawBorder:false},ticks:{font:{family:'Inter',size:10},color:txtColor}},
+        y:{beginAtZero:true,max:120,grid:{color:gridColor,drawBorder:false},ticks:{font:{family:'Inter',size:10},color:txtColor,stepSize:20}}
+      }
+    }
+  });
+}
 
 // ═══ Feature 1: Journal / Reflection ═══
 function saveJournalEntry(){
@@ -758,9 +939,9 @@ function addMockExam(){
   document.getElementById('mock-name').value='';
   document.getElementById('mock-gy').value='';
   document.getElementById('mock-gk').value='';
-  renderMocks()
+  renderMocks();renderMockChart()
 }
-function removeMock(id){const d=ld();d.mocks=d.mocks.filter(m=>m.id!==id);sv(d);renderMocks()}
+function removeMock(id){const d=ld();d.mocks=d.mocks.filter(m=>m.id!==id);sv(d);renderMocks();renderMockChart()}
 function renderMocks(){
   const d=ld();const tbody=document.getElementById('mock-tbody');
   const mocks=d.mocks||[];
@@ -790,6 +971,124 @@ function renderPhrases(){
   el.innerHTML=phrases.map(p=>`<div class="phrase-entry"><span class="phrase-icon">💬</span><span class="phrase-text">${p.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span><span class="phrase-date">${p.date}</span><span class="phrase-remove" onclick="removePhrase(${p.id})">✕</span></div>`).join('')
 }
 
+// ═══ Feature 6: Interactive GitHub Kanban ═══
+const GH_COLS=['idea','coding','docs','live'];
+const TAG_LABELS={blue:'App',purple:'BA',green:'Script',orange:'Portfolio',red:'Urgent',gray:'Misc'};
+const DEFAULT_GH_CARDS=[
+  {id:1,title:'Stakeholder Analysis Template',desc:'',tag:'purple',col:'idea'},
+  {id:2,title:'KPSS Soru Bankası Tracker',desc:'React + LocalStorage',tag:'blue',col:'idea'},
+  {id:3,title:'Anki Deck Generator',desc:'Python script',tag:'green',col:'idea'},
+  {id:4,title:'Personal Portfolio Site',desc:'',tag:'orange',col:'coding'},
+  {id:5,title:'Daily Habit Dashboard',desc:'',tag:'blue',col:'coding'},
+  {id:6,title:'BRD Template (BABOK)',desc:'',tag:'purple',col:'docs'},
+  {id:7,title:'KPSS Study Roadmap',desc:'Open source',tag:'green',col:'docs'},
+  {id:8,title:'GitHub Profile README',desc:'',tag:'gray',col:'live'}
+];
+
+function getGHCards(){const d=ld();if(!d.ghCards){d.ghCards=DEFAULT_GH_CARDS;sv(d)}return d.ghCards}
+function saveGHCards(cards){const d=ld();d.ghCards=cards;sv(d)}
+
+function renderGH(){
+  const cards=getGHCards();
+  GH_COLS.forEach(col=>{
+    const container=document.getElementById('gh-cards-'+col);
+    if(!container)return;
+    container.innerHTML='';
+    const colCards=cards.filter(c=>c.col===col);
+    colCards.forEach(c=>{
+      const el=document.createElement('div');
+      el.className='gh-card';
+      el.draggable=true;
+      el.dataset.ghId=c.id;
+      el.ondragstart=function(e){ghDragCard=this;this.classList.add('dragging');e.dataTransfer.effectAllowed='move'};
+      el.innerHTML=`<span class="gh-edit-icon" onclick="event.stopPropagation();openGHEdit(${c.id})">✏️</span><div class="card-tag tag-${c.tag}">${TAG_LABELS[c.tag]||c.tag}</div><div class="card-title">${esc(c.title)}</div>${c.desc?`<div class="card-desc">${esc(c.desc)}</div>`:''}`;
+      container.appendChild(el);
+    });
+    const countEl=document.getElementById('gh-count-'+col);
+    if(countEl)countEl.textContent=colCards.length;
+  });
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+let ghDragCard=null;
+function onGHDrop(e){
+  e.preventDefault();
+  const col=e.target.closest('.kanban-column');
+  if(!col||!ghDragCard)return;
+  const targetCol=col.dataset.ghCol;
+  const cardId=parseInt(ghDragCard.dataset.ghId);
+  col.classList.remove('drag-over');
+  ghDragCard.classList.remove('dragging');
+  // Update data
+  const cards=getGHCards();
+  const card=cards.find(c=>c.id===cardId);
+  if(card){card.col=targetCol;saveGHCards(cards);renderGH()}
+  ghDragCard=null;
+}
+document.addEventListener('dragend',function(){
+  if(ghDragCard){ghDragCard.classList.remove('dragging');ghDragCard=null}
+  if(dc)dc.classList.remove('dragging');
+  document.querySelectorAll('.kanban-column').forEach(c=>c.classList.remove('drag-over'));
+});
+
+function openGHModal(col){
+  document.getElementById('gh-modal').classList.add('open');
+  document.getElementById('gh-modal-title').textContent='New Project Card';
+  document.getElementById('gh-input-title').value='';
+  document.getElementById('gh-input-desc').value='';
+  document.getElementById('gh-edit-id').value='';
+  document.getElementById('gh-edit-col').value=col;
+  document.getElementById('gh-delete-btn').style.display='none';
+  document.querySelectorAll('.gh-tag-opt').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.gh-tag-opt[data-tag="blue"]').classList.add('active');
+  setTimeout(()=>document.getElementById('gh-input-title').focus(),100);
+}
+function openGHEdit(id){
+  const cards=getGHCards();
+  const card=cards.find(c=>c.id===id);
+  if(!card)return;
+  document.getElementById('gh-modal').classList.add('open');
+  document.getElementById('gh-modal-title').textContent='Edit Project Card';
+  document.getElementById('gh-input-title').value=card.title;
+  document.getElementById('gh-input-desc').value=card.desc||'';
+  document.getElementById('gh-edit-id').value=card.id;
+  document.getElementById('gh-edit-col').value=card.col;
+  document.getElementById('gh-delete-btn').style.display='inline-block';
+  document.querySelectorAll('.gh-tag-opt').forEach(b=>b.classList.remove('active'));
+  const tagBtn=document.querySelector(`.gh-tag-opt[data-tag="${card.tag}"]`);
+  if(tagBtn)tagBtn.classList.add('active');
+  setTimeout(()=>document.getElementById('gh-input-title').focus(),100);
+}
+function closeGHModal(){document.getElementById('gh-modal').classList.remove('open')}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeGHModal()});
+function pickGHTag(btn){document.querySelectorAll('.gh-tag-opt').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
+function getSelectedTag(){const a=document.querySelector('.gh-tag-opt.active');return a?a.dataset.tag:'blue'}
+
+function saveGHCard(){
+  const title=document.getElementById('gh-input-title').value.trim();
+  if(!title)return;
+  const desc=document.getElementById('gh-input-desc').value.trim();
+  const tag=getSelectedTag();
+  const editId=document.getElementById('gh-edit-id').value;
+  const col=document.getElementById('gh-edit-col').value;
+  const cards=getGHCards();
+  if(editId){
+    const card=cards.find(c=>c.id===parseInt(editId));
+    if(card){card.title=title;card.desc=desc;card.tag=tag}
+  }else{
+    const newId=cards.length?Math.max(...cards.map(c=>c.id))+1:1;
+    cards.push({id:newId,title,desc,tag,col});
+  }
+  saveGHCards(cards);renderGH();closeGHModal();
+}
+function deleteGHCard(){
+  const editId=parseInt(document.getElementById('gh-edit-id').value);
+  if(!editId)return;
+  let cards=getGHCards();
+  cards=cards.filter(c=>c.id!==editId);
+  saveGHCards(cards);renderGH();closeGHModal();
+}
+
 // Init
 (function(){
   updateDate();
@@ -807,6 +1106,9 @@ function renderPhrases(){
   initMockDate();
   renderMocks();
   renderPhrases();
+  renderGH();
+  // Chart.js init (delayed to ensure canvas is sized)
+  setTimeout(renderMockChart,100);
   if('Notification' in window&&Notification.permission==='default')Notification.requestPermission();
 })();
 </script>
