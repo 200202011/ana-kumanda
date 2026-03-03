@@ -264,6 +264,19 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
 .gh-card .gh-edit-icon{float:right;font-size:10px;color:var(--text-tertiary);cursor:pointer;opacity:0;transition:opacity .15s;padding:2px}
 .gh-card:hover .gh-edit-icon{opacity:.7}
 .gh-card .gh-edit-icon:hover{opacity:1}
+/* ── Pomo Categories ── */
+.pomo-category-row{display:flex;gap:3px;align-items:center;margin-top:5px;flex-wrap:wrap}
+.pomo-cat{font-family:inherit;font-size:10px;font-weight:500;padding:2px 8px;border-radius:14px;border:1.5px solid var(--border-color);background:transparent;color:var(--text-secondary);cursor:pointer;transition:all .15s;white-space:nowrap}
+.pomo-cat:hover{border-color:var(--text-tertiary);color:var(--text-primary)}
+.pomo-cat.active-cat{background:var(--accent-blue);border-color:var(--accent-blue);color:#fff}
+.pomo-cat-custom{font-family:inherit;font-size:10px;padding:2px 8px;border-radius:14px;border:1.5px dashed var(--border-color);background:transparent;color:var(--text-secondary);outline:none;width:70px;transition:all .15s}
+.pomo-cat-custom:focus{border-color:var(--accent-blue);color:var(--text-primary);width:100px}
+.pomo-daily-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0 0;margin-top:6px;border-top:1px solid var(--border-color)}
+.pdb-item{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:500;color:var(--text-secondary)}
+.pdb-item .pdb-time{font-weight:700;color:var(--text-primary);font-variant-numeric:tabular-nums}
+.pdb-label{font-size:10px;color:var(--text-tertiary);font-weight:500}
+.sync-flash{animation:syncFlash .8s ease}
+@keyframes syncFlash{0%{box-shadow:0 0 0 0 rgba(35,131,226,.5)}50%{box-shadow:0 0 0 6px rgba(35,131,226,0)}100%{box-shadow:none}}
 </style>
 </head>
 <body>
@@ -281,6 +294,7 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
     <button class="toolbar-btn" id="dark-toggle" onclick="toggleDark()">🌙</button>
     <button class="toolbar-btn" onclick="backupData()" title="Backup all data as JSON">📥 Backup</button>
     <button class="toolbar-btn" onclick="document.getElementById('import-file').click()" title="Load data from JSON backup">📤 Load</button>
+    <button class="toolbar-btn" onclick="syncState()" title="Sync timer across devices" id="sync-btn">🔄 Sync</button>
     <input type="file" id="import-file" accept=".json" style="display:none" onchange="loadData(event)">
   </div>
 </div>
@@ -310,6 +324,23 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
         <button class="pomo-btn-mode" onclick="setPomoMode('short',this)">Short</button>
         <button class="pomo-btn-mode" onclick="setPomoMode('long',this)">Long</button>
         <span class="pomo-sessions" id="pomo-sessions">#1</span>
+      </div>
+      <div class="pomo-category-row">
+        <span class="pdb-label">Studying:</span>
+        <button class="pomo-cat active-cat" data-cat="İngilizce" onclick="setPomoCategory(this)">🇬🇧 İngilizce</button>
+        <button class="pomo-cat" data-cat="KPSS" onclick="setPomoCategory(this)">🎓 KPSS</button>
+        <button class="pomo-cat" data-cat="ECBA" onclick="setPomoCategory(this)">📚 ECBA</button>
+        <button class="pomo-cat" data-cat="GitHub" onclick="setPomoCategory(this)">💻 GitHub</button>
+        <input class="pomo-cat-custom" id="pomo-cat-custom" placeholder="Other…" onfocus="selectCustomCat()" oninput="updateCustomCat()">
+      </div>
+      <div class="pomo-daily-bar" id="pomo-daily-bar">
+        <span class="pdb-label">Today:</span>
+        <span class="pdb-item">🇬🇧 <span class="pdb-time" id="pdb-ingilizce">0m</span></span>
+        <span class="pdb-item">🎓 <span class="pdb-time" id="pdb-kpss">0m</span></span>
+        <span class="pdb-item">📚 <span class="pdb-time" id="pdb-ecba">0m</span></span>
+        <span class="pdb-item">💻 <span class="pdb-time" id="pdb-github">0m</span></span>
+        <span class="pdb-item" id="pdb-other-wrap" style="display:none">✏️ <span class="pdb-time" id="pdb-other">0m</span></span>
+        <span class="pdb-item" style="margin-left:auto;font-weight:600">Total: <span class="pdb-time" id="pdb-total">0m</span></span>
       </div>
     </div>
   </div>
@@ -760,15 +791,12 @@ function filterGrammar(){const q=document.getElementById('grammar-search').value
 
 // Pomodoro
 const PM={work:25*60,short:5*60,long:15*60};let pm='work',pt=PM.work,pr=false,pi=null,ps=0;
-// Pomodoro Ding Sound (base64 encoded short chime)
-const DING_B64='data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjQ1LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADhAC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4Ljkx//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-let dingAudio;try{dingAudio=new Audio(DING_B64)}catch(e){}
+let pomoCat='İngilizce';
+// Pomodoro Ding Sound
 function playDing(){
   try{
-    // Web Audio API fallback for reliable playback
     const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const osc=ctx.createOscillator();
-    const gain=ctx.createGain();
+    const osc=ctx.createOscillator();const gain=ctx.createGain();
     osc.connect(gain);gain.connect(ctx.destination);
     osc.type='sine';osc.frequency.setValueAtTime(830,ctx.currentTime);
     osc.frequency.setValueAtTime(1050,ctx.currentTime+0.08);
@@ -776,13 +804,127 @@ function playDing(){
     gain.gain.setValueAtTime(0.3,ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.6);
     osc.start(ctx.currentTime);osc.stop(ctx.currentTime+0.6);
-  }catch(e){if(dingAudio){dingAudio.currentTime=0;dingAudio.play().catch(()=>{})}}
+  }catch(e){}
 }
 const POMO_LABELS={work:'Focus',short:'Break',long:'Long Break'};
 function upd(){const m=Math.floor(pt/60).toString().padStart(2,'0'),s=(pt%60).toString().padStart(2,'0');const ts=m+':'+s;document.getElementById('pomo-display').textContent=ts;if(pr){document.title='('+ts+') '+POMO_LABELS[pm]+' — Ana Kumanda'}else{document.title='Ana Kumanda 🎯'}}
-function setPomoMode(mode,btn){pm=mode;pt=PM[mode];pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.querySelectorAll('.pomo-btn-mode').forEach(b=>b.classList.remove('active-mode'));if(btn)btn.classList.add('active-mode');document.getElementById('pomo-display').style.color=mode==='work'?'var(--accent-red)':mode==='short'?'var(--accent-green)':'var(--accent-blue)';document.title='Ana Kumanda 🎯';upd()}
-function togglePomodoro(){if(pr){pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.title='Ana Kumanda 🎯'}else{pr=true;document.getElementById('pomo-start').textContent='⏸ Pause';document.getElementById('pomo-start').classList.add('running');pi=setInterval(()=>{if(pt<=0){clearInterval(pi);pr=false;document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');playDing();if(pm==='work'){ps++;document.getElementById('pomo-sessions').textContent='#'+(ps+1);document.getElementById('stat-pomodoro').textContent=ps;const d=ld();if(!d.pomodoros)d.pomodoros={};d.pomodoros[today()]=ps;sv(d);ps%4===0?setPomoMode('long',document.querySelectorAll('.pomo-btn-mode')[2]):setPomoMode('short',document.querySelectorAll('.pomo-btn-mode')[1])}else{setPomoMode('work',document.querySelectorAll('.pomo-btn-mode')[0])}if(Notification.permission==='granted')new Notification('🍅 Pomodoro!');return}pt--;upd()},1000)}}
-function resetPomodoro(){clearInterval(pi);pr=false;pt=PM[pm];document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.title='Ana Kumanda 🎯';upd()}
+
+// ═══ Timestamp-based Pomodoro (Cross-Device Sync) ═══
+function savePomodoroState(){
+  const d=ld();
+  d.pomoState={mode:pm,running:pr,category:pomoCat,sessions:ps,
+    endTime:pr?Date.now()+pt*1000:null,
+    remainSec:pt,lastUpdate:Date.now()};
+  sv(d);
+}
+function loadPomodoroState(){
+  const d=ld();
+  if(!d.pomoState)return false;
+  const s=d.pomoState;
+  pm=s.mode||'work';pomoCat=s.category||'İngilizce';ps=s.sessions||0;
+  // Restore category UI
+  document.querySelectorAll('.pomo-cat').forEach(b=>b.classList.remove('active-cat'));
+  const catBtn=document.querySelector('.pomo-cat[data-cat="'+pomoCat+'"]');
+  if(catBtn)catBtn.classList.add('active-cat');
+  else{document.getElementById('pomo-cat-custom').value=pomoCat;selectCustomCat()}
+  // Restore mode UI
+  document.querySelectorAll('.pomo-btn-mode').forEach(b=>b.classList.remove('active-mode'));
+  const modeIdx={work:0,short:1,long:2}[pm]||0;
+  document.querySelectorAll('.pomo-btn-mode')[modeIdx].classList.add('active-mode');
+  document.getElementById('pomo-display').style.color=pm==='work'?'var(--accent-red)':pm==='short'?'var(--accent-green)':'var(--accent-blue)';
+  document.getElementById('pomo-sessions').textContent='#'+(ps+1);
+  document.getElementById('stat-pomodoro').textContent=ps;
+  if(s.running&&s.endTime){
+    const remain=Math.round((s.endTime-Date.now())/1000);
+    if(remain>0){pt=remain;pr=false;startPomoTimer();return true}
+    else{pt=0;handlePomoComplete();return true}
+  }else{pt=s.remainSec||PM[pm];upd()}
+  return true;
+}
+function startPomoTimer(){
+  pr=true;clearInterval(pi);
+  document.getElementById('pomo-start').textContent='⏸ Pause';
+  document.getElementById('pomo-start').classList.add('running');
+  savePomodoroState();
+  pi=setInterval(()=>{
+    if(pt<=0){handlePomoComplete();return}
+    pt--;upd();
+    if(pt%10===0)savePomodoroState();
+  },1000);
+}
+function handlePomoComplete(){
+  clearInterval(pi);pr=false;pt=0;upd();
+  document.getElementById('pomo-start').textContent='▶ Start';
+  document.getElementById('pomo-start').classList.remove('running');
+  playDing();
+  if(pm==='work'){
+    ps++;
+    document.getElementById('pomo-sessions').textContent='#'+(ps+1);
+    document.getElementById('stat-pomodoro').textContent=ps;
+    const d=ld();if(!d.pomodoros)d.pomodoros={};d.pomodoros[today()]=ps;
+    // Log time to category
+    logPomoTime(pomoCat,25);
+    sv(d);
+    ps%4===0?setPomoMode('long',document.querySelectorAll('.pomo-btn-mode')[2]):setPomoMode('short',document.querySelectorAll('.pomo-btn-mode')[1]);
+  }else{setPomoMode('work',document.querySelectorAll('.pomo-btn-mode')[0])}
+  savePomodoroState();
+  if(Notification.permission==='granted')new Notification('🍅 Pomodoro! ('+pomoCat+')');
+}
+function setPomoMode(mode,btn){pm=mode;pt=PM[mode];pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.querySelectorAll('.pomo-btn-mode').forEach(b=>b.classList.remove('active-mode'));if(btn)btn.classList.add('active-mode');document.getElementById('pomo-display').style.color=mode==='work'?'var(--accent-red)':mode==='short'?'var(--accent-green)':'var(--accent-blue)';document.title='Ana Kumanda 🎯';upd();savePomodoroState()}
+function togglePomodoro(){
+  if(pr){pr=false;clearInterval(pi);document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.title='Ana Kumanda 🎯';savePomodoroState()}
+  else{startPomoTimer()}
+}
+function resetPomodoro(){clearInterval(pi);pr=false;pt=PM[pm];document.getElementById('pomo-start').textContent='▶ Start';document.getElementById('pomo-start').classList.remove('running');document.title='Ana Kumanda 🎯';upd();savePomodoroState()}
+
+// ═══ Category Selection ═══
+function setPomoCategory(btn){
+  document.querySelectorAll('.pomo-cat').forEach(b=>b.classList.remove('active-cat'));
+  btn.classList.add('active-cat');
+  pomoCat=btn.dataset.cat;
+  document.getElementById('pomo-cat-custom').value='';
+  savePomodoroState();
+}
+function selectCustomCat(){
+  document.querySelectorAll('.pomo-cat').forEach(b=>b.classList.remove('active-cat'));
+  pomoCat=document.getElementById('pomo-cat-custom').value.trim()||'Other';
+  savePomodoroState();
+}
+function updateCustomCat(){pomoCat=document.getElementById('pomo-cat-custom').value.trim()||'Other';savePomodoroState()}
+
+// ═══ Daily Time Logging ═══
+function logPomoTime(cat,mins){
+  const d=ld();if(!d.pomoLog)d.pomoLog={};
+  const key=today();if(!d.pomoLog[key])d.pomoLog[key]={};
+  const norm=cat.toLowerCase();
+  d.pomoLog[key][norm]=(d.pomoLog[key][norm]||0)+mins;
+  sv(d);renderDailyBar();
+}
+function renderDailyBar(){
+  const d=ld();
+  const log=(d.pomoLog&&d.pomoLog[today()])||{};
+  const cats=[['İngilizce','pdb-ingilizce','ingilizce'],['KPSS','pdb-kpss','kpss'],['ECBA','pdb-ecba','ecba'],['GitHub','pdb-github','github']];
+  let total=0;let hasOther=false;let otherMins=0;
+  cats.forEach(([,elId,key])=>{const m=log[key]||0;total+=m;const el=document.getElementById(elId);if(el)el.textContent=m>=60?Math.floor(m/60)+'h '+(m%60)+'m':m+'m'});
+  // Sum other categories
+  Object.keys(log).forEach(k=>{if(!['ingilizce','kpss','ecba','github'].includes(k)){hasOther=true;otherMins+=log[k];total+=otherMins}});
+  const otherWrap=document.getElementById('pdb-other-wrap');
+  if(otherWrap){otherWrap.style.display=hasOther?'inline-flex':'none';document.getElementById('pdb-other').textContent=otherMins+'m'}
+  const totalEl=document.getElementById('pdb-total');
+  if(totalEl)totalEl.textContent=total>=60?Math.floor(total/60)+'h '+(total%60)+'m':total+'m';
+}
+
+// ═══ Cross-Device Sync ═══
+function syncState(){
+  clearInterval(pi);pr=false;
+  const loaded=loadPomodoroState();
+  renderDailyBar();
+  const btn=document.getElementById('sync-btn');
+  if(btn){btn.classList.add('sync-flash');setTimeout(()=>btn.classList.remove('sync-flash'),800)}
+  if(!loaded){upd()}
+}
+// Auto-sync when tab becomes visible (switching between devices)
+document.addEventListener('visibilitychange',function(){if(!document.hidden)syncState()});
 
 // Dark
 function toggleDark(){const isDark=document.documentElement.classList.toggle('dark');document.getElementById('dark-toggle').textContent=isDark?'☀️':'🌙';const d=ld();d.darkMode=isDark;sv(d);setTimeout(renderMockChart,50)}
@@ -1093,10 +1235,14 @@ function deleteGHCard(){
 (function(){
   updateDate();
   const d=ld();
+  // Default to dark mode on first visit
+  if(d.darkMode===undefined){d.darkMode=true;sv(d)}
   if(d.darkMode){document.documentElement.classList.add('dark');document.getElementById('dark-toggle').textContent='☀️'}
   restoreChecks();restoreKanban();
   if(d.notes)document.getElementById('quick-notes').value=d.notes;
   if(d.pomodoros&&d.pomodoros[today()]){ps=d.pomodoros[today()];document.getElementById('stat-pomodoro').textContent=ps;document.getElementById('pomo-sessions').textContent='#'+(ps+1)}
+  loadPomodoroState();
+  renderDailyBar();
   updateStats();updateStreak();upd();initVocabDate();
   document.getElementById('vocab-date').addEventListener('change',onVocabDateChange);
   renderVocab();
