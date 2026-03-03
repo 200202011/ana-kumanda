@@ -277,6 +277,42 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
 .pdb-label{font-size:10px;color:var(--text-tertiary);font-weight:500}
 .sync-flash{animation:syncFlash .8s ease}
 @keyframes syncFlash{0%{box-shadow:0 0 0 0 rgba(35,131,226,.5)}50%{box-shadow:0 0 0 6px rgba(35,131,226,0)}100%{box-shadow:none}}
+/* ── Water Tracker ── */
+.water-tracker{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:12px}
+.water-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.water-header h4{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.water-total{font-size:22px;font-weight:800;color:var(--accent-blue);font-variant-numeric:tabular-nums}
+.water-total small{font-size:12px;font-weight:500;color:var(--text-tertiary)}
+.water-buttons{display:flex;gap:6px;flex-wrap:wrap}
+.water-btn{font-family:inherit;font-size:12px;font-weight:600;padding:8px 14px;border:1.5px solid var(--border-color);border-radius:var(--radius-lg);background:var(--bg-primary);color:var(--text-primary);cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:68px}
+.water-btn:hover{border-color:var(--accent-blue);background:var(--tag-blue-bg);transform:translateY(-1px)}
+.water-btn:active{transform:scale(.96)}
+.water-btn .water-icon{font-size:18px}
+.water-btn .water-ml{font-size:11px;color:var(--text-secondary)}
+.water-bar-wrap{margin-top:10px;position:relative;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden}
+.water-bar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,#60a5fa,#2383e2,#1d4ed8);transition:width .4s ease;position:relative}
+.water-bar-fill.full{background:linear-gradient(90deg,#34d399,#10b981,#059669)}
+.water-target{font-size:10px;color:var(--text-tertiary);margin-top:4px;display:flex;justify-content:space-between}
+.water-log{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}
+.water-chip{font-size:10px;font-weight:500;padding:2px 7px;border-radius:10px;background:var(--tag-blue-bg);color:var(--tag-blue-text);display:inline-flex;align-items:center;gap:3px;cursor:default;animation:chipIn .3s ease}
+.water-chip .chip-x{cursor:pointer;opacity:.5;font-size:9px}
+.water-chip .chip-x:hover{opacity:1}
+@keyframes chipIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+/* ── Sync Panel ── */
+.sync-panel{display:none;background:var(--bg-primary);border:1px solid var(--accent-blue);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:12px;animation:modalIn .2s ease}
+.sync-panel.open{display:block}
+.sync-panel h4{font-size:13px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.sync-panel p{font-size:11px;color:var(--text-secondary);line-height:1.5;margin-bottom:10px}
+.sync-row{display:flex;gap:6px;align-items:stretch;flex-wrap:wrap}
+.sync-code-btn{font-family:inherit;font-size:12px;font-weight:600;padding:8px 14px;border:none;border-radius:var(--radius-md);cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:4px}
+.sync-code-btn:hover{opacity:.9}
+.sync-code-btn.primary{background:var(--accent-blue);color:#fff}
+.sync-code-btn.secondary{background:var(--tag-green-bg);color:var(--tag-green-text)}
+.sync-code-btn.outline{background:transparent;border:1px solid var(--border-color);color:var(--text-secondary)}
+.sync-code-btn.outline:hover{background:var(--bg-hover)}
+.sync-paste{flex:1;min-width:150px;font-family:inherit;font-size:11px;padding:6px 10px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-primary);color:var(--text-primary);outline:none}
+.sync-paste:focus{border-color:var(--accent-blue)}
+.sync-hint{font-size:10px;color:var(--text-tertiary);margin-top:6px}
 </style>
 </head>
 <body>
@@ -294,7 +330,7 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
     <button class="toolbar-btn" id="dark-toggle" onclick="toggleDark()">🌙</button>
     <button class="toolbar-btn" onclick="backupData()" title="Backup all data as JSON">📥 Backup</button>
     <button class="toolbar-btn" onclick="document.getElementById('import-file').click()" title="Load data from JSON backup">📤 Load</button>
-    <button class="toolbar-btn" onclick="syncState()" title="Sync timer across devices" id="sync-btn">🔄 Sync</button>
+    <button class="toolbar-btn" onclick="toggleSyncPanel()" title="Cross-device sync" id="sync-btn">🔄 Sync</button>
     <input type="file" id="import-file" accept=".json" style="display:none" onchange="loadData(event)">
   </div>
 </div>
@@ -311,10 +347,41 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
     <div class="stat-card"><div class="stat-number" style="color:var(--accent-red)" id="stat-pomodoro">0</div><div class="stat-label">Pomodoro</div></div>
     <div class="stat-card"><div class="stat-number" style="color:var(--accent-yellow)" id="stat-words">0</div><div class="stat-label">Words</div></div>
     <div class="stat-card"><div class="stat-number" style="color:var(--accent-pink)" id="stat-phrases">0</div><div class="stat-label">Phrases</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:var(--accent-blue)" id="stat-water">0L</div><div class="stat-label">💧 Water</div></div>
   </div>
 </div>
 
 <!-- POMODORO -->
+<!-- SYNC PANEL -->
+<div class="sync-panel" id="sync-panel">
+  <h4>🔄 Cross-Device Sync (Cihazlar Arası Senkron)</h4>
+  <p>localStorage cihaza özeldir — PC'deki veri telefona otomatik gitmez. Bu panel ile tüm veriyi <strong>kod olarak</strong> kopyala, diğer cihazda yapıştır. Pomodoro, su sayacı, checklist, her şey aktarılır.</p>
+  <div class="sync-row">
+    <button class="sync-code-btn primary" onclick="copySyncCode()">📋 Copy Sync Code</button>
+    <input class="sync-paste" id="sync-paste-input" placeholder="Diğer cihazdan kodu buraya yapıştır…">
+    <button class="sync-code-btn secondary" onclick="applySyncCode()">📲 Apply</button>
+    <button class="sync-code-btn outline" onclick="toggleSyncPanel()">✕ Close</button>
+  </div>
+  <div class="sync-hint" id="sync-hint"></div>
+</div>
+
+<!-- WATER TRACKER -->
+<div class="water-tracker" id="section-water">
+  <div class="water-header">
+    <h4>💧 Günlük Su Takibi</h4>
+    <div class="water-total"><span id="water-total-num">0</span><small> ml</small></div>
+  </div>
+  <div class="water-buttons">
+    <button class="water-btn" onclick="addWater(250)"><span class="water-icon">🥤</span><span class="water-ml">250 ml</span></button>
+    <button class="water-btn" onclick="addWater(350)"><span class="water-icon">🫗</span><span class="water-ml">350 ml</span></button>
+    <button class="water-btn" onclick="addWater(500)"><span class="water-icon">🧴</span><span class="water-ml">500 ml</span></button>
+    <button class="water-btn" onclick="addWater(1500)"><span class="water-icon">🫙</span><span class="water-ml">1.5 L</span></button>
+  </div>
+  <div class="water-bar-wrap"><div class="water-bar-fill" id="water-bar"></div></div>
+  <div class="water-target"><span>0 ml</span><span id="water-goal-text">Hedef: 2500 ml</span></div>
+  <div class="water-log" id="water-log"></div>
+</div>
+
 <div class="pomodoro-bar" id="section-pomodoro">
   <div class="pomodoro-left">
     <div>
@@ -717,6 +784,7 @@ html{scroll-behavior:smooth;scroll-padding-top:20px}
 
 <nav class="nav-float">
   <a href="#section-pomodoro"><span class="nav-tooltip">Pomodoro</span>🍅</a>
+  <a href="#section-water"><span class="nav-tooltip">Water</span>💧</a>
   <a href="#section-daily"><span class="nav-tooltip">Daily</span>📋</a>
   <a href="#section-english"><span class="nav-tooltip">English</span>🇬🇧</a>
   <a href="#section-kpss"><span class="nav-tooltip">KPSS</span>🎓</a>
@@ -914,17 +982,81 @@ function renderDailyBar(){
   if(totalEl)totalEl.textContent=total>=60?Math.floor(total/60)+'h '+(total%60)+'m':total+'m';
 }
 
-// ═══ Cross-Device Sync ═══
+// ═══ Cross-Device Sync (Code-based) ═══
+function toggleSyncPanel(){document.getElementById('sync-panel').classList.toggle('open')}
+function copySyncCode(){
+  try{
+    const d=ld();
+    const json=JSON.stringify(d);
+    const code=btoa(unescape(encodeURIComponent(json)));
+    navigator.clipboard.writeText(code).then(()=>{
+      document.getElementById('sync-hint').textContent='✅ Sync code copied! Paste it on your other device.';
+      document.getElementById('sync-hint').style.color='var(--accent-green)';
+    }).catch(()=>{
+      // Fallback: select a prompt
+      prompt('Copy this sync code:',code);
+    });
+  }catch(e){document.getElementById('sync-hint').textContent='❌ Error: '+e.message}
+}
+function applySyncCode(){
+  const code=document.getElementById('sync-paste-input').value.trim();
+  if(!code){document.getElementById('sync-hint').textContent='⚠️ Paste a sync code first!';return}
+  try{
+    const json=decodeURIComponent(escape(atob(code)));
+    const data=JSON.parse(json);
+    if(typeof data!=='object'||data===null)throw new Error('Invalid');
+    localStorage.setItem(SK,JSON.stringify(data));
+    document.getElementById('sync-hint').textContent='✅ Sync successful! Reloading…';
+    document.getElementById('sync-hint').style.color='var(--accent-green)';
+    setTimeout(()=>location.reload(),600);
+  }catch(e){
+    document.getElementById('sync-hint').textContent='❌ Invalid sync code. Check and try again.';
+    document.getElementById('sync-hint').style.color='var(--accent-red)';
+  }
+}
 function syncState(){
   clearInterval(pi);pr=false;
-  const loaded=loadPomodoroState();
-  renderDailyBar();
-  const btn=document.getElementById('sync-btn');
-  if(btn){btn.classList.add('sync-flash');setTimeout(()=>btn.classList.remove('sync-flash'),800)}
-  if(!loaded){upd()}
+  loadPomodoroState();
+  renderDailyBar();renderWater();
 }
-// Auto-sync when tab becomes visible (switching between devices)
+// Auto-sync when tab becomes visible
 document.addEventListener('visibilitychange',function(){if(!document.hidden)syncState()});
+
+// ═══ Water Tracker ═══
+const WATER_GOAL=2500;
+function addWater(ml){
+  const d=ld();if(!d.water)d.water={};
+  const key=today();if(!d.water[key])d.water[key]=[];
+  const now=new Date();
+  const time=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  d.water[key].push({ml:ml,time:time,id:Date.now()});
+  sv(d);renderWater();
+}
+function removeWaterEntry(id){
+  const d=ld();if(!d.water)return;
+  const key=today();if(!d.water[key])return;
+  d.water[key]=d.water[key].filter(e=>e.id!==id);
+  sv(d);renderWater();
+}
+function renderWater(){
+  const d=ld();
+  const entries=(d.water&&d.water[today()])||[];
+  const total=entries.reduce((s,e)=>s+e.ml,0);
+  // Update displays
+  document.getElementById('water-total-num').textContent=total.toLocaleString('tr-TR');
+  const pct=Math.min(100,total/WATER_GOAL*100);
+  const bar=document.getElementById('water-bar');
+  bar.style.width=pct+'%';
+  bar.classList.toggle('full',total>=WATER_GOAL);
+  // Stat card
+  const statEl=document.getElementById('stat-water');
+  if(statEl)statEl.textContent=total>=1000?(total/1000).toFixed(1)+'L':total+'ml';
+  // Chips
+  const logEl=document.getElementById('water-log');
+  logEl.innerHTML=entries.map(e=>
+    '<span class="water-chip">'+e.time+' — '+e.ml+'ml <span class="chip-x" onclick="removeWaterEntry('+e.id+')">✕</span></span>'
+  ).join('');
+}
 
 // Dark
 function toggleDark(){const isDark=document.documentElement.classList.toggle('dark');document.getElementById('dark-toggle').textContent=isDark?'☀️':'🌙';const d=ld();d.darkMode=isDark;sv(d);setTimeout(renderMockChart,50)}
@@ -1243,6 +1375,7 @@ function deleteGHCard(){
   if(d.pomodoros&&d.pomodoros[today()]){ps=d.pomodoros[today()];document.getElementById('stat-pomodoro').textContent=ps;document.getElementById('pomo-sessions').textContent='#'+(ps+1)}
   loadPomodoroState();
   renderDailyBar();
+  renderWater();
   updateStats();updateStreak();upd();initVocabDate();
   document.getElementById('vocab-date').addEventListener('change',onVocabDateChange);
   renderVocab();
