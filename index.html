@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KPSS Ana Kumanda — 90+ Operasyon Merkezi</title>
+<title>KPSS Ana Kumanda — Sade 90+ Hedef Merkezi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -42,6 +42,9 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
 .timeline{display:grid;gap:8px}.phase{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:12px}.phase.active{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12)}.phase h4{font-size:13px;margin-bottom:4px}.phase p{font-size:12px;color:var(--muted)}
 .timer-box{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:linear-gradient(135deg,var(--red-bg),transparent),var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px}.timer{font-size:42px;font-weight:900;letter-spacing:-.04em;color:var(--red);font-variant-numeric:tabular-nums}.timer-controls{display:flex;gap:6px;flex-wrap:wrap}.session-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}@media(max-width:720px){.session-summary{grid-template-columns:repeat(2,1fr)}}.mini-stat{border:1px solid var(--line);border-radius:13px;background:var(--panel);padding:10px;text-align:center}.mini-stat b{display:block;font-size:18px}.mini-stat span{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.06em}
 .flash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}.flash-card{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:13px}.flash-card h4{font-size:13px;margin-bottom:7px}.flash-card .front{font-size:16px;font-weight:900;margin-bottom:5px}.flash-card p{font-size:12px;color:var(--muted)}.flash-actions{display:flex;gap:6px;margin-top:10px}.notice{border:1px solid var(--line);background:var(--panel-2);border-radius:14px;padding:12px;font-size:12px;color:var(--muted)}.notice strong{color:var(--text)}.codebox{font-family:var(--mono);font-size:11px;background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:12px;white-space:pre-wrap;max-height:240px;overflow:auto}.toast{position:fixed;right:16px;bottom:82px;background:var(--text);color:var(--bg);border-radius:14px;padding:10px 14px;font-size:12px;font-weight:800;box-shadow:var(--shadow);z-index:99;opacity:0;transform:translateY(10px);transition:.2s}.toast.show{opacity:1;transform:translateY(0)}
+
+.word-hero{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:linear-gradient(135deg,var(--green-bg),transparent),var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px}
+.word-hero .big-word{font-size:28px;font-weight:900;letter-spacing:-.04em}.word-hero .wrong{font-size:12px;color:var(--red);font-weight:800;margin-top:3px}.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:10px}.word-card{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:13px;display:flex;flex-direction:column;gap:8px}.word-card h3{font-size:17px;letter-spacing:-.03em}.word-card .bad{font-size:12px;color:var(--red);font-weight:800}.word-card p{font-size:12px;color:var(--muted)}.word-card .word-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}.word-card.learned{opacity:.68}.day-table td:first-child{font-weight:900}.day-table tr.active td{background:var(--blue-bg)!important}.day-table .today-pill{font-size:10px;font-weight:900;color:var(--blue)}
 .mobile-nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.78);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;padding:5px;display:none;gap:2px;box-shadow:var(--shadow);z-index:50}.dark .mobile-nav{background:rgba(23,26,33,.82)}.mobile-nav button{border:none;background:transparent;border-radius:999px;width:38px;height:38px}.mobile-nav button.active{background:var(--text);color:var(--bg)}@media(max-width:820px){.tabs{display:none}.mobile-nav{display:flex}}
 </style>
 </head>
@@ -49,7 +52,7 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
 <div class="wrap">
   <header class="hero">
     <div class="hero-top">
-      <div class="brand"><div class="logo">🎯</div><div><h1>KPSS Ana Kumanda</h1><p>KPSS B mühendislik · KPSSP3 · tek odak</p></div></div>
+      <div class="brand"><div class="logo">🎯</div><div><h1>KPSS Ana Kumanda</h1><p>Sade takip · KPSSP3 · 90+ hedef · tek odak</p></div></div>
       <div class="actions">
         <button class="btn" onclick="switchPage('notion')">🔄 Notion Sync</button>
         <button class="btn" onclick="exportJSON()">📥 JSON</button>
@@ -84,6 +87,7 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
     <button class="tab" data-page="mocks" onclick="switchPage('mocks')">📈 Deneme</button>
     <button class="tab" data-page="mistakes" onclick="switchPage('mistakes')">🧨 Yanlış Defteri</button>
     <button class="tab" data-page="osym" onclick="switchPage('osym')">🗂️ ÖSYM Analiz</button>
+    <button class="tab" data-page="words" onclick="switchPage('words')">✍️ Kelime Köşesi</button>
     <button class="tab" data-page="notion" onclick="switchPage('notion')">🔄 Notion</button>
   </nav>
 
@@ -114,6 +118,10 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
         <div class="card col-12">
           <div class="card-head"><div><div class="card-title">⚡ Hızlı Kayıt</div><div class="card-sub">Çalışmayı bitirince 20 saniyede işle</div></div></div>
           <div class="card-body" id="quickSessionBox"></div>
+        </div>
+        <div class="card col-12">
+          <div class="card-head"><div><div class="card-title">🗓️ Haftalık Yol Haritası</div><div class="card-sub">Hangi gün neye vuracağını sade gösterir</div></div><button class="btn small" onclick="switchPage('topics')">Konu Haritasına Git</button></div>
+          <div class="card-body" id="weeklyRoadmap"></div>
         </div>
       </div>
     </section>
@@ -154,6 +162,7 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
             <input id="topicSearch" placeholder="Konu ara…" oninput="renderTopics()">
             <select id="topicSubjectFilter" onchange="renderTopics()"><option value="all">Tüm dersler</option></select>
             <select id="topicStatusFilter" onchange="renderTopics()"><option value="all">Tüm durumlar</option><option value="bekliyor">Bekliyor</option><option value="calisiliyor">Çalışılıyor</option><option value="tekrar">Tekrar</option><option value="risk">Risk</option><option value="bitti">Bitti</option></select>
+            <select id="topicSort" onchange="renderTopics()"><option value="smart">Akıllı sırala</option><option value="priority">Öncelik A→C</option><option value="subject">Derse göre</option><option value="question">Soru ağırlığı</option></select>
             <button class="btn small" onclick="resetTopicFilters()">Temizle</button>
           </div>
           <div class="subject-row"><div class="name">Konu ilerleme</div><div class="progress"><div class="bar orange" id="topicProgressBar"></div></div><div class="val" id="topicProgressText">0/0</div></div>
@@ -207,7 +216,7 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
       <div class="grid">
         <div class="card col-12">
           <div class="card-head"><div><div class="card-title">🗂️ ÖSYM Çıkmış Soru Etiketleme Sistemi</div><div class="card-sub">Soru metni kopyalama yok; yıl/konu/soru tipi/tuzak etiketi var</div></div><div class="actions"><button class="btn small" onclick="openOsymArchive()">ÖSYM Arşivi</button><button class="btn small" onclick="exportCSV('archive')">CSV</button></div></div>
-          <div class="card-body"><div id="archiveFormBox"></div></div>
+          <div class="card-body"><div class="notice" style="margin-bottom:12px"><strong>Telif güvenli çalışma:</strong> Soru metnini siteye kopyalamak yerine yıl + ders + konu + soru tipi + kendi kısa notunu gir. Böylece hem özel kullanımda düzenli kalır hem de site yayıma açıkken risk oluşturmaz.</div><div id="archiveFormBox"></div></div>
         </div>
         <div class="card col-7">
           <div class="card-head"><div><div class="card-title">📌 ÖSYM Israr Haritası</div><div class="card-sub">Resmî kapsam + pratik çıkış paterni</div></div></div>
@@ -224,12 +233,51 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
       </div>
     </section>
 
+    <section class="page" id="page-words">
+      <div class="grid">
+        <div class="card col-12">
+          <div class="card-head"><div><div class="card-title">✍️ TDK Kelime Köşesi</div><div class="card-sub">Yazım yanlışı avı: ayrı/bitişik, güncel değişenler, ÖSYM tipi tuzaklar</div></div><div class="actions"><button class="btn small" onclick="openTDK()">TDK'da Ara</button><button class="btn small" onclick="exportCSV('words')">CSV</button></div></div>
+          <div class="card-body">
+            <div class="word-hero" id="wordOfDay"></div>
+            <div class="hr"></div>
+            <div class="topic-toolbar">
+              <input id="wordSearch" placeholder="çörek otu, yeşil zeytin, her şey…" oninput="renderWords()">
+              <select id="wordGroupFilter" onchange="renderWords()"><option value="all">Tüm gruplar</option></select>
+              <select id="wordStatusFilter" onchange="renderWords()"><option value="all">Tümü</option><option value="new">Yeni</option><option value="risk">Karıştırıyorum</option><option value="ok">Öğrendim</option></select>
+            </div>
+            <div class="word-grid" id="wordGrid"></div>
+          </div>
+        </div>
+        <div class="card col-5">
+          <div class="card-head"><div><div class="card-title">➕ Kendi Kelimeni Ekle</div><div class="card-sub">Denemede veya çıkmışta gördüğün yazım tuzağı</div></div></div>
+          <div class="card-body">
+            <div class="form-grid">
+              <div class="field span-6"><label>Doğru yazım</label><input id="cwCorrect" placeholder="ör. başöğretmen"></div>
+              <div class="field span-6"><label>Yanlış / karışan</label><input id="cwWrong" placeholder="ör. baş öğretmen"></div>
+              <div class="field span-6"><label>Grup</label><input id="cwGroup" value="Kendi Listem"></div>
+              <div class="field span-6"><label>Etiket</label><select id="cwTag"><option>Ayrı/Bitişik</option><option>Ek/bağlaç</option><option>Güncel değişen</option><option>Büyük harf</option><option>Noktalama</option></select></div>
+              <div class="field span-12"><label>Not / kural</label><textarea id="cwRule" placeholder="Neden böyle yazılıyor? ÖSYM nasıl sorabilir?"></textarea></div>
+              <div class="span-12"><button class="btn primary" onclick="addCustomWord()">+ Kelimeyi Kaydet</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="card col-7">
+          <div class="card-head"><div><div class="card-title">🎯 Kelime Çalışma Kuralı</div><div class="card-sub">Sade ve sürdürülebilir</div></div></div>
+          <div class="card-body">
+            <div class="notice"><strong>Günlük görev:</strong> 5 kelime kartı oku, 1 tanesini cümle içinde yaz, karıştırdığını “Karıştırıyorum” yap. Haftada bir risk kartlarını tekrar et.</div>
+            <div class="hr"></div>
+            <div class="table-wrap"><table><thead><tr><th>Tuzak türü</th><th>Ne yapacaksın?</th><th>Örnek</th></tr></thead><tbody><tr><td>Ayrı/bitişik</td><td>Kelimeyi ezber değil, gruba bağla.</td><td>çörek otu / dereotu</td></tr><tr><td>Ek-bağlaç</td><td>Cümlede anlam testini uygula.</td><td>de, ki, mi</td></tr><tr><td>Güncel değişen</td><td>Son hâli kartta tut, denemede özellikle kontrol et.</td><td>yeşil zeytin</td></tr><tr><td>Paragraf tuzağı</td><td>Dış bilgi yok; metindeki gerekçe cümlesini bul.</td><td>çıkarım soruları</td></tr></tbody></table></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="page" id="page-notion">
       <div class="grid">
         <div class="card col-7">
           <div class="card-head"><div><div class="card-title">🔄 Notion / Cihazlar Arası Hafıza</div><div class="card-sub">Static GitHub Pages + Notion Worker köprüsü</div></div></div>
           <div class="card-body">
-            <div class="notice"><strong>Net gerçek:</strong> Bu HTML dosyası kendi başına tarayıcı hafızasına kaydeder. Telefon-PC arasında otomatik Notion senkronu için Notion token'ı sayfaya koymuyoruz; token Cloudflare Worker tarafında çevre değişkeni olarak durur. Aşağıya Worker URL'ini yapıştırınca bu panel tüm state'i Notion sayfasına yazıp okuyabilir.</div>
+            <div class="notice"><strong>Sade gerçek:</strong> Bu dosya varsayılan olarak tarayıcı hafızasına kaydeder. Tüm cihazlarda aynı hafıza için Notion köprüsü gerekir; token güvenliği için anahtar HTML içine değil, Worker tarafına konur. Kullanmazsan JSON/CSV yedekler yine çalışır.</div>
             <div class="hr"></div>
             <div class="form-grid">
               <div class="field span-8"><label>Worker endpoint URL</label><input id="syncEndpoint" placeholder="https://kpss-sync.username.workers.dev"></div>
@@ -263,7 +311,7 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
   </main>
 </div>
 <nav class="mobile-nav" id="mobileNav">
-  <button class="active" onclick="switchPage('dashboard')">🏠</button><button onclick="switchPage('daily')">📋</button><button onclick="switchPage('topics')">🧭</button><button onclick="switchPage('mocks')">📈</button><button onclick="switchPage('mistakes')">🧨</button><button onclick="switchPage('osym')">🗂️</button><button onclick="switchPage('notion')">🔄</button>
+  <button class="active" onclick="switchPage('dashboard')">🏠</button><button onclick="switchPage('daily')">📋</button><button onclick="switchPage('topics')">🧭</button><button onclick="switchPage('mocks')">📈</button><button onclick="switchPage('mistakes')">🧨</button><button onclick="switchPage('osym')">🗂️</button><button onclick="switchPage('words')">✍️</button><button onclick="switchPage('notion')">🔄</button>
 </nav>
 <div class="toast" id="toast"></div>
 <script>
@@ -346,7 +394,48 @@ const TREND_ROWS=[
   ["Türkçe","Yazım/Noktalama","2","Kuralı örnekte yakalama","Mini kartlar"],
   ["Geometri","Üçgen/Alan/Analitik","3-4","Temel formül + şekil yorumu","Her gün 5 soru"]
 ];
-function defaultState(){return{version:1,createdAt:new Date().toISOString(),settings:{examDate:"2026-09-06",targetNet:106,theme:"dark",syncEndpoint:"",syncKey:"ustam-kpss",syncSecret:""},daily:{},sessions:[],mocks:[],mistakes:[],archive:[],topicStatus:{},flash:{},timer:{remaining:1500,running:false,startedAt:null,subject:"Türkçe"},lastSync:null};}
+const WEEKLY_PLAN=[
+  {day:1,name:"Pazartesi",main:"Matematik + Tarih",tasks:["15 problem + 10 temel işlem","İnkılap/Osmanlı kronoloji 45 dk","1 yanlış analizi"]},
+  {day:2,name:"Salı",main:"Türkçe + Coğrafya",tasks:["10 paragraf + 1 sözel mantık seti","Fiziki coğrafya/harita 45 dk","5 kelime kartı"]},
+  {day:3,name:"Çarşamba",main:"Matematik + Vatandaşlık",tasks:["Problemler veya sayısal mantık","Hukuk başlangıcı/anayasa 45 dk","Dünkü yanlışları kapat"]},
+  {day:4,name:"Perşembe",main:"Türkçe + Tarih",tasks:["Paragraf + yazım/noktalama","Kurtuluş/inkılap tekrar","ÖSYM etiketi 3 kayıt"]},
+  {day:5,name:"Cuma",main:"Matematik + Coğrafya",tasks:["Karma matematik 40 soru","Maden-enerji/tarım/nüfus","Haftanın risk konuları"]},
+  {day:6,name:"Cumartesi",main:"Deneme + Analiz",tasks:["Tam GY-GK deneme veya yarım simülasyon","Deneme süresi kadar analiz","Yanlış defterine kayıt"]},
+  {day:0,name:"Pazar",main:"Tampon + Hafif Tekrar",tasks:["Eksik kalan A konuları","Kelime köşesi risk kartları","Yeni hafta planını netleştir"]}
+];
+const WORD_BANK=[
+  {id:"w_corek_otu",correct:"çörek otu",wrong:"çörekotu",group:"Bitki / yiyecek",tag:"Ayrı yazılır",rule:"Bitki türlerinden biriyle kurulan ot adları ayrı yazılır. TDK örneklerinde ‘çörek otu’ ayrı verilir. Not: ses düşmesine uğramış ‘çöreotu’ ayrı bir örnek olarak bitişiktir."},
+  {id:"w_coreotu",correct:"çöreotu",wrong:"çöre otu",group:"Bitki / yiyecek",tag:"Bitişik yazılır",rule:"Ses düşmesine uğramış özel kullanım: TDK uyarısında ‘çöreotu’ bitişik gösterilir. ‘Çörek otu’ ile karıştırma."},
+  {id:"w_yesil_zeytin",correct:"yeşil zeytin",wrong:"yeşilzeytin",group:"Güncel değişen",tag:"Ayrı yazılır",rule:"2023 sonrası güncel kullanımda ayrı yazım kabul edilir. Sınav öncesi TDK’da son kontrol yap."},
+  {id:"w_siyah_zeytin",correct:"siyah zeytin",wrong:"siyahzeytin",group:"Bitki / yiyecek",tag:"Ayrı yazılır",rule:"Sıfat tamlamasıdır; renk sözü zeytini niteler. Ayrı yazılır."},
+  {id:"w_kuru_fasulye",correct:"kuru fasulye",wrong:"kurufasulye",group:"Bitki / yiyecek",tag:"Ayrı yazılır",rule:"TDK ayrı yazılan birleşik kelimeler örneklerinde kuru fasulye, kuru soğan, kuru üzüm ayrı verilir."},
+  {id:"w_kuru_sogan",correct:"kuru soğan",wrong:"kurusoğan",group:"Bitki / yiyecek",tag:"Ayrı yazılır",rule:"‘Kuru’ sıfatı yiyeceği niteler; ayrı yazılır."},
+  {id:"w_dereotu",correct:"dereotu",wrong:"dere otu",group:"Bitki / yiyecek",tag:"Bitişik yazılır",rule:"Yazımı gelenekleşmiş bitki adı olarak bitişik yazılır."},
+  {id:"w_semizotu",correct:"semizotu",wrong:"semiz otu",group:"Bitki / yiyecek",tag:"Bitişik yazılır",rule:"Yazımı gelenekleşmiş bitki adı olarak bitişik yazılır."},
+  {id:"w_sucicegi",correct:"suçiçeği",wrong:"su çiçeği",group:"Hastalık / renk",tag:"Bitişik yazılır",rule:"Çiçek dışında hastalık anlamı taşıdığı için bitişik yazılır."},
+  {id:"w_narcicegi",correct:"narçiçeği",wrong:"nar çiçeği",group:"Hastalık / renk",tag:"Bitişik yazılır",rule:"Çiçek dışında renk anlamı taşıdığında bitişik yazılır."},
+  {id:"w_hersey",correct:"her şey",wrong:"herşey",group:"Belirsizlik",tag:"Ayrı yazılır",rule:"‘Şey’ sözcüğü genellikle ayrı yazılır: her şey, hiçbir şey, birçok şey."},
+  {id:"w_hicbir",correct:"hiçbir",wrong:"hiç bir",group:"Belirsizlik",tag:"Bitişik yazılır",rule:"Belirsizlik sıfat/zamirlerinden ‘hiçbir’ gelenekleşmiş olarak bitişik yazılır."},
+  {id:"w_hicbirsey",correct:"hiçbir şey",wrong:"hiçbirşey / hiç bir şey",group:"Belirsizlik",tag:"Karma",rule:"‘Hiçbir’ bitişik, ‘şey’ ayrı: hiçbir şey."},
+  {id:"w_birkac",correct:"birkaç",wrong:"bir kaç",group:"Belirsizlik",tag:"Bitişik yazılır",rule:"Belirsizlik sıfatı/zamiri olarak bitişik yazılır."},
+  {id:"w_bircok",correct:"birçok",wrong:"bir çok",group:"Belirsizlik",tag:"Bitişik yazılır",rule:"Belirsizlik sıfatı/zamiri olarak bitişik yazılır."},
+  {id:"w_pekcok",correct:"pek çok",wrong:"pekçok",group:"Belirsizlik",tag:"Ayrı yazılır",rule:"‘Pek çok’ ayrı yazılır; ‘birçok’ ile karıştırılır."},
+  {id:"w_suan",correct:"şu an",wrong:"şuan",group:"Zaman ifadesi",tag:"Ayrı yazılır",rule:"İki sözcükten oluşur; ayrı yazılır."},
+  {id:"w_bugun",correct:"bugün",wrong:"bu gün",group:"Zaman ifadesi",tag:"Bitişik yazılır",rule:"‘Bugün’ zaman zarfı olarak bitişik yazılır. Belirli bir günü işaret eden ‘bu gün’ ayrı olabilir."},
+  {id:"w_yanisira",correct:"yanı sıra",wrong:"yanısıra",group:"Sık karışan",tag:"Ayrı yazılır",rule:"İkileşik kalıp gibi düşün; ayrı yazılır."},
+  {id:"w_artarda",correct:"art arda",wrong:"artarda",group:"Sık karışan",tag:"Ayrı yazılır",rule:"İkileme/kalıp olarak ayrı yazılır."},
+  {id:"w_gitgide",correct:"gitgide",wrong:"git gide",group:"Sık karışan",tag:"Bitişik yazılır",rule:"Kalıplaşmış zarf olarak bitişik yazılır."},
+  {id:"w_olaganustu",correct:"olağanüstü",wrong:"olağan üstü",group:"Sık karışan",tag:"Bitişik yazılır",rule:"Somut yer bildirmeyen ‘üst/üzeri’ ile kurulan bazı kalıplar bitişik yazılır."},
+  {id:"w_aksamustu",correct:"akşamüstü",wrong:"akşam üstü",group:"Zaman ifadesi",tag:"Bitişik yazılır",rule:"Kalıplaşmış zaman ifadesi olarak bitişik yazılır."},
+  {id:"w_de_baglac",correct:"de / da bağlacı",wrong:"bitişik yazmak",group:"Ek / bağlaç",tag:"Ayrı yazılır",rule:"Cümleden çıkarınca anlam bozulmuyor, sadece daralıyorsa bağlaçtır ve ayrı yazılır: ‘Ben de geldim.’"},
+  {id:"w_de_ek",correct:"-de / -da bulunma eki",wrong:"ayrı yazmak",group:"Ek / bağlaç",tag:"Bitişik yazılır",rule:"Bulunma hâli eki sözcüğe bitişir: evde, okulda. Cümleden çıkarınca yapı bozulur."},
+  {id:"w_ki_baglac",correct:"ki bağlacı",wrong:"bitişik yazmak",group:"Ek / bağlaç",tag:"Ayrı yazılır",rule:"Bağlaç olan ‘ki’ ayrı yazılır: ‘Diyor ki…’"},
+  {id:"w_ki_ek",correct:"-ki eki",wrong:"ayrı yazmak",group:"Ek / bağlaç",tag:"Bitişik yazılır",rule:"Sıfat yapan ve ilgi eki olan -ki bitişik yazılır: evdeki, benimki."},
+  {id:"w_mi",correct:"mi / mı / mu / mü",wrong:"bitişik yazmak",group:"Ek / bağlaç",tag:"Ayrı yazılır",rule:"Soru eki ayrı yazılır; kendinden önceki sözcüğe göre ünlü uyumuna girer: geldi mi, olur mu."},
+  {id:"w_unvan",correct:"ünvan",wrong:"unvan",group:"Güncel değişen",tag:"Güncel kontrol",rule:"TDK güncel dijital sözlükte ‘ünvan’ kullanımı görünüyor. Resmî/kurumsal metinlerde sınav öncesi TDK’dan son kontrol yap."},
+  {id:"w_kayyim",correct:"kayyım",wrong:"kayyum",group:"Güncel değişen",tag:"Güncel kontrol",rule:"Güncel TDK değişiklikleri arasında sık anılır. Sınav öncesi son hâli kontrol et."}
+];
+function defaultState(){return{version:1,createdAt:new Date().toISOString(),settings:{examDate:"2026-09-06",targetNet:106,theme:"dark",syncEndpoint:"",syncKey:"ustam-kpss",syncSecret:""},daily:{},sessions:[],mocks:[],mistakes:[],archive:[],topicStatus:{},flash:{},wordStatus:{},customWords:[],timer:{remaining:1500,running:false,startedAt:null,subject:"Türkçe"},lastSync:null};}
 let state=loadState();let mockChart=null;let timerInt=null;
 function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);return merge(defaultState(),raw?JSON.parse(raw):{});}catch(e){return defaultState();}}
 function merge(base,extra){for(const k in extra){if(extra[k]&&typeof extra[k]==="object"&&!Array.isArray(extra[k])&&base[k])base[k]=merge(base[k],extra[k]);else base[k]=extra[k];}return base;}
@@ -364,7 +453,7 @@ function subjectColor(s){return {"Türkçe":"red","Matematik":"blue","Tarih":"ye
 function priorityWeight(p){return p==="A"?3:p==="B"?2:1;}
 function statusOf(id){return state.topicStatus[id]?.status||"bekliyor";}
 function weekMinutes(){const today=localDate();return state.sessions.filter(x=>daysBetween(x.date,today)>=0&&daysBetween(x.date,today)<=6).reduce((a,b)=>a+(Number(b.minutes)||0),0);}
-function switchPage(page){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById("page-"+page)?.classList.add("active");document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.page===page));document.querySelectorAll(".mobile-nav button").forEach((b,i)=>{const pages=["dashboard","daily","topics","mocks","mistakes","osym","notion"];b.classList.toggle("active",pages[i]===page);});if(page==="mocks")setTimeout(renderMockChart,80);window.scrollTo({top:0,behavior:"smooth"});}
+function switchPage(page){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById("page-"+page)?.classList.add("active");document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.page===page));document.querySelectorAll(".mobile-nav button").forEach((b,i)=>{const pages=["dashboard","daily","topics","mocks","mistakes","osym","words","notion"];b.classList.toggle("active",pages[i]===page);});if(page==="mocks")setTimeout(renderMockChart,80);window.scrollTo({top:0,behavior:"smooth"});}
 function renderHeader(){const dleft=daysBetween(localDate(),state.settings.examDate);document.getElementById("daysLeft").textContent=dleft>=0?dleft:"0";document.getElementById("examDateText").textContent=dateTR(state.settings.examDate);document.getElementById("targetNetMini").textContent=state.settings.targetNet;const lm=latestMock();if(lm){const c=mockCalc(lm);document.getElementById("latestNet").textContent=c.total;document.getElementById("latestMockName").textContent=lm.name||dateTR(lm.date);document.getElementById("targetGap").textContent=Math.max(0,Math.round((state.settings.targetNet-c.total)*100)/100);}else{document.getElementById("latestNet").textContent="0";document.getElementById("latestMockName").textContent="Henüz deneme yok";document.getElementById("targetGap").textContent=state.settings.targetNet;}document.getElementById("weeklyHours").textContent=(weekMinutes()/60).toFixed(1)+"s";document.getElementById("openMistakes").textContent=state.mistakes.filter(x=>!x.resolved).length;}
 function renderDaily(){const key=localDate();if(!state.daily[key])state.daily[key]={tasks:{},note:""};document.getElementById("todayLabel").textContent=new Date().toLocaleDateString("tr-TR",{weekday:"long",day:"2-digit",month:"long"});const box=document.getElementById("dailyChecklist");box.innerHTML=DAILY_TASKS.map(t=>`<label class="check ${state.daily[key].tasks[t.id]?"done":""}"><input type="checkbox" ${state.daily[key].tasks[t.id]?"checked":""} onchange="toggleDailyTask('${t.id}',this.checked)"><span><b>${esc(t.label)}</b> <span class="pill ${t.tag==='GK'?'green':t.tag==='Mat'?'blue':t.tag==='Analiz'?'orange':'purple'}">${esc(t.tag)}</span></span></label>`).join("");const done=DAILY_TASKS.filter(t=>state.daily[key].tasks[t.id]).length;const pct=Math.round(done/DAILY_TASKS.length*100);document.getElementById("dailyBar").style.width=pct+"%";document.getElementById("dailyDoneText").textContent=done+"/"+DAILY_TASKS.length;document.getElementById("dailyPercent").textContent=pct+"%";document.getElementById("dailyNote").value=state.daily[key].note||"";renderTodaySessions();}
 function toggleDailyTask(id,val){const key=localDate();if(!state.daily[key])state.daily[key]={tasks:{},note:""};state.daily[key].tasks[id]=val;save();renderDaily();}
@@ -378,9 +467,9 @@ function renderPriority(){const open=state.mistakes.filter(x=>!x.resolved);const
 function renderNetBreakdown(){const lm=latestMock();const el=document.getElementById("netBreakdown");if(!lm){el.innerHTML=`<div class="empty">İlk denemeyi girince ders ders net kırılımı burada görünecek.</div>`;return;}const c=mockCalc(lm);const rows=[ ["Türkçe",c.tr,30], ["Matematik",c.mat,30], ["Tarih",c.tarih,27], ["Coğrafya",c.cog,18], ["Vatandaşlık",c.vat,9], ["Güncel",c.gun,6] ];el.innerHTML=rows.map(r=>`<div class="subject-row"><div class="name">${r[0]}</div><div class="progress"><div class="bar ${subjectColor(r[0])}" style="width:${Math.max(0,Math.min(100,r[1]/r[2]*100))}%"></div></div><div class="val">${r[1]}/${r[2]}</div></div>`).join("")+`<div class="hr"></div><div class="notice"><strong>Son deneme:</strong> GY ${c.gy}, GK ${c.gk}, toplam ${c.total}. Hedef ${state.settings.targetNet}; fark ${Math.round((state.settings.targetNet-c.total)*100)/100} net.</div>`;}
 function renderPhases(){const left=daysBetween(localDate(),state.settings.examDate);const done=120-left;document.getElementById("phaseInfo").textContent=`Plan günü: ${Math.max(1,Math.min(120,done||1))}/120`;document.getElementById("phaseTimeline").innerHTML=PHASES.map(p=>{const active=left<=p.from&&left>=p.to;return`<div class="phase ${active?"active":""}"><h4>${p.title}</h4><p>${p.text}</p></div>`}).join("");}
 function initTopicFilters(){const sel=document.getElementById("topicSubjectFilter");sel.innerHTML='<option value="all">Tüm dersler</option>'+SUBJECTS.map(s=>`<option>${s}</option>`).join("");}
-function renderTopics(){const q=(document.getElementById("topicSearch")?.value||"").toLowerCase();const sf=document.getElementById("topicSubjectFilter")?.value||"all";const stf=document.getElementById("topicStatusFilter")?.value||"all";let list=TOPICS.filter(t=>(sf==="all"||t.s===sf)&&(stf==="all"||statusOf(t.id)===stf)&&(!q||(t.t+t.s+t.style+t.work).toLowerCase().includes(q)));document.getElementById("topicGrid").innerHTML=list.map(t=>`<div class="topic-card prio-${t.p}"><div class="top"><h3>${esc(t.t)}</h3><span class="pill ${subjectColor(t.s)}">${esc(t.s)}</span></div><div class="topic-meta"><span class="pill ${t.p==='A'?'red':t.p==='B'?'orange':'green'}">Öncelik ${t.p}</span><span class="pill blue">${esc(t.q)} soru</span></div><p><b>ÖSYM tarzı:</b> ${esc(t.style)}</p><p><b>Emir:</b> ${esc(t.work)}</p><select class="status-select" onchange="setTopicStatus('${t.id}',this.value)">${Object.entries(STATUSES).map(([k,v])=>`<option value="${k}" ${statusOf(t.id)===k?"selected":""}>${v}</option>`).join("")}</select></div>`).join("")||`<div class="empty">Filtreye uygun konu yok.</div>`;const done=TOPICS.filter(t=>statusOf(t.id)==="bitti").length,pct=Math.round(done/TOPICS.length*100);document.getElementById("topicProgressPill").textContent=pct+"%";document.getElementById("topicProgressBar").style.width=pct+"%";document.getElementById("topicProgressText").textContent=done+"/"+TOPICS.length;}
+function renderTopics(){const q=(document.getElementById("topicSearch")?.value||"").toLowerCase();const sf=document.getElementById("topicSubjectFilter")?.value||"all";const stf=document.getElementById("topicStatusFilter")?.value||"all";const sort=document.getElementById("topicSort")?.value||"smart";let list=TOPICS.filter(t=>(sf==="all"||t.s===sf)&&(stf==="all"||statusOf(t.id)===stf)&&(!q||(t.t+t.s+t.style+t.work).toLowerCase().includes(q)));const qnum=t=>Math.max(...String(t.q).match(/\d+/g)?.map(Number)||[0]);list.sort((a,b)=>{if(sort==="subject")return a.s.localeCompare(b.s,"tr")||priorityWeight(b.p)-priorityWeight(a.p);if(sort==="question")return qnum(b)-qnum(a)||priorityWeight(b.p)-priorityWeight(a.p);return priorityWeight(b.p)-priorityWeight(a.p)||qnum(b)-qnum(a)||a.s.localeCompare(b.s,"tr")});document.getElementById("topicGrid").innerHTML=list.map(t=>`<div class="topic-card prio-${t.p}"><div class="top"><h3>${esc(t.t)}</h3><span class="pill ${subjectColor(t.s)}">${esc(t.s)}</span></div><div class="topic-meta"><span class="pill ${t.p==='A'?'red':t.p==='B'?'orange':'green'}">Öncelik ${t.p}</span><span class="pill blue">${esc(t.q)} soru</span></div><p><b>ÖSYM tarzı:</b> ${esc(t.style)}</p><p><b>Emir:</b> ${esc(t.work)}</p><select class="status-select" onchange="setTopicStatus('${t.id}',this.value)">${Object.entries(STATUSES).map(([k,v])=>`<option value="${k}" ${statusOf(t.id)===k?"selected":""}>${v}</option>`).join("")}</select></div>`).join("")||`<div class="empty">Filtreye uygun konu yok.</div>`;const done=TOPICS.filter(t=>statusOf(t.id)==="bitti").length,pct=Math.round(done/TOPICS.length*100);document.getElementById("topicProgressPill").textContent=pct+"%";document.getElementById("topicProgressBar").style.width=pct+"%";document.getElementById("topicProgressText").textContent=done+"/"+TOPICS.length;}
 function setTopicStatus(id,status){state.topicStatus[id]={...(state.topicStatus[id]||{}),status,updatedAt:new Date().toISOString()};save();renderTopics();renderPriority();}
-function resetTopicFilters(){document.getElementById("topicSearch").value="";document.getElementById("topicSubjectFilter").value="all";document.getElementById("topicStatusFilter").value="all";renderTopics();}
+function resetTopicFilters(){document.getElementById("topicSearch").value="";document.getElementById("topicSubjectFilter").value="all";document.getElementById("topicStatusFilter").value="all";if(document.getElementById("topicSort"))document.getElementById("topicSort").value="smart";renderTopics();}
 function renderMockForm(){const fields=[['tr','Türkçe'],['mat','Mat'],['tarih','Tarih'],['cog','Coğ'],['vat','Vat'],['gun','Güncel']];document.getElementById("mockFormBox").innerHTML=`<div class="form-grid"><div class="field span-3"><label>Tarih</label><input id="mockDate" type="date" value="${localDate()}"></div><div class="field span-5"><label>Yayın / Deneme</label><input id="mockName" placeholder="Örn. KPSS GYGK Deneme 1"></div><div class="field span-2"><label>Süre dk</label><input id="mockDuration" type="number" value="130"></div>${fields.map(f=>`<div class="field span-2"><label>${f[1]} D</label><input id="${f[0]}D" type="number" min="0" step="1" value="0"></div><div class="field span-2"><label>${f[1]} Y</label><input id="${f[0]}Y" type="number" min="0" step="1" value="0"></div>`).join("")}<div class="field span-12"><label>Analiz notu</label><input id="mockNote" placeholder="Süre yetmedi / tarih kronoloji / problem modeli…"></div><div class="span-12"><button class="btn primary" onclick="addMock()">+ Deneme Ekle</button></div></div>`;}
 function addMock(){const ids=['tr','mat','tarih','cog','vat','gun'];const m={id:Date.now(),date:document.getElementById("mockDate").value||localDate(),name:document.getElementById("mockName").value.trim()||"Deneme",duration:Number(document.getElementById("mockDuration").value)||130,note:document.getElementById("mockNote").value.trim()};ids.forEach(id=>{m[id+'D']=Number(document.getElementById(id+'D').value)||0;m[id+'Y']=Number(document.getElementById(id+'Y').value)||0;});state.mocks.push(m);save();renderAll();toast("Deneme eklendi.");}
 function renderMocks(){const rows=state.mocks.slice().sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id).map(m=>{const c=mockCalc(m);return`<tr><td class="nowrap">${dateTR(m.date)}</td><td><b>${esc(m.name)}</b><div class="tiny">${esc(m.note||"")}</div></td><td class="num">${c.tr}</td><td class="num">${c.mat}</td><td class="num good">${c.gy}</td><td class="num">${c.tarih}</td><td class="num">${c.cog}</td><td class="num">${c.vat}</td><td class="num">${c.gun}</td><td class="num good">${c.gk}</td><td class="num ${c.total>=state.settings.targetNet?'good':c.total>=95?'warn':'danger'}">${c.total}</td><td><button class="btn small" onclick="deleteItem('mocks',${m.id})">Sil</button></td></tr>`}).join("");document.getElementById("mockRows").innerHTML=rows||`<tr><td colspan="12" class="empty">Henüz deneme yok.</td></tr>`;renderMockAnalysis();renderMockChart();}
@@ -409,7 +498,7 @@ async function pullCloud(){try{saveSettings();const res=await fetch(endpointWith
 function exportJSON(){const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});downloadBlob(blob,"kpss-ana-kumanda-backup-"+localDate()+".json");}
 function importJSON(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{try{state=merge(defaultState(),JSON.parse(ev.target.result));save();renderAll();toast("JSON yüklendi.");}catch(err){toast("JSON okunamadı.");}};reader.readAsText(file);e.target.value="";}
 function csvEscape(v){const s=String(v??"");return '"'+s.replaceAll('"','""')+'"';}
-function exportCSV(kind){let rows=[],name=kind;if(kind==="mocks"){rows=[["Tarih","Deneme","Türkçe","Matematik","GY","TarihNet","Coğrafya","Vatandaşlık","Güncel","GK","Toplam","Not"],...state.mocks.map(m=>{const c=mockCalc(m);return[m.date,m.name,c.tr,c.mat,c.gy,c.tarih,c.cog,c.vat,c.gun,c.gk,c.total,m.note];})];name="denemeler";}if(kind==="mistakes"){rows=[["Tarih","Ders","Konu","Sebep","Tekrar","Kaynak","Not","Durum"],...state.mistakes.map(m=>[m.date,m.subject,m.topic,m.reason,m.repeat,m.source,m.note,m.resolved?"Çözüldü":"Açık"] )];name="yanlis-defteri";}if(kind==="archive"){rows=[["Yıl","Ders","Konu","Alt Konu","Soru Tipi","Zorluk","Not"],...state.archive.map(a=>[a.year,a.subject,a.topic,a.sub,a.type,a.diff,a.note])];name="osym-etiketleri";}if(kind==="sessions"){rows=[["Tarih","Ders","Konu","Dakika","Soru","Not"],...state.sessions.map(s=>[s.date,s.subject,s.topic,s.minutes,s.questions,s.note])];name="calisma-kayitlari";}const csv="\ufeff"+rows.map(r=>r.map(csvEscape).join(",")).join("\n");downloadBlob(new Blob([csv],{type:"text/csv;charset=utf-8"}),"kpss-"+name+"-"+localDate()+".csv");}
+function exportCSV(kind){let rows=[],name=kind;if(kind==="mocks"){rows=[["Tarih","Deneme","Türkçe","Matematik","GY","TarihNet","Coğrafya","Vatandaşlık","Güncel","GK","Toplam","Not"],...state.mocks.map(m=>{const c=mockCalc(m);return[m.date,m.name,c.tr,c.mat,c.gy,c.tarih,c.cog,c.vat,c.gun,c.gk,c.total,m.note];})];name="denemeler";}if(kind==="mistakes"){rows=[["Tarih","Ders","Konu","Sebep","Tekrar","Kaynak","Not","Durum"],...state.mistakes.map(m=>[m.date,m.subject,m.topic,m.reason,m.repeat,m.source,m.note,m.resolved?"Çözüldü":"Açık"] )];name="yanlis-defteri";}if(kind==="archive"){rows=[["Yıl","Ders","Konu","Alt Konu","Soru Tipi","Zorluk","Not"],...state.archive.map(a=>[a.year,a.subject,a.topic,a.sub,a.type,a.diff,a.note])];name="osym-etiketleri";}if(kind==="sessions"){rows=[["Tarih","Ders","Konu","Dakika","Soru","Not"],...state.sessions.map(s=>[s.date,s.subject,s.topic,s.minutes,s.questions,s.note])];name="calisma-kayitlari";}if(kind==="words"){rows=[["Doğru Yazım","Yanlış/Karışan","Grup","Etiket","Kural","Durum"],...allWords().map(w=>[w.correct,w.wrong,w.group,w.tag,w.rule,state.wordStatus[w.id]||"new"] )];name="kelime-kosesi";}const csv="\ufeff"+rows.map(r=>r.map(csvEscape).join(",")).join("\n");downloadBlob(new Blob([csv],{type:"text/csv;charset=utf-8"}),"kpss-"+name+"-"+localDate()+".csv");}
 function downloadBlob(blob,name){const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href);}
 function timerTick(){if(!state.timer.running)return;const elapsed=Math.floor((Date.now()-state.timer.startedAt)/1000);const rem=Math.max(0,state.timer.remainingAtStart-elapsed);drawTimer(rem);if(rem<=0){clearInterval(timerInt);state.timer.running=false;state.timer.remaining=1500;addTimerSession();save();drawTimer(1500);toast("Focus tamamlandı, 25 dk kaydedildi.");}}
 function drawTimer(sec){const m=String(Math.floor(sec/60)).padStart(2,"0"),s=String(sec%60).padStart(2,"0");document.getElementById("timerDisplay").textContent=m+":"+s;document.getElementById("timerStart").textContent=state.timer.running?"⏸ Durdur":"▶ Başlat";}
@@ -417,7 +506,33 @@ function toggleTimer(){if(state.timer.running){const elapsed=Math.floor((Date.no
 function resetTimer(){state.timer={remaining:1500,running:false,startedAt:null,subject:document.getElementById("timerSubject")?.value||"Türkçe"};clearInterval(timerInt);save();drawTimer(1500);}
 function addTimerSession(){state.sessions.unshift({id:Date.now(),date:localDate(),subject:state.timer.subject||"KPSS",topic:"Focus Timer",minutes:25,questions:0,note:"Pomodoro tamamlandı"});}
 function renderTimer(){clearInterval(timerInt);document.getElementById("timerSubject").value=state.timer.subject||"Türkçe";if(state.timer.running){timerInt=setInterval(timerTick,500);timerTick();}else drawTimer(state.timer.remaining||1500);}
-function renderAll(){document.documentElement.classList.toggle("dark",state.settings.theme==="dark");document.getElementById("themeBtn").textContent=document.documentElement.classList.contains("dark")?"☀️":"🌙";renderHeader();renderDaily();renderQuickSession();renderSessions();renderPriority();renderNetBreakdown();renderPhases();renderTopics();renderMockForm();renderMocks();renderMistakeForm();renderMistakes();renderArchiveForm();renderArchive();renderSettings();renderTimer();}
+
+function renderWeeklyRoadmap(){
+  const day=new Date().getDay();
+  const rows=WEEKLY_PLAN.map(d=>`<tr class="${d.day===day?'active':''}"><td>${d.name} ${d.day===day?'<span class="today-pill">BUGÜN</span>':''}</td><td><b>${esc(d.main)}</b></td><td>${d.tasks.map(x=>'• '+esc(x)).join('<br>')}</td></tr>`).join('');
+  const el=document.getElementById("weeklyRoadmap");if(el)el.innerHTML=`<div class="table-wrap"><table class="day-table"><thead><tr><th>Gün</th><th>Ana odak</th><th>Yapılacaklar</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function allWords(){return [...WORD_BANK,...(state.customWords||[])];}
+function initWordFilters(){const g=document.getElementById("wordGroupFilter");if(!g)return;const groups=[...new Set(allWords().map(w=>w.group))].sort((a,b)=>a.localeCompare(b,"tr"));const val=g.value||"all";g.innerHTML='<option value="all">Tüm gruplar</option>'+groups.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');g.value=groups.includes(val)?val:"all";}
+function renderWords(){
+  initWordFilters();
+  const q=(document.getElementById("wordSearch")?.value||"").toLowerCase();
+  const gf=document.getElementById("wordGroupFilter")?.value||"all";
+  const sf=document.getElementById("wordStatusFilter")?.value||"all";
+  const words=allWords().filter(w=>(gf==="all"||w.group===gf)&&(!q||(w.correct+w.wrong+w.rule+w.group+w.tag).toLowerCase().includes(q))&&(sf==="all"||(state.wordStatus[w.id]||"new")===sf));
+  const dayIndex=Math.abs(Math.floor(daysBetween("2026-01-01",localDate())))%WORD_BANK.length;
+  const wod=WORD_BANK[dayIndex];
+  const wodEl=document.getElementById("wordOfDay");
+  if(wodEl)wodEl.innerHTML=`<div><div class="tiny">Bugünün yazım kartı</div><div class="big-word">${esc(wod.correct)}</div><div class="wrong">Yanlış/karışan: ${esc(wod.wrong)}</div><p class="small muted" style="margin-top:7px">${esc(wod.rule)}</p></div><button class="btn green" onclick="markWord('${wod.id}','ok')">Öğrendim</button>`;
+  const grid=document.getElementById("wordGrid");if(!grid)return;
+  grid.innerHTML=words.map(w=>{const st=state.wordStatus[w.id]||"new";return `<div class="word-card ${st==='ok'?'learned':''}"><div class="topic-meta"><span class="pill ${w.tag.includes('Bitişik')?'green':w.tag.includes('Ayrı')?'blue':w.tag.includes('Güncel')?'orange':'purple'}">${esc(w.tag)}</span><span class="pill">${esc(w.group)}</span></div><h3>${esc(w.correct)}</h3><div class="bad">Karışan: ${esc(w.wrong)}</div><p>${esc(w.rule)}</p><div class="word-actions"><button class="btn small green" onclick="markWord('${w.id}','ok')">Öğrendim</button><button class="btn small orange" onclick="markWord('${w.id}','risk')">Karıştırıyorum</button><button class="btn small" onclick="openTDK('${encodeURIComponent(w.correct)}')">TDK</button>${w.custom?`<button class="btn small red" onclick="deleteCustomWord('${w.id}')">Sil</button>`:''}<span class="pill ${st==='ok'?'green':st==='risk'?'orange':'blue'}">${st==='ok'?'öğrenildi':st==='risk'?'risk':'yeni'}</span></div></div>`}).join("")||'<div class="empty">Kelime bulunamadı.</div>';
+}
+function markWord(id,status){state.wordStatus[id]=status;save();renderWords();}
+function addCustomWord(){const correct=document.getElementById("cwCorrect").value.trim(),wrong=document.getElementById("cwWrong").value.trim(),group=document.getElementById("cwGroup").value.trim()||"Kendi Listem",tag=document.getElementById("cwTag").value,rule=document.getElementById("cwRule").value.trim();if(!correct){toast("Doğru yazımı gir.");return}const item={id:"cw_"+Date.now(),correct,wrong:wrong||"—",group,tag,rule:rule||"Kendi notun.",custom:true};state.customWords.unshift(item);save();["cwCorrect","cwWrong","cwRule"].forEach(id=>document.getElementById(id).value="");renderWords();toast("Kelime eklendi.");}
+function deleteCustomWord(id){if(!confirm("Kelime silinsin mi?"))return;state.customWords=state.customWords.filter(w=>w.id!==id);delete state.wordStatus[id];save();renderWords();}
+function openTDK(q){const term=q?decodeURIComponent(q):(document.getElementById("wordSearch")?.value||"");window.open("https://sozluk.gov.tr/?aranan="+encodeURIComponent(term),"_blank","noopener");}
+
+function renderAll(){document.documentElement.classList.toggle("dark",state.settings.theme==="dark");document.getElementById("themeBtn").textContent=document.documentElement.classList.contains("dark")?"☀️":"🌙";renderHeader();renderDaily();renderQuickSession();renderSessions();renderWeeklyRoadmap();renderPriority();renderNetBreakdown();renderPhases();renderTopics();renderWords();renderMockForm();renderMocks();renderMistakeForm();renderMistakes();renderArchiveForm();renderArchive();renderSettings();renderTimer();}
 function boot(){if(state.settings.theme==="dark")document.documentElement.classList.add("dark");document.getElementById("themeBtn").textContent=document.documentElement.classList.contains("dark")?"☀️":"🌙";initTopicFilters();renderAll();}
 boot();
 </script>
