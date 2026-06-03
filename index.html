@@ -83,6 +83,7 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
   <nav class="tabs" id="tabs">
     <button class="tab active" data-page="dashboard" onclick="switchPage('dashboard')">🏠 Vitrin</button>
     <button class="tab" data-page="daily" onclick="switchPage('daily')">📋 Günlük</button>
+    <button class="tab" data-page="plan" onclick="switchPage('plan')">📅 Plan</button>
     <button class="tab" data-page="topics" onclick="switchPage('topics')">🧭 Konu Haritası</button>
     <button class="tab" data-page="mocks" onclick="switchPage('mocks')">📈 Deneme</button>
     <button class="tab" data-page="mistakes" onclick="switchPage('mistakes')">🧨 Yanlış Defteri</button>
@@ -128,6 +129,10 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
         <div class="card col-12">
           <div class="card-head"><div><div class="card-title">⚡ Hızlı Kayıt</div><div class="card-sub">Çalışmayı bitirince 20 saniyede işle</div></div></div>
           <div class="card-body" id="quickSessionBox"></div>
+        </div>
+        <div class="card col-12">
+          <div class="card-head"><div><div class="card-title">🍬 Günün GK Çerezi</div><div class="card-sub">Her gün 3 öğretici genel kültür kartı — okumadan geçme</div></div><button class="btn small" onclick="switchPage('plan')">📅 Gün-Gün Plan</button></div>
+          <div class="card-body" id="cerezBox"></div>
         </div>
         <div class="card col-12">
           <div class="card-head"><div><div class="card-title">🗓️ Haftalık Yol Haritası</div><div class="card-sub">Hangi gün neye vuracağını sade gösterir</div></div><button class="btn small" onclick="switchPage('topics')">Konu Haritasına Git</button></div>
@@ -319,6 +324,16 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
       </div>
     </section>
 
+    <section class="page" id="page-plan">
+      <div class="grid">
+        <div class="card col-12">
+          <div class="card-head"><div><div class="card-title">📅 Gün-Gün Plan (bugünden sınava)</div><div class="card-sub">Otomatik üretildi · konu kuyruğu frekans+öncelik sırasına göre</div></div></div>
+          <div class="card-body"><div class="notice"><strong>Nasıl okunur:</strong> Her güne ne düştüğü yazılı — düşünme, uygula. Konular önem sırasına dağıtıldı; <b>Vatandaşlık ve Güncel son 40 güne</b> kondu (senin stratejin). <b>Cumartesi = deneme</b>, <b>Pazar = tampon</b>, son 10 gün = sınav modu. Bir konuyu erken bitirirsen Konu Haritası'ndan "bitti" yap — plan kendini günceller.</div></div>
+        </div>
+        <div class="col-12" id="planBody"></div>
+      </div>
+    </section>
+
     <section class="page" id="page-frekans">
       <div class="grid">
         <div class="card col-12">
@@ -335,7 +350,7 @@ a{color:var(--blue);text-decoration:none}.wrap{max-width:1240px;margin:0 auto;pa
   </main>
 </div>
 <nav class="mobile-nav" id="mobileNav">
-  <button class="active" onclick="switchPage('dashboard')">🏠</button><button onclick="switchPage('daily')">📋</button><button onclick="switchPage('topics')">🧭</button><button onclick="switchPage('mocks')">📈</button><button onclick="switchPage('mistakes')">🧨</button><button onclick="switchPage('osym')">🗂️</button><button onclick="switchPage('frekans')">📊</button><button onclick="switchPage('words')">✍️</button><button onclick="switchPage('notion')">🔄</button>
+  <button class="active" onclick="switchPage('dashboard')">🏠</button><button onclick="switchPage('daily')">📋</button><button onclick="switchPage('plan')">📅</button><button onclick="switchPage('topics')">🧭</button><button onclick="switchPage('mocks')">📈</button><button onclick="switchPage('mistakes')">🧨</button><button onclick="switchPage('osym')">🗂️</button><button onclick="switchPage('frekans')">📊</button><button onclick="switchPage('words')">✍️</button><button onclick="switchPage('notion')">🔄</button>
 </nav>
 <div class="toast" id="toast"></div>
 <script>
@@ -477,7 +492,7 @@ function subjectColor(s){return {"Türkçe":"red","Matematik":"blue","Tarih":"ye
 function priorityWeight(p){return p==="A"?3:p==="B"?2:1;}
 function statusOf(id){return state.topicStatus[id]?.status||"bekliyor";}
 function weekMinutes(){const today=localDate();return state.sessions.filter(x=>daysBetween(x.date,today)>=0&&daysBetween(x.date,today)<=6).reduce((a,b)=>a+(Number(b.minutes)||0),0);}
-function switchPage(page){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById("page-"+page)?.classList.add("active");document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.page===page));document.querySelectorAll(".mobile-nav button").forEach((b,i)=>{const pages=["dashboard","daily","topics","mocks","mistakes","osym","frekans","words","notion"];b.classList.toggle("active",pages[i]===page);});if(page==="mocks")setTimeout(renderMockChart,80);window.scrollTo({top:0,behavior:"smooth"});}
+function switchPage(page){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById("page-"+page)?.classList.add("active");document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.page===page));document.querySelectorAll(".mobile-nav button").forEach((b,i)=>{const pages=["dashboard","daily","plan","topics","mocks","mistakes","osym","frekans","words","notion"];b.classList.toggle("active",pages[i]===page);});if(page==="mocks")setTimeout(renderMockChart,80);window.scrollTo({top:0,behavior:"smooth"});}
 function renderHeader(){const dleft=daysBetween(localDate(),state.settings.examDate);document.getElementById("daysLeft").textContent=dleft>=0?dleft:"0";document.getElementById("examDateText").textContent=dateTR(state.settings.examDate);{const t=state.settings.targetNet;const tm=document.getElementById("tierMini");if(tm)tm.textContent=`Taban ${Math.max(0,t-10)} · Hedef ${t} · Hayal ${Math.min(120,t+10)}`;}const lm=latestMock();if(lm){const c=mockCalc(lm);document.getElementById("latestNet").textContent=c.total;document.getElementById("latestMockName").textContent=lm.name||dateTR(lm.date);document.getElementById("targetGap").textContent=Math.max(0,Math.round((state.settings.targetNet-c.total)*100)/100);}else{document.getElementById("latestNet").textContent="0";document.getElementById("latestMockName").textContent="Henüz deneme yok";document.getElementById("targetGap").textContent=state.settings.targetNet;}document.getElementById("weeklyHours").textContent=(weekMinutes()/60).toFixed(1)+"s";document.getElementById("openMistakes").textContent=state.mistakes.filter(x=>!x.resolved).length;}
 function renderDaily(){const key=localDate();if(!state.daily[key])state.daily[key]={tasks:{},note:""};document.getElementById("todayLabel").textContent=new Date().toLocaleDateString("tr-TR",{weekday:"long",day:"2-digit",month:"long"});const box=document.getElementById("dailyChecklist");box.innerHTML=DAILY_TASKS.map(t=>`<label class="check ${state.daily[key].tasks[t.id]?"done":""}"><input type="checkbox" ${state.daily[key].tasks[t.id]?"checked":""} onchange="toggleDailyTask('${t.id}',this.checked)"><span><b>${esc(t.label)}</b> <span class="pill ${t.tag==='GK'?'green':t.tag==='Mat'?'blue':t.tag==='Analiz'?'orange':'purple'}">${esc(t.tag)}</span></span></label>`).join("");const done=DAILY_TASKS.filter(t=>state.daily[key].tasks[t.id]).length;const pct=Math.round(done/DAILY_TASKS.length*100);document.getElementById("dailyBar").style.width=pct+"%";document.getElementById("dailyDoneText").textContent=done+"/"+DAILY_TASKS.length;document.getElementById("dailyPercent").textContent=pct+"%";document.getElementById("dailyNote").value=state.daily[key].note||"";renderTodaySessions();}
 function toggleDailyTask(id,val){const key=localDate();if(!state.daily[key])state.daily[key]={tasks:{},note:""};state.daily[key].tasks[id]=val;save();renderDaily();}
@@ -596,10 +611,91 @@ function fEdge(a,start){const v=a.filter(x=>x!=null);if(!v.length)return 0;const
 function trendOf(a){const d=fEdge(a,false)-fEdge(a,true);return d>=0.8?{t:"↑ yükselişte",c:"red"}:d<=-0.8?{t:"↓ düşüşte",c:"green"}:{t:"→ sabit",c:"blue"};}
 function prioVerdict(avg){return avg>=4?{t:"🔴 Bel kemiği",c:"red"}:avg>=2?{t:"🟠 Önemli",c:"orange"}:avg>=1?{t:"🟢 Garanti/küçük",c:"green"}:{t:"⚪ Düşük",c:"purple"};}
 function renderFrekans(){const rk=document.getElementById("frekansRanking");if(!rk)return;const all=[];FREQ_SUBJECTS.forEach(sub=>sub.rows.forEach(r=>all.push({s:sub.s,topic:r[0],avg:favg(r[1])})));all.sort((a,b)=>b.avg-a.avg);const max=all[0].avg||1;rk.innerHTML=all.slice(0,14).map((x,i)=>`<div class="subject-row" style="grid-template-columns:1fr 1fr 48px"><div class="name">${i+1}. <span class="pill ${subjectColor(x.s)}">${esc(x.s)}</span> ${esc(x.topic)}</div><div class="progress"><div class="bar ${subjectColor(x.s)}" style="width:${x.avg/max*100}%"></div></div><div class="val">${x.avg.toFixed(1)}</div></div>`).join("");document.getElementById("frekansBody").innerHTML=FREQ_SUBJECTS.map(sub=>{const rows=sub.rows.slice().sort((a,b)=>favg(b[1])-favg(a[1]));const body=rows.map(r=>{const avg=favg(r[1]),tr=trendOf(r[1]),pv=prioVerdict(avg);return `<tr><td><b>${esc(r[0])}</b></td>${r[1].map(v=>`<td class="num">${v==null?'<span class="tiny">–</span>':v}</td>`).join("")}<td class="num good">${avg.toFixed(1)}</td><td><span class="pill ${tr.c}">${tr.t}</span></td><td><span class="pill ${pv.c}">${pv.t}</span></td></tr>`}).join("");return `<div class="card" style="margin-top:14px"><div class="card-head"><div><div class="card-title"><span class="pill ${subjectColor(sub.s)}">${esc(sub.s)}</span> ${sub.total} soru</div><div class="card-sub">2015–2023 yıl yıl · ÖSYM ısrarı</div></div></div><div class="card-body"><div class="notice" style="margin-bottom:10px">${esc(sub.note)}</div><div class="table-wrap"><table><thead><tr><th>Konu</th>${FREQ_YEARS.map(y=>`<th class="num">${y}</th>`).join("")}<th class="num">Ort</th><th>Trend</th><th>Öncelik</th></tr></thead><tbody>${body}</tbody></table></div></div></div>`}).join("")+`<div class="card" style="margin-top:14px"><div class="card-body"><div class="notice"><strong>🌍 Güncel Bilgiler (6 soru):</strong> Konu bazlı yıllık tablo yok; uluslararası kuruluşlar, ödüller, spor, kültür-sanat, ekonomi ve yıl içi olaylardan gelir. Strateji: son 40 günde yoğunlaş, şimdilik haftalık not tut.</div></div></div>`;}
+/* ===== GÜNÜN GK ÇEREZİ (doğrulanmış genel kültür kartları) ===== */
+const GK_FACTS=[
+ {c:"🗺️ Coğrafya",t:"Türkiye'nin en yüksek dağı Ağrı Dağı'dır (5137 m)."},
+ {c:"🗺️ Coğrafya",t:"En büyük gölümüz Van Gölü'dür; sodalı ve kapalı havzadadır."},
+ {c:"🗺️ Coğrafya",t:"Tamamı yurt içinde olan en uzun akarsu Kızılırmak'tır (~1355 km)."},
+ {c:"🗺️ Coğrafya",t:"En büyük baraj gölü, Fırat üzerindeki Atatürk Barajı'dır (GAP)."},
+ {c:"🗺️ Coğrafya",t:"Yüzölçümü en büyük il Konya, en küçük il Yalova'dır."},
+ {c:"🗺️ Coğrafya",t:"Türkiye 7 coğrafi bölgeye 1941 I. Coğrafya Kongresi'nde ayrılmıştır."},
+ {c:"🗺️ Coğrafya",t:"En çok yağış alan yer Doğu Karadeniz, en az alan yer İç Anadolu'dur (Tuz Gölü çevresi)."},
+ {c:"🗺️ Coğrafya",t:"Türkiye'nin iç denizi Marmara'dır; diğer üç tarafı Karadeniz, Ege ve Akdeniz ile çevrilidir."},
+ {c:"🗺️ Coğrafya",t:"Deprem riski en yüksek kuşak Kuzey Anadolu Fay Hattı çevresidir."},
+ {c:"🌍 Kuruluş",t:"Birleşmiş Milletler 1945'te kuruldu; merkezi New York'tur."},
+ {c:"🌍 Kuruluş",t:"NATO 1949'da kuruldu; Türkiye 1952'de üye oldu. Merkezi Brüksel'dedir."},
+ {c:"🌍 Kuruluş",t:"UNESCO'nun merkezi Paris, Dünya Sağlık Örgütü'nün (WHO) merkezi Cenevre'dir."},
+ {c:"🌍 Kuruluş",t:"IMF ve Dünya Bankası 1944 Bretton Woods Konferansı'nda kuruldu."},
+ {c:"🌍 Kuruluş",t:"OPEC (Petrol İhraç Eden Ülkeler) merkezi Viyana'dadır."},
+ {c:"🌍 Kuruluş",t:"AB'nin temeli 1957 Roma Antlaşması ile kurulan AET'dir."},
+ {c:"🌍 Kuruluş",t:"Türkiye AET ile 1963 Ankara Anlaşması'nı imzalayarak ortaklık ilişkisi kurdu."},
+ {c:"🌍 Kuruluş",t:"En büyük kıta Asya, en büyük okyanus Pasifik'tir."},
+ {c:"🏛️ İnkılap",t:"TBMM 23 Nisan 1920'de açıldı."},
+ {c:"🏛️ İnkılap",t:"Saltanat 1 Kasım 1922'de kaldırıldı."},
+ {c:"🏛️ İnkılap",t:"Lozan Barış Antlaşması 24 Temmuz 1923'te imzalandı."},
+ {c:"🏛️ İnkılap",t:"Cumhuriyet 29 Ekim 1923'te ilan edildi."},
+ {c:"🏛️ İnkılap",t:"Ankara 13 Ekim 1923'te başkent oldu."},
+ {c:"🏛️ İnkılap",t:"Halifelik ve Tevhid-i Tedrisat Kanunu 3 Mart 1924'te kabul edildi."},
+ {c:"🏛️ İnkılap",t:"Türk Medeni Kanunu 1926'da kabul edildi (İsviçre'den uyarlandı)."},
+ {c:"🏛️ İnkılap",t:"Harf İnkılabı (Yeni Türk alfabesi) 1928'de yapıldı."},
+ {c:"🏛️ İnkılap",t:"Soyadı Kanunu 1934'te çıkarıldı."},
+ {c:"🏛️ İnkılap",t:"Kadınlara milletvekili seçme ve seçilme hakkı 1934'te verildi."},
+ {c:"🏛️ İnkılap",t:"Aşar (öşür) vergisi 1925'te kaldırıldı."},
+ {c:"🏛️ İnkılap",t:"İzmir İktisat Kongresi 1923'te toplandı."},
+ {c:"🏛️ İnkılap",t:"Kabotaj Kanunu 1 Temmuz 1926'da yürürlüğe girdi."},
+ {c:"🏺 Tarih",t:"Montrö Boğazlar Sözleşmesi 1936'da imzalandı; Boğazlar'da Türk egemenliğini güçlendirdi."},
+ {c:"🏺 Tarih",t:"Sadabat Paktı 1937'de Türkiye, İran, Irak ve Afganistan arasında kuruldu."},
+ {c:"🏺 Tarih",t:"Balkan Antantı 1934'te imzalandı (Türkiye, Yunanistan, Romanya, Yugoslavya)."},
+ {c:"🏺 Tarih",t:"Türkiye Milletler Cemiyeti'ne 1932'de üye oldu."},
+ {c:"🏺 Tarih",t:"Hatay 1939'da anavatana katıldı."},
+ {c:"🏺 Tarih",t:"Türkiye'nin ilk cumhurbaşkanı Atatürk, ikincisi İsmet İnönü'dür."},
+ {c:"⚖️ Vatandaşlık",t:"İlk anayasamız 1921 Teşkilat-ı Esasiye Kanunu'dur."},
+ {c:"⚖️ Vatandaşlık",t:"Anayasalarımız: 1921, 1924, 1961 ve 1982."},
+ {c:"⚖️ Vatandaşlık",t:"Anayasa Mahkemesi 1961 Anayasası ile kuruldu."},
+ {c:"⚖️ Vatandaşlık",t:"1982 Anayasası halkoylaması (referandum) ile kabul edildi."},
+ {c:"⚖️ Vatandaşlık",t:"TBMM 600 milletvekilinden oluşur (2018'den itibaren)."},
+ {c:"⚖️ Vatandaşlık",t:"Normlar hiyerarşisinde en üstte Anayasa yer alır."},
+ {c:"⚖️ Vatandaşlık",t:"Cumhurbaşkanlığı hükümet sistemi 2017 değişikliğiyle kabul edildi, 2018'de yürürlüğe girdi."},
+ {c:"⚖️ Vatandaşlık",t:"Sayıştay, kamu mali denetimini TBMM adına yapar."},
+ {c:"🏺 Kültür",t:"Göbeklitepe (2018), Truva (1998) ve Pamukkale-Hierapolis (1988) UNESCO Dünya Mirası Listesi'ndedir."},
+ {c:"🏺 Kültür",t:"Nemrut Dağı, Divriği Ulu Camii ve İstanbul'un tarihi alanları da UNESCO listesindedir."}
+];
+let cerezSeed=0;
+function cerezPick(){const n=GK_FACTS.length;const base=(Math.abs(daysBetween("2026-01-01",localDate()))*3+cerezSeed*3)%n;return [0,1,2].map(i=>GK_FACTS[(base+i)%n]);}
+function shuffleCerez(){cerezSeed++;renderCerez();}
+function renderCerez(){const el=document.getElementById("cerezBox");if(!el)return;el.innerHTML=cerezPick().map(x=>`<div class="notice" style="margin-bottom:8px"><span class="pill green">${esc(x.c)}</span> <span style="margin-left:4px">${esc(x.t)}</span></div>`).join("")+`<div class="actions" style="margin-top:4px"><button class="btn small" onclick="shuffleCerez()">🔀 Yeni çerez</button><button class="btn small" onclick="switchPage('frekans')">GK frekansı</button></div>`;}
+/* ===== 95 GÜNLÜK GÜN-GÜN PLAN (otomatik üretilir) ===== */
+function buildPlan(){
+  const start=localDate(),exam=state.settings.examDate,total=Math.max(1,daysBetween(start,exam));
+  const qnum=t=>Math.max(...(String(t.q).match(/\d+/g)||["0"]).map(Number));
+  const mainQ=TOPICS.filter(t=>t.s!=="Vatandaşlık"&&t.s!=="Güncel"&&statusOf(t.id)!=="bitti").sort((a,b)=>priorityWeight(b.p)-priorityWeight(a.p)||qnum(b)-qnum(a));
+  const vatQ=TOPICS.filter(t=>t.s==="Vatandaşlık"&&statusOf(t.id)!=="bitti").sort((a,b)=>priorityWeight(b.p)-priorityWeight(a.p));
+  const days=[];
+  for(let i=0;i<total;i++){const date=addDays(start,i),left=daysBetween(date,exam),dow=new Date(date+"T00:00:00").getDay();const ph=PHASES.find(p=>left<=p.from&&left>=p.to)||PHASES[PHASES.length-1];days.push({date,left,dow,phase:ph.title.replace(/^Faz \d+ — /,""),isSun:dow===0,isSat:dow===6,konu:[],vat:null,deneme:false,tampon:false,sinav:false,tasks:[]});}
+  const konuDays=[],vatDays=[];
+  days.forEach(d=>{if(d.left<=10){d.sinav=true;return;}if(d.isSun){d.tampon=true;return;}if(d.isSat&&d.left<=78){d.deneme=true;return;}if(d.left>45)konuDays.push(d);if(d.left<=40)vatDays.push(d);});
+  if(konuDays.length&&mainQ.length){const per=Math.ceil(mainQ.length/konuDays.length);let qi=0;konuDays.forEach(d=>{for(let k=0;k<per&&qi<mainQ.length;k++)d.konu.push(mainQ[qi++]);});}
+  if(vatDays.length&&vatQ.length){const step=Math.max(1,Math.floor(vatDays.length/vatQ.length));let vi=0;for(let j=0;j<vatDays.length&&vi<vatQ.length;j+=step)vatDays[j].vat=vatQ[vi++];}
+  days.forEach(d=>{
+    if(d.sinav){d.tasks=["🎯 Sınav modu: son tekrar + uyku-saat düzeni","Yeni konu YOK; sınav saatinde simülasyon","Yanlış defteri hızlı tarama + GK çerez"];return;}
+    if(d.tampon){d.tasks=["☕ Tampon gün: eksik A konularını tamamla","Kelime + GK çerez risk kartları tekrarı","Önümüzdeki haftayı netleştir"];return;}
+    if(d.deneme){d.tasks=["📈 Deneme (tam/yarım) + süresi kadar analiz","🧨 Yanlışları defterine işle","🍬 GK çerez: 3 kart"];return;}
+    const t=["🔁 14 paragraf + 15 problem (her gün sabiti)"];
+    d.konu.forEach(k=>t.push(`📚 Konu kapat: ${k.t} (${k.s}, ${k.q} soru)`));
+    if(d.vat)t.push(`⚖️ Vatandaşlık: ${d.vat.t}`);
+    if(d.left<=40)t.push("📰 Güncel bilgiler 20-30 dk");
+    t.push("🧨 Vadesi gelen yanlışları kapat");
+    t.push(d.left<=40?"🍬 GK çerez tekrarı":"🍬 GK çerez: 3 kart (vitrin)");
+    d.tasks=t;
+  });
+  return days;
+}
+function renderPlan(){const el=document.getElementById("planBody");if(!el)return;const days=buildPlan(),today=localDate(),WD=["Pzr","Pzt","Sal","Çar","Per","Cum","Cmt"];let html="",week=[],wkno=0;const flush=()=>{if(!week.length)return;wkno++;const f=week[0],l=week[week.length-1];html+=`<div class="card" style="margin-top:12px"><div class="card-head"><div><div class="card-title">Hafta ${wkno}</div><div class="card-sub">${dateTR(f.date)} – ${dateTR(l.date)} · ${esc(f.phase)}</div></div><span class="pill ${f.left>45?'red':f.left>10?'orange':'purple'}">${f.left} gün</span></div><div class="card-body" style="display:grid;gap:8px">`+week.map(d=>{const isT=d.date===today;const tag=d.sinav?'<span class="pill red">Sınav Modu</span>':d.deneme?'<span class="pill blue">Deneme</span>':d.tampon?'<span class="pill">Tampon</span>':'';return `<div class="phase ${isT?'active':''}"><h4>${WD[d.dow]} · ${dateTR(d.date)} ${isT?'<span class="today-pill">BUGÜN</span>':''} ${tag}</h4><div style="display:grid;gap:3px;margin-top:4px">${d.tasks.map(x=>`<div class="small">• ${esc(x)}</div>`).join("")}</div></div>`;}).join("")+`</div></div>`;week=[];};
+  days.forEach(d=>{if(d.dow===1&&week.length)flush();week.push(d);});flush();el.innerHTML=html;}
 /* ===== BUGÜNÜN NET OPERASYON EMRİ (karar gerektirmez motor) ===== */
 function activePhase(){const left=daysBetween(localDate(),state.settings.examDate);return PHASES.find(p=>left<=p.from&&left>=p.to)||PHASES[PHASES.length-1];}
-function renderTodayPlan(){const el=document.getElementById("todayPlan");if(!el)return;const left=daysBetween(localDate(),state.settings.examDate);const ph=activePhase();const wp=WEEKLY_PLAN.find(d=>d.day===new Date().getDay());const due=state.mistakes.filter(m=>!m.resolved&&m.repeat<=localDate());const order={risk:0,bekliyor:1,calisiliyor:2,tekrar:3,bitti:9};const aOpen=TOPICS.filter(t=>t.p==="A"&&statusOf(t.id)!=="bitti").sort((a,b)=>(order[statusOf(a.id)]??5)-(order[statusOf(b.id)]??5));const next=aOpen.slice(0,2);const items=[];items.push(`<b>Faz:</b> ${esc(ph.title.replace(/^Faz \d+ — /,""))} · sınava <b>${left>=0?left:0}</b> gün`);if(wp)items.push(`<b>Bugünün odağı (${esc(wp.name)}):</b> ${esc(wp.main)}`);items.push(`🔁 Her gün sabiti: <b>14 paragraf + 15 problem</b> <span class="tiny">(frekansta 1-2 numara)</span>`);if(next.length)items.push(`🎯 Kapatılacak konu: ${next.map(t=>`<b>${esc(t.t)}</b> <span class="tiny">(${esc(t.s)}, ${esc(t.q)} soru)</span>`).join(" · ")}`);if(due.length){const tops=[...new Set(due.map(m=>m.topic))].slice(0,3);items.push(`🧨 Bugün tekrar: <b>${due.length} açık yanlış</b> <span class="tiny">(${tops.map(esc).join(", ")})</span>`);}items.push(`✅ Bitince aşağıdaki 5 minimumu işaretle ve <b>Günü Kapat</b>.`);el.innerHTML=`<div class="notice" style="border-color:var(--blue);background:var(--blue-bg);margin-bottom:12px"><div style="font-weight:900;margin-bottom:7px;color:var(--blue)">🧭 Bugünün Net Operasyon Emri</div><div style="display:grid;gap:6px;color:var(--text)">${items.map(x=>`<div>• ${x}</div>`).join("")}</div></div>`;}
-function renderAll(){document.documentElement.classList.toggle("dark",state.settings.theme==="dark");document.getElementById("themeBtn").textContent=document.documentElement.classList.contains("dark")?"☀️":"🌙";renderHeader();renderDaily();renderQuickSession();renderSessions();renderWeeklyRoadmap();renderPriority();renderNetBreakdown();renderPhases();renderTopics();renderWords();renderMockForm();renderMocks();renderMistakeForm();renderMistakes();renderArchiveForm();renderArchive();renderSettings();renderTimer();renderStreak();renderMetroflow();renderFrekans();renderTodayPlan();}
+function renderTodayPlan(){const el=document.getElementById("todayPlan");if(!el)return;const left=daysBetween(localDate(),state.settings.examDate);const ph=activePhase();const wp=WEEKLY_PLAN.find(d=>d.day===new Date().getDay());const due=state.mistakes.filter(m=>!m.resolved&&m.repeat<=localDate());const last40=left<=40;const order={risk:0,bekliyor:1,calisiliyor:2,tekrar:3,bitti:9};const aOpen=TOPICS.filter(t=>t.p==="A"&&statusOf(t.id)!=="bitti"&&(last40||t.s!=="Vatandaşlık")).sort((a,b)=>(order[statusOf(a.id)]??5)-(order[statusOf(b.id)]??5));const next=aOpen.slice(0,2);const items=[];items.push(`<b>Faz:</b> ${esc(ph.title.replace(/^Faz \d+ — /,""))} · sınava <b>${left>=0?left:0}</b> gün`);if(wp)items.push(`<b>Bugünün odağı (${esc(wp.name)}):</b> ${esc(wp.main)}`);items.push(`🔁 Her gün sabiti: <b>14 paragraf + 15 problem</b> <span class="tiny">(frekansta 1-2 numara)</span>`);if(next.length)items.push(`🎯 Kapatılacak konu: ${next.map(t=>`<b>${esc(t.t)}</b> <span class="tiny">(${esc(t.s)}, ${esc(t.q)} soru)</span>`).join(" · ")}`);if(due.length){const tops=[...new Set(due.map(m=>m.topic))].slice(0,3);items.push(`🧨 Bugün tekrar: <b>${due.length} açık yanlış</b> <span class="tiny">(${tops.map(esc).join(", ")})</span>`);}items.push(last40?`📌 Son 40 gün: <b>Vatandaşlık + Güncel bilgilere</b> ağırlık ver.`:`🍬 Vitrindeki <b>günün GK çerezini</b> oku (3 kart).`);items.push(`✅ Bitince aşağıdaki 5 minimumu işaretle ve <b>Günü Kapat</b>. Detaylı gün-gün için <b>📅 Plan</b> sekmesi.`);el.innerHTML=`<div class="notice" style="border-color:var(--blue);background:var(--blue-bg);margin-bottom:12px"><div style="font-weight:900;margin-bottom:7px;color:var(--blue)">🧭 Bugünün Net Operasyon Emri</div><div style="display:grid;gap:6px;color:var(--text)">${items.map(x=>`<div>• ${x}</div>`).join("")}</div></div>`;}
+function renderAll(){document.documentElement.classList.toggle("dark",state.settings.theme==="dark");document.getElementById("themeBtn").textContent=document.documentElement.classList.contains("dark")?"☀️":"🌙";renderHeader();renderDaily();renderQuickSession();renderSessions();renderWeeklyRoadmap();renderPriority();renderNetBreakdown();renderPhases();renderTopics();renderWords();renderMockForm();renderMocks();renderMistakeForm();renderMistakes();renderArchiveForm();renderArchive();renderSettings();renderTimer();renderStreak();renderMetroflow();renderFrekans();renderTodayPlan();renderCerez();renderPlan();}
 function boot(){if(state.settings.targetNet===106)state.settings.targetNet=90;if(!state.metroflow)state.metroflow={log:[]};if(state.settings.theme==="dark")document.documentElement.classList.add("dark");document.getElementById("themeBtn").textContent=document.documentElement.classList.contains("dark")?"☀️":"🌙";initTopicFilters();renderAll();}
 boot();
 </script>
